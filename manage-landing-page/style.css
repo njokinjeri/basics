@@ -465,7 +465,7 @@ footer {
     .menu li a {
         text-decoration: none;
         color: var(--dark-blue);
-        font-size: 0.875rem;
+        font-size: 1rem;
         font-weight: 700;
     }
     
@@ -525,7 +525,7 @@ footer {
     }
     
     .menu {
-        width: 45vw;
+        width: 50vw;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
@@ -539,6 +539,7 @@ footer {
     }
     
     .menu li a {
+        font-size: 1rem;
         font-weight: 500;
         text-decoration: none;
         color: var(--dark-blue);
@@ -627,6 +628,7 @@ footer {
     }
     
     .menu li a {
+        font-size: 1rem;
         font-weight: 500;
         text-decoration: none;
         color: var(--dark-blue);
