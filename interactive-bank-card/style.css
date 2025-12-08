@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 
-
 :root {
     --linear-gradient: hsl(249, 99%, 64%) to hsl(278, 94%, 30%);
     --input-errors: hsl(0, 100%, 66%);
@@ -8,6 +7,7 @@
     --light-grayish-violet: hsl(270, 3%, 87%);
     --dark-grayish-violet: hsl(279, 6%, 55%);
     --very-dark-violet: hsl(278, 68%, 11%);
+    --light-violet: hsl(278, 94%, 30%);
 }
 
 * {
@@ -17,5 +17,270 @@
 }
 
 body {
+    height: 100vh;
     font-family: "Space Grotesk", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    overflow: hidden;
+}
+
+aside {
+    height: 45%;
+    background-image: url(./images/bg-main-mobile.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    color: var(--white);
+    padding: 2rem;
+    position: relative;
+}
+
+.bank-card-front {
+    display: flex;
+    position: relative;
+    position: absolute;
+    top: 55%;
+    z-index: 10;
+}
+
+.front-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    position: absolute;
+    top: 10%;
+    left: 2%;
+    color: var(--light-grayish-violet);
+}
+
+.display-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    font-weight: 500;
+    padding: 0 1rem;
+}
+
+#display-number {
+    width: 100%;
+    font-size: 1.875rem;
+}
+
+.display-details {
+    display: flex;
+    align-items: center;
+    gap: 4rem; 
+    font-size: 0.875rem; 
+    letter-spacing: 0.063rem;
+}
+
+#display-name {
+    width: 80%;
+}
+
+.bank-card-back {
+    display: flex;
+    position: absolute;
+    left: 20%;
+    top: 10%;
+    z-index: 1;
+}
+
+.bank-card-details {
+    position: relative;
+}
+
+#display-cvc {
+    position: absolute;
+    top: 45%;
+    left: 78%
+}
+
+main {
+    padding: 2rem;
+}
+
+form {
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+form label {
+    font-weight: 500;
+    color: var(--very-dark-violet);
+}
+
+form input {
+    font-family: "Space Grotesk", sans-serif;
+}
+
+.card-name input:focus,
+.card-number input:focus,
+.card-details input:focus {
+    border: 2px solid var(--light-violet);
+    outline: none;
+}
+
+.card-name,
+.card-number,
+.expiration-wrapper,
+.cvc-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-name input,
+.card-number input,
+.card-details input {
+    height: 3rem;
+    padding-left: 1rem;
+    font-size: 1rem;
+    border: 1px solid  var(--light-grayish-violet);
+    border-radius: 0.5rem;
+}
+
+.card-name input::placeholder,
+.card-number input::placeholder,
+.card-details input::placeholder {
+    opacity: 0.3;
+    font-weight: 600;
+    color: var(--very-dark-violet);
+}
+
+.card-details {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.expiration-wrapper {
+    width: 50%;
+}
+
+.expiration-input-wrapper {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.expiration-input-wrapper input {
+    width: 50%;
+}
+
+.cvc-wrapper {
+    width: 50%;
+}
+
+.confirm-container input {
+    width: 100%;
+    height: 3rem;
+    background: var(--very-dark-violet);
+    color: var(--light-grayish-violet);
+    font-size: 1.125rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.confirm-container input:focus {
+    background: var(--light-grayish-violet);
+    color: var(--very-dark-violet);
+}
+
+#success-form {
+    display: none;
+    text-align: center; 
+}
+
+#success-form div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+#success-form h1 {
+    color: var(--very-dark-violet);
+    font-size: 1.75rem;
+    letter-spacing: 0.2rem;
+}
+
+#success-form p {
+    color: var(--dark-grayish-violet);
+    font-size: 1.125rem;
+}
+
+#success-form input[type="submit"] {
+    width: 100%;
+    height: 3rem;
+    background: var(--very-dark-violet);
+    color: var(--light-grayish-violet);
+    font-size: 1.125rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+@media (min-width: 1024px) {
+    body {
+        display: flex;
+        flex-direction: row;
+        justify-items: center;
+        align-items: center;
+    }
+
+    aside {
+        width: 35%;
+        height: 100%;
+    }
+
+    .bank-card-front {
+        position: fixed;
+        top: 20%;
+        left: 2%;
+    }
+
+    .bank-card-back {
+        position: fixed;
+        top: 52%;
+        left: 5%;
+    }
+
+    main {
+        width: 34rem;
+        margin-left: 8rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .bank-card-front {
+        position: fixed;
+        top: 20%;
+        left: 5%;
+    }
+
+    .bank-card-back {
+        position: fixed;
+        top: 52%;
+        left: 10%;
+    }
+}
+
+@media (min-width: 1440px) {
+    .bank-card-front {
+        position: fixed;
+        top: 20%;
+        left: 10%;
+    }
+
+    .bank-card-back {
+        position: fixed;
+        top: 52%;
+        left: 14%;
+    }
 }
