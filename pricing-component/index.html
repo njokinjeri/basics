@@ -11,37 +11,38 @@
   <header>
     <h1>Simple, traffic-based pricing</h1>
     <p>Sign-up for our 30-day trial. No credit card required.</p>
+    <img class="header-bg-img" src="./images/pattern-circles.svg" alt="pattern-circles-image">
   </header>
   <section>
-    <div class="upper-container">
-      <div class="view-pricing-container">
-        <span id="viewCount">100K PAGEVIEWS</span>
-        <h4 id="pricing">$16/month</h4>
-      </div>
+    <div class="upper-wrapper">
       <div class="pricing-slider">
-        <input type="range" class="slider" id="pricingRange" min="10" max="1000" step="10" value="500">
+        <p id="viewCount">100K <span></span>PAGEVIEWS</p>
+        <h4 id="pricing">$16.00 <span>/month</span></h4>
+        <input type="range" class="range-slider" id="pricingRange" min="10" max="100" step="10" value="50">
       </div>
       <div class="pricing-toggle">
-        <label for="monthly">Monthly Billing</label>
-        <label class="toggle-label">
-          <input type="checkbox" id="billingToggle">
+        <div class="monthly-billing">Monthly Billing</div>
+        <label class="toggle-switch">
+          <input id="toggle-input" type="checkbox" />
           <span class="slider"></span>
-        </label> 
-        <div class="yearly-billing">
-          <label for="monthly">Yearly Billing</label>
-          <p class="discount">25% discount</p>
-        </div> 
+        </label>
+        <div class="yearly-billing"> 
+          <p class="billing-text">Yearly Billing</p>
+          <span class="negative-discount">-25%</span>
+          <span class="discount-text">25% discount</span>
+        </div>
       </div>
     </div>
-    <div class="lower-container">
+    <hr>
+    <div class="lower-wrapper">
         <ul class="highlights-list">
           <li><img class="list-icon" src="./images/icon-check.svg" alt="check-icon">Unlimited websites</li>
           <li><img class="list-icon" src="./images/icon-check.svg" alt="check-icon">100% data ownership</li>
           <li><img class="list-icon" src="./images/icon-check.svg" alt="check-icon">Email reports</li>
         </ul>
         <button class="page-cta" type="button">Start my trial</button>
-      </div>
     </div>
   </section>
+  <script src="./index.js"></script>
 </body>
 </html>

@@ -6,14 +6,14 @@
     --light-grayish: hsl(14, 92%, 95%);
     --light-red: hsl(15, 100%, 70%);
     --pale-blue: hsl(226, 100%, 87%);
-    --White: hsl (0, 0%, 100%);
+    --White: hsl(0, 0%, 100%);
     --very-pale-blue: hsl(230, 100%, 99%);
     --light-grayish-blue: hsl(224, 65%, 95%);
     --lighter-grayish-blue: hsl(223, 50%, 87%);
     --grayish-blue: hsl(225, 20%, 60%);
     --dark-desaturated-blue: hsl(227, 35%, 25%);
+    --dark-blue: hsl(226, 51%, 17%);
 }
-
 
 * {
     margin: 0;
@@ -23,4 +23,293 @@
 
 body {
     font-family: "Space Mono", monospace;
+    background: url(./images/bg-pattern.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    gap: 4rem;
+}
+
+header {
+    color: var(--dark-blue);
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    position: relative;
+    padding-top: 4rem;
+}
+
+header h1 {
+    font-size: 1.875rem;
+}
+
+header p {
+    width: 60vw;
+    font-weight: 600;
+    color: var(--grayish-blue);
+}
+
+.header-bg-img {
+    width: 12rem;
+    position: absolute;
+    top: 20%;
+    z-index: -1
+}
+
+section {
+    width: 90vw;
+    height: 55vh;
+    background: var(--White);
+    color: var(--dark-desaturated-blue);
+    border-radius: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.upper-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    overflow: hidden;
+}
+
+.pricing-slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    position: relative;
+}
+
+#viewCount {
+    color: var(--grayish-blue);
+    font-size: 1.125rem;
+}
+
+#pricing {
+    font-size: 2rem;
+}
+
+#pricing span {
+    font-size: 1rem;
+    color: var(--grayish-blue)
+}
+
+.range-slider {
+    width: 100%;
+    position: absolute;
+    top: 40%;
+}
+
+input[type="range"] {
+  -webkit-appearance: none; 
+  -moz-appearance: none;    
+  appearance: none;         
+  background: transparent;  
+  cursor: pointer; 
+  --slider-percentage: 0%;         
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background: linear-gradient(
+        to right,
+        var(--strong-cyan) var(--slider-percentage),
+        var(--lighter-grayish-blue) var(--slider-percentage)
+    );
+    height: 0.625rem;     
+    border-radius: 2rem;
+}
+
+input[type="range"]::-moz-range-track {
+    background: var(--lighter-grayish-blue);
+    height: 0.625rem;     
+    border-radius: 2rem;
+}
+
+input[type="range"]::-moz-range-progress {
+  background: var(--strong-cyan);
+  height: 0.625rem;
+  border-radius: 2rem;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    background: url(./images/icon-slider.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--strong-cyan);
+    width: 3rem;        
+    height: 3rem;        
+    border-radius: 50%;  
+    margin-top: -4%;    
+}
+
+input[type="range"]::-moz-range-thumb {
+    background: url(./images/icon-slider.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--strong-cyan);
+    width: 3rem;        
+    height: 3rem;
+    border: none;        
+    border-radius: 50%;  
+    margin-top: -4%;    
+}
+
+.pricing-toggle {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.monthly-billing,
+.yearly-billing .billing-text {
+    opacity: 0.5;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 3.125rem;
+    height: 1.5rem;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    background-color: var(--lighter-grayish-blue);
+    border-radius: 1.5rem;
+    width: 100%;
+    height: 100%;
+    transition: background-color 0.3s;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 1.25rem;
+    width: 1.25rem;
+    left: 0.25rem;
+    bottom: 0.125rem;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.toggle-switch input:checked+.slider {
+    background-color: var(--dark-blue);
+}
+
+.toggle-switch input:checked+.slider::before {
+    transform: translateX(1.5rem);
+}
+
+
+.yearly-billing {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.negative-discount {
+    border-radius: 2rem;
+    background-color: var(--light-grayish);
+    color: var(--light-red);
+    font-weight: 600;
+    padding: 0.15rem 0.625rem;
+}
+
+.discount-text {
+    display: none;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    width: 100%;
+    background-color: var(--light-grayish-blue);
+}
+
+.lower-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.highlights-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.highlights-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.highlights-list li img {
+    width: 1rem;
+}
+
+.page-cta {
+    height: 3.5rem;
+    width: 12rem;
+    border: none;
+    background-color: var(--dark-desaturated-blue);
+    color: var(--lighter-grayish-blue);
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.page-cta:focus {
+    outline: none;
+    background-color: var(--lighter-grayish-blue);
+    color: var(--dark-blue);
+}
+
+@media (min-width: 768px) {
+    section {
+        width: 40rem;
+    }
+    .negative-discount {
+        display: none;
+    }
+    .discount-text {
+        display: block;
+        border-radius: 2rem;
+        background-color: var(--light-grayish);
+        color: var(--light-red);
+        font-weight: 600;
+        padding: 0.15rem 0.625rem;
+    }
 }
