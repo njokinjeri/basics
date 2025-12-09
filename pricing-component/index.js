@@ -48,3 +48,4 @@ billingToggle.addEventListener('change', updateValues);
 
 updateSliderBackground();
 updateValues();
+

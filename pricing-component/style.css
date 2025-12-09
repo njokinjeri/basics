@@ -299,7 +299,7 @@ hr {
 
 @media (min-width: 768px) {
     section {
-        width: 40rem;
+        width: 36rem;
     }
     .negative-discount {
         display: none;
@@ -311,5 +311,27 @@ hr {
         color: var(--light-red);
         font-weight: 600;
         padding: 0.15rem 0.625rem;
+    }
+
+    .pricing-slider {
+        display: flex;
+        position: relative;
+    }
+
+    #viewCount {
+        align-self: flex-start;
+    }
+
+    #pricing {
+        align-self: flex-end;
+        position: absolute;
+        top: -10%;
+    }
+
+    .range-slider {
+        align-self: center;
+        position: relative;
+        top: -16%;
+        padding-bottom: 0.5rem;
     }
 }
