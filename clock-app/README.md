@@ -28,4 +28,4 @@ Environment variable needed: `OPENCAGE_API_KEY`
 
 ## Credits
 - **Wallpapers**: [Alpha Coders - Frieren Collection](https://alphacoders.com/frieren-(frieren-beyond-journeys-end)-wallpapers)
-- **Challenge**: [Frontend Mentor](https://www.frontendmentor.io/)
+- **Challenge**: [Frontend Mentor](https://www.frontendmentor.io/challenges/clock-app-LMFaxFwrM)
