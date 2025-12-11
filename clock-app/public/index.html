@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/icons/bug.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Clock App</title>
+</head>
+<body>
+    <main>
+        <article>
+            <div id="quote">
+            </div>
+            <img id="refresh-icon" src="../assets/icon-refresh.svg" alt="refresh-icon">
+        </article>
+        <section class="time-display">
+            <div id="greeting">
+                <img id="greeting-icon" src="../assets/icon-sun.svg" alt="time-of-day-icon">
+                <h1 id="greeting-text"></h1>
+            </div>
+            <div class="real-time">
+                <h2 id="time"></h2>
+                <sub id="gmt"></sub>
+            </div>
+            <div class="location">
+                <div class="user-location-wrapper">
+                    <h3>IN</h3>
+                    <h3 id="user-location"></h3>
+                </div>
+                <div class="location-status-info">
+                    <p id="location-status"></p>
+                    <button type="button" id="retry-location">Retry Location</button>
+                </div>
+
+            </div>
+            <button class="more-btn">
+                    <p id="btn-toggle">MORE</p>
+                    <img id="more-icon" src="../assets/icon-arrow-down.svg" alt="more-icon">
+            </button>
+        </section>
+        <section class="more-section">
+            <div class="more-display-wrapper">
+                <div class="more-display">
+                    <h3>CURRENT TIMEZONE</h3>
+                    <p id="timezone"></p>
+                </div>
+                <div class="more-display">
+                    <h3>DAY OF THE YEAR</h3>
+                    <p id="dayOfYear"></p> 
+                </div>
+            </div>
+            <div class="more-display-wrapper">
+                <div class="more-display">
+                    <h3>DAY OF THE WEEK</h3>
+                    <p id="dayOfWeek"></p> 
+                </div>
+                <div class="more-display">
+                    <h3>WEEK NUMBER</h3>
+                    <p id="weekNumber"></p> 
+                </div>
+            </div>
+            <hr>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
