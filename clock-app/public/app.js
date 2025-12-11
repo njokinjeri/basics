@@ -20,20 +20,20 @@ const dayOfWeek = document.getElementById('dayOfWeek');
 const weekNumber = document.getElementById('weekNumber');
 
 const lightWallpapers = [
-    'url("../wallpaper/day/frieren-1.webp")',
-    'url("../wallpaper/day/frieren-2.webp")',
-    'url("../wallpaper/day/frieren-3.webp")',
-    'url("../wallpaper/day/frieren-4.webp")',
-    'url("../wallpaper/day/frieren-5.webp")',
-    'url("../wallpaper/day/frieren-6.webp")',
+    'url("./wallpaper/day/frieren-1.webp")',
+    'url("./wallpaper/day/frieren-2.webp")',
+    'url("./wallpaper/day/frieren-3.webp")',
+    'url("./wallpaper/day/frieren-4.webp")',
+    'url("./wallpaper/day/frieren-5.webp")',
+    'url("./wallpaper/day/frieren-6.webp")',
 ]
 
 const darkWallpapers = [
-    'url("../wallpaper/night/frieren-1.webp")',
-    'url("../wallpaper/night/frieren-2.webp")',
-    'url("../wallpaper/night/frieren-3.webp")',
-    'url("../wallpaper/night/frieren-4.webp")',
-    'url("../wallpaper/night/frieren-5.webp")',
+    'url("./wallpaper/night/frieren-1.webp")',
+    'url("./wallpaper/night/frieren-2.webp")',
+    'url("./wallpaper/night/frieren-3.webp")',
+    'url("./wallpaper/night/frieren-4.webp")',
+    'url("./wallpaper/night/frieren-5.webp")',
 ]
 
 
@@ -90,19 +90,19 @@ function updateGreeting() {
     switch (true) {
         case (hour >= 5 && hour < 12):
             greetingText.textContent = "Good Morning".toUpperCase();
-            greetingIcon.src = "../assets/icon-sun.svg";
+            greetingIcon.src = "./assets/icon-sun.svg";
         break;
         case (hour >= 12 && hour < 18):
             greetingText.textContent = "Good Afternoon".toUpperCase();
-            greetingIcon.src = "../assets/icon-sun.svg";
+            greetingIcon.src = "/.assets/icon-sun.svg";
         break;
         case (hour >= 18 && hour < 21):
             greetingText.textContent = "Good Evening".toUpperCase();
-            greetingIcon.src = "../assets/icon-moon.svg";
+            greetingIcon.src = "./assets/icon-moon.svg";
         break;
         default:
             greetingText.textContent = "Good night".toUpperCase();
-            greetingIcon.src = "../assets/icon-moon.svg"
+            greetingIcon.src = "./assets/icon-moon.svg"
         break;
     }
 }
