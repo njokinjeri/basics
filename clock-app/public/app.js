@@ -169,7 +169,10 @@ async function getUserLocation() {
 
         const { latitude, longitude } = position.coords;
 
-        const response = await fetch('/api/geocode', {
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const endpoint = isLocal ? '/api/geocode' : '/.netlify/functions/geocode';
+
+        const response = await fetch(endpoint, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ latitude, longitude })
