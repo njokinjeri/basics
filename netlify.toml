@@ -1,7 +1,7 @@
 [build]
   base = "clock-app"
-  publish = "clock-app/public"
-  functions = "clock-app/netlify/functions"
+  publish = "public"
+  functions = "netlify/functions"
 
 [[redirects]]
   from = "/*"
