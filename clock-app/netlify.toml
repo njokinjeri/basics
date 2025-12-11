@@ -1,5 +1,4 @@
 [build]
-  base = "clock-app"
   publish = "public"
   functions = "netlify/functions"
 
