@@ -1,0 +1,9 @@
+[build]
+  base = "clock-app"
+  publish = "clock-app/public"
+  functions = "clock-app/netlify/functions"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
