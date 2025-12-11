@@ -94,7 +94,7 @@ function updateGreeting() {
         break;
         case (hour >= 12 && hour < 18):
             greetingText.textContent = "Good Afternoon".toUpperCase();
-            greetingIcon.src = "/.assets/icon-sun.svg";
+            greetingIcon.src = "./assets/icon-sun.svg";
         break;
         case (hour >= 18 && hour < 21):
             greetingText.textContent = "Good Evening".toUpperCase();
