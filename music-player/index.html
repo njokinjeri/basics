@@ -8,19 +8,19 @@
     <title>Music Player</title>
 </head>
 <body>
-  <main>
     <section>
       <article>
-        <img id="audio-cover" src="./assets/cover-1.png" alt="song-cover">
-        <h2 id="audio-title">Lost in the City Lights</h2>
-        <p id="audio-artist">Cosmo Sheldrake</p>
+        <img id="audio-cover" src="./assets/cover-1.webp" alt="song-cover">
+        <div class="article-text">
+          <h2 id="audio-title">Lost in the City Lights</h2>
+          <p id="audio-artist">Cosmo Sheldrake</p>
+        </div>
       </article>
       <div id="audio-wrapper">
-        <div id="slider-container">
+        <div id="slider-wrapper">
            <span class="current-time">00:00</span>
            <input id="audio-slider" type="range" min="0" max="195" value="0">
            <span class="total-duration">03:15</span>
-        </div>
         </div>
         <div id="audio-controls">
           <div class="prev-track">
@@ -35,7 +35,6 @@
         </div>
       </div>
     </section>
-  </main>
     <script src="app.js"></script>
 </body>
 </html>
