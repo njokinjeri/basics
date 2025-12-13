@@ -69,7 +69,7 @@ section {
 }
 
 .hero-illustration {
-  width: 100%;
+  width: 45vw;
 }
 
 .hero-content {
@@ -93,7 +93,7 @@ section {
 }
 
 .hero-content p {
-  width: 50vw;
+  width: 90vw;
   color: var(--grey);
   font-size: 0.875rem;
   text-align: center;
@@ -373,7 +373,7 @@ small:hover {
   }
 
   .hero-illustration {
-    width: 100%;
+    width: 45vw;
   }
   
   .hero-content h1 {
@@ -381,7 +381,7 @@ small:hover {
   }
 
   .hero-content p {
-    width: 45vw;
+    width: 80vw;
   }
 
   .highlights-section {
