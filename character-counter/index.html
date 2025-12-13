@@ -4,9 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="../icons/bug.png">
     <title>Character Counter</title>
 </head>
 <body>
+    <header>
+        <img class="header-logo" src="./assets/logo-dark-theme.svg" alt="page-logo">
+        <div class="theme-wrapper">
+            <img id="theme-icon" src="./assets/icon-sun.svg" alt="theme-toggle">
+        </div>
+    </header>
+    <main>
+        <h1>Analyze your text in real-time.</h1>
+        <section class="input-section">
+            <div class="input-area">
+                <label for="text-input"></label>
+                <textarea class="analyzer-content" name="analyzer-content" id="text-input" 
+                        placeholder="Start typing here...(or paste your text)" autocomplete="off"></textarea>
+                <div class="limit-wrapper">
+                    <img src="./assets/icon-info.svg" alt="limit-info">
+                    <p id="limit-warning" class="limit-warning hidden">
+                        Limit reached! Your text exceeds <span id="limit-value">0</span> characters.
+                    </p>
+                </div>
+            </div>
+            <div class="checkbox-content">
+                <div class="character-space-wrapper">
+                    <div class="exclude-spaces-input">
+                        <input type="checkbox" id="exclude-spaces">
+                        <label for="exclude-spaces">Exclude Spaces</label>
+                    </div>
+                    <div class="set-character-limit">
+                        <input type="checkbox" id="character-limit">
+                        <label for="character-limit">Set Character Limit</label>
+                        <input type="number" id="character-custom-limit" name="character-limit" placeholder="0" min="1" max="1000000">
+                    </div>
+                </div>
+                <p class="reading-time-display">Approx. reading time: <span id="reading-time">0</span> minutes</p>
+            </div>
+        </section>
+        <section class="display-section">
+            <div class="count-display">
+                <div class="display character-display">
+                    <div class="display-text">
+                        <h2 id="character-count">0</h2>
+                        <p id="count-text">Total Characters</p>
+                    </div>
+                    <img class="character-length" src="./assets/pattern-character-count.svg" alt="character-count-pattern">
+                </div>
+                <div class="display word-display">
+                    <div class="display-text">
+                        <h2 id="word-count">0</h2>
+                        <p id="count-text">Word Count</p>
+                    </div>
+                    <img class="word-length" src="./assets/pattern-word-count.svg" alt="word-count-pattern">
+                </div>
+                <div class="display sentence-display">
+                    <div class="display-text">
+                        <h2 id="sentence-count">0</h2>
+                        <p id="count-text">Sentence Count</p>
+                    </div>
+                    <img class="sentence-length" src="./assets/pattern-sentence-count.svg" alt="sentence-count-pattern">
+                </div>
+            </div>
+            <div class="letter-density-wrapper">
+                <h3>Letter Density</h3>
+                <div id="letter-density">
+                    <p id="default-text">No characters found. Start typing to see letter density.</p>
+                  </div>
+            </div>
+        </section>
+    </main>
     <script src="app.js"></script>
 </body>
 </html>
