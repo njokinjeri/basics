@@ -18,49 +18,50 @@ The challenges are sourced from platforms like [**Frontend Mentor**](https://www
 | 6   | Hangman Game |
 | 7   | Password Generator App |
 | 8   | IP Address Tracker |
-| 9   | Clock App |
-| 10  | Calculator App |
-| 11  | Pomodoro App |
-| 12  | Age Calculator |
-| 13  | Tips Calculator |
-| 14  | Music Player Component |
-| 15  | Text to Speech Component |
-| 16  | Image Uploader Component |
-| 17  | Alarado Landing Page |
-| 18  | Hufie Landing Page |
-| 19  | Manage Landing Page |
-| 20  | Space Tourism Multipage |
-| 21  | Weather Landing Page |
-| 22  | Maker Launch Landing Page |
-| 23  | Fylo Landing Page |
-| 24  | Huddle Landing Page |
-| 25  | Ping Launch Page |
-| 26  | Recipe Page |
-| 27  | FAQ Page |
-| 28  | Contact Page |
-| 29  | Article Listing Component |
-| 30  | Feature Section Component |
-| 31  | Product Listing Component |
-| 32  | Pricing Table Component |
-| 33  | Bento Box Component |
-| 34  | Subscription Checkout Component |
-| 35  | Chat App Illustration |
-| 36  | Newsletter Component |
-| 37  | Card Feature Component |
-| 38  | Data Storage Component |
-| 39  | Bank Card Component |
-| 40  | Pricing Component |
-| 41  | Testimonial Component |
-| 42  | Rating Card Component |
-| 43  | Social Links Component |
-| 44  | Social Proof Component |
+| 9   | Character Counter |
+| 10   | Clock App |
+| 11  | Calculator App |
+| 12  | Pomodoro App |
+| 13  | Age Calculator |
+| 14  | Tips Calculator |
+| 15  | Music Player Component |
+| 16  | Text to Speech Component |
+| 17  | Image Uploader Component |
+| 18  | Alarado Landing Page |
+| 19  | Hufie Landing Page |
+| 20  | Manage Landing Page |
+| 21  | Space Tourism Multipage |
+| 22  | Weather Landing Page |
+| 23  | Maker Launch Landing Page |
+| 24  | Fylo Landing Page |
+| 25  | Huddle Landing Page |
+| 26  | Ping Launch Page |
+| 27  | Recipe Page |
+| 28  | FAQ Page |
+| 29  | Contact Page |
+| 30  | Article Listing Component |
+| 31  | Feature Section Component |
+| 32  | Product Listing Component |
+| 33  | Pricing Table Component |
+| 34  | Bento Box Component |
+| 35  | Subscription Checkout Component |
+| 36  | Chat App Illustration |
+| 37  | Newsletter Component |
+| 38  | Card Feature Component |
+| 39  | Data Storage Component |
+| 40  | Bank Card Component |
+| 41  | Pricing Component |
+| 42  | Testimonial Component |
+| 43  | Rating Card Component |
+| 44  | Social Links Component |
+
 
 
 
 ## Core Technologies
 
-- **HTML5**
-- **CSS3**
+- **HTML**
+- **CSS**
 - **Vanilla JavaScript**
 
 
