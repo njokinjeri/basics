@@ -8,27 +8,42 @@
     <title>Image Uploader</title>
 </head>
 <body>
-    <script src="app.js"></script>
+    <header>
+        <img class="uploader-logo" src="./assets/logo.svg" alt="logo-icon">
+        <div class="theme-toggle">
+            <img class="theme-icon" src="./assets/Moon_fill.svg" alt="theme-icon">
+        </div>
+    </header>
+    <hr>
     <main>
-        <nav>
-            <img class="uploader-logo" src="./assets/logo.svg" alt="logo-icon">
-            <div class="theme-toggle">
-                    <img class="theme-icon" src="./assets/Moon_fill.svg" alt="theme-icon">
-            </div>
-        </nav>
-        <hr>
-        <section>
+        <section id="img-placeholder-section">
             <article>
-                <p class="dragdrop-text">Drag & Drop your image here
-                    <img id="drag-drop-img" src="./assets/image.svg" alt="drag-drop-image">
-                </p>
-                <p class="option-text">or</p>
-                <form>
-                    <input type="file" name="browse-file" id="selectedFile">
-                </form>
-                <p class="file-specs">JPG, PNG or GIF - Max File Size 2MB</p>
+                <div class="placeholder-container">
+                    <img id="drag-drop-img" src="./assets/image.svg" alt="image-placeholder">
+                    <form class="drag-drop-form">
+                        <label for="fileUpload">Drag & drop file or <span>browse files</span></label>
+                        <input type="file" name="browse-file" id="fileUpload" accept="image/*">
+                    </form>
+                    <p class="file-specs">JPG, PNG or JPEG - Max File Size 2MB</p>
+                </div>
             </article>
         </section>
+        <section id="img-output-section">
+            <div id="image-container">
+                <img id="output" src="" alt="">
+            </div>
+        </section>
+        <div id="loading-message">
+            <div class="decorative-wrapper">
+                <div id="loader"></div>
+                <p><strong>Uploading</strong>, please wait...</p>
+            </div>
+        </div>
+        <div class="image-cta">
+            <button id="share-btn" type="button"><img src="./assets/Link.svg" alt="share-button">Share</button>
+            <button id="download-btn" type="button"><img src="./assets/download.svg" alt="download-button">Download</button>
+        </div>
     </main>
+    <script src="app.js"></script>
 </body>
 </html>
