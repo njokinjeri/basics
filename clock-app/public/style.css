@@ -164,7 +164,6 @@ hr{
     flex-direction: column;
     gap: 4rem;
     padding: 4rem 1rem;
-    color: #000000;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -194,6 +193,7 @@ hr{
     font-size: 1.25rem;
     font-weight: 700;
     padding-right: 0.5rem;
+    color: #000000;
 }
 
 .time-display.move-top {
@@ -205,8 +205,6 @@ hr{
     article {
         width: 30rem;
     }
-
-   
 }
 
 @media (min-width: 1024px) {
@@ -265,3 +263,11 @@ hr{
   -webkit-backdrop-filter: blur(6.7px);
 }
 
+
+.more-section.dark-theme div h3 {
+    color: #fff;
+}
+
+.more-section.dark-theme div p {
+    color: #fff;
+}

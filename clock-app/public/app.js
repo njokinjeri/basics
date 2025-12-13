@@ -1,20 +1,28 @@
 const appQuotes = document.getElementById('quote');
 const refreshQuote = document.getElementById('refresh-icon');
+
 const greeting = document.getElementById('greeting');
 const greetingIcon = document.getElementById('greeting-icon');
 const greetingText = document.getElementById('greeting-text');
+
 const time = document.getElementById('time');
 const gmt = document.getElementById('gmt');
+
 const userLocation = document.getElementById('user-location');
 const locationStatus = document.getElementById('location-status');
+
 const retryButton = document.getElementById('retry-location');
 const article = document.querySelector('article');
 const timeDisplay = document.querySelector('.time-display');
+
 const moreBtn = document.querySelector(".more-btn");
 const moreSection = document.querySelector(".more-section");
+
 const btnText = document.getElementById('btn-toggle');
 const arrowIcon = document.getElementById('more-icon')
+
 const timezone = document.getElementById('timezone');
+
 const dayOfYear = document.getElementById('dayOfYear');
 const dayOfWeek = document.getElementById('dayOfWeek');
 const weekNumber = document.getElementById('weekNumber');
@@ -205,15 +213,19 @@ function updateThemeByTime() {
     if(isDay) {
         article.classList.add('dark-theme');
         article.classList.remove('light-theme');
+
         timeDisplay.classList.add('dark-theme');
         timeDisplay.classList.remove('light-theme');
+
         moreSection.classList.add('light-theme');
         moreSection.classList.remove('dark-theme');
     } else {
         article.classList.add('light-theme');
         article.classList.remove('dark-theme');
+
         timeDisplay.classList.add('light-theme');
         timeDisplay.classList.remove('dark-theme');
+
         moreSection.classList.add('dark-theme');
         moreSection.classList.remove('light-theme');
     }
