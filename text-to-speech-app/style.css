@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root {
+    --light-gray: #E3E8EF; 
+    --midnight-blue: #1C1B43; 
+    --deep-indigo: #171536; 
+    --dark-blue: #1C1B43; 
+    --steel-blue: #2E5B84; 
+    --navy: #1E2A52; 
+    --purple-to-blue: linear-gradient(91deg, #5709a0 1.16%, #0928b5 100%); 
+    --hover-purple-to-blue: linear-gradient(91deg, #6326a2 1.16%, #263fa9 100%); 
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Outfit", sans-serif;
+    background-color: #1C1B43;
+}
