@@ -8,6 +8,50 @@
     <title>Text To Speech App </title>
 </head>
 <body>
+    <aside>
+    </aside>
+    <main>
+        <header>
+            <img class="speechbot-text" src="./assets/Speechbot.png" alt="speechbot-text">
+            <img class="speechbot-vector" src="./assets/Vector.png" alt="speechbot-vector">
+        </header>
+        <section class="textarea-section">
+            <div class=textarea-wrapper>
+                <label for="speech-textarea"></label>
+                <textarea name="speech-textarea" id="speech-textarea" placeholder="Enter your text" autocomplete="off"></textarea>
+            </div>
+            <p class="textarea-paragraph">Enter your text above and press the <span class="instruction-text">"Text to Speech"</span> button. You can choose a different voice by selecting an option from the dropdown menu.</p>
+        </section>
+        <section class="settings-section">
+            <h2 class="settings-heading">settings</h2>
+            <div class="voice-settings">
+                <h3 class="section-subheading">Voice</h3>
+                <hr>
+                <div class="select-options language-options">
+                    <label for="language-select"></label>
+                    <select id="language-select" class="select-language" name="languages">
+                        <option value="en-US">en-US</option>
+                    </select>
+                </div>
+                <hr>
+                <div class="select-options voice-options">
+                    <label for="voice-select"></label>
+                    <select id="voice-select" class="select-voice" name="voices">
+                        <option value="albert">Albert</option>
+                    </select>
+                </div>
+            </div>
+            <div class="speed-settings">
+                <h3 class="section-subheading">Speed</h3>
+                <hr>
+                <button  data-speed="0.5x">0.5x</button>
+                <button data-speed="0.75x">0.75x</button>
+                <button data-speed="1x" class="active">1x</button>
+                <button data-speed="1.5x">1.5x</button>
+            </div>
+        </section>
+        <button id="text-to-speech-btn" type="submit">Text to Speech</button>
+    </main>
     <script src="app.js"></script>
 </body>
 </html>

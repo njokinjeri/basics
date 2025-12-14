@@ -7,17 +7,218 @@
     --dark-blue: #1C1B43; 
     --steel-blue: #2E5B84; 
     --navy: #1E2A52; 
-    --purple-to-blue: linear-gradient(91deg, #5709a0 1.16%, #0928b5 100%); 
-    --hover-purple-to-blue: linear-gradient(91deg, #6326a2 1.16%, #263fa9 100%); 
+    --purple: #a058e4;
+    --light-purple: #be87f1;
 }
-
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
+    min-height: 100vh;
     font-family: "Outfit", sans-serif;
-    background-color: #1C1B43;
+    background-color: var(--midnight-blue);
+    color: var(--light-gray);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    overflow-x: hidden;
+}
+
+aside {
+    width: 100%;
+    height: 20rem;
+    background-image: url(./assets/hero-image-mobile.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+    margin-bottom: 2rem;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.speechbot-text {
+    width: 10rem;
+}
+
+.speechbot-vector {
+    width: 5rem;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+#speech-textarea {
+    width: 100%;
+    height: 12rem;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    background-color: var(--navy);
+    border: 0.125rem solid  var(--steel-blue);
+    color: var(--light-gray);
+    resize: none;
+    outline: none;
+}
+
+#speech-textarea:hover {
+    border-color: var(--purple);
+}
+
+
+#speech-textarea::placeholder {
+    color: var(--light-gray);
+}
+
+.textarea-paragraph {
+    font-size: 0.938rem;
+}
+
+.instruction-text {
+    color: var(--light-purple);
+}
+
+.settings-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.settings-section hr {
+    border: none;
+    border-left: 0.063rem solid grey;
+    width: 0.063rem;
+    height: 3rem;
+    opacity: 0.2;
+}
+
+.voice-settings,
+.speed-settings {
+    width: 22rem;
+    height: 4rem;
+    background-color: var(--navy);
+    border-radius: 0.75rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.75rem;
+    padding-left: 0.875rem;
+    cursor: pointer;
+}
+
+.select-options select {
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  background: transparent;
+  color: var(--light-gray);
+  outline: none;
+}
+
+.select-language{
+    width: 5rem;
+}
+
+.select-voice {
+    width: 10rem;
+}
+
+.speed-settings button {
+    width: 3rem;
+    height: 2rem;
+    border: none;
+    background: transparent;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--light-gray);
+    cursor: pointer;
+}
+
+.speed-settings button:hover {
+    border-radius: 0.5rem;
+    background-color: var(--midnight-blue);
+}
+
+.speed-settings button:focus {
+    border-radius: 0.5rem;
+    background-color: var(--midnight-blue);
+}
+
+.speed-settings button.active {
+    background: var(--midnight-blue);
+    border-radius: 0.5rem;
+    color: white;
+}
+
+.settings-heading {
+    font-size: 1rem;
+}
+
+.section-subheading {
+    font-size: 1rem;
+}
+
+#text-to-speech-btn {
+    width: 100%;
+    height: 3.5rem;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 0.938rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--light-gray);
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
+    cursor: pointer;
+}
+
+
+@media (min-width: 768px) {
+    body {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        overflow: hidden;
+    }
+    aside {
+        height: 100vh;
+        width: 100%;
+        background-image: url(./assets/hero-image-text-to-speech.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 15%;
+    }
+
+    main {
+        padding: 2rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    aside {
+        width: 40rem;
+        height: 100vh;
+        background-position: center;
+    }
+    main{
+        width: 40rem;
+    }
 }
