@@ -1,11 +1,9 @@
 const synth = window.speechSynthesis;
-
 const speechInput = document.getElementById('speech-textarea');
 const languageControl = document.getElementById('language-select');
 const voiceOption = document.getElementById('voice-select');
 const speedBtn = document.querySelectorAll('.speed-settings button');
 const submitBtn = document.getElementById('text-to-speech-btn');
-
 let voices = [];
 
 function populateLanguages() {
@@ -17,7 +15,6 @@ function populateLanguages() {
         option.textContent = lang;
         languageControl.appendChild(option);
     });
-
     if (langs.includes('en-US')) {
         languageControl.value = 'en-US';
     } else {
@@ -28,31 +25,25 @@ function populateLanguages() {
 function populateVoices(selectedLang) {
     voiceOption.innerHTML = "";
     const filteredVoices = voices.filter(v => v.lang === selectedLang);
-
     filteredVoices.forEach(voice => {
         const option = document.createElement("option");
         option.value = voice.name;
         option.textContent = voice.name;
-        option.dataset.name = voice.name;
         voiceOption.appendChild(option);
     });
-
     let defaultVoice = filteredVoices.find(v => v.default) || filteredVoices[0];
     if (selectedLang === 'en-US') {
         defaultVoice = filteredVoices.find(v => v.name.includes('Google US English')) || defaultVoice;
     }
-
     if (defaultVoice) voiceOption.value = defaultVoice.name;
 }
 
 function loadVoices() {
     voices = synth.getVoices();
-
     if (!voices.length) {
         synth.onvoiceschanged = loadVoices;
         return;
     }
-
     populateLanguages();
     populateVoices(languageControl.value);
 }
@@ -65,64 +56,120 @@ let currentUtterance = null;
 let isPaused = false;
 let speechRate = 1;
 
+let fullText = "";
+let currentCharIndex = 0;
+const isFirefox = /firefox/i.test(navigator.userAgent);
 
 submitBtn.addEventListener("click", () => {
     const text = speechInput.value.trim();
-
     if (!text) {  
         alert("Please enter some text to convert to speech.");
         return;
-    };
+    }
 
     if (synth.speaking && isPaused) {
-        synth.resume();
-        isPaused = false;
-        submitBtn.textContent = "Pause";
+        if (isFirefox) {
+            const remainingText = fullText.substring(currentCharIndex);
+            synth.cancel();
+            isPaused = false;
+            
+            currentUtterance = new SpeechSynthesisUtterance(remainingText);
+            currentUtterance.rate = speechRate;
+            
+            const voice = voices.find(v => v.name === voiceOption.value);
+            if (voice) currentUtterance.voice = voice;
+            
+            currentUtterance.onboundary = (event) => {
+                if (!isPaused) {
+                    currentCharIndex += event.charIndex;
+                }
+            };
+            
+            currentUtterance.onend = () => {
+                isPaused = false;
+                fullText = "";
+                currentCharIndex = 0;
+                submitBtn.textContent = "Speak";
+            };
+            
+            synth.speak(currentUtterance);
+            submitBtn.textContent = "Pause";
+        } else {
+            synth.resume();
+            isPaused = false;
+            submitBtn.textContent = "Pause";
+        }
         return;
     }
 
     if (synth.speaking && !isPaused) {
-        synth.pause();
-        isPaused = true;
-        submitBtn.textContent = "Resume";
+        if (isFirefox) {
+            synth.cancel();
+            isPaused = true;
+            submitBtn.textContent = "Resume";
+        } else {
+            synth.pause();
+            isPaused = true;
+            submitBtn.textContent = "Resume";
+        }
         return;
     }
 
     synth.cancel();
     isPaused = false;
-
+    fullText = text;
+    currentCharIndex = 0;
+    
     currentUtterance = new SpeechSynthesisUtterance(text);
     currentUtterance.rate = speechRate;
-
-    const selectedOption = voiceOption.selectedOptions[0];
-    if (selectedOption) {
-        const voice = voices.find(v => v.name === selectedOption.dataset.name);
-        if (voice) currentUtterance.voice = voice;
+    
+    const voice = voices.find(v => v.name === voiceOption.value);
+    if (voice) currentUtterance.voice = voice;
+    
+    if (isFirefox) {
+        currentUtterance.onboundary = (event) => {
+            if (!isPaused) {
+                currentCharIndex = event.charIndex;
+            }
+        };
     }
-
+    
     currentUtterance.onend = () => {
         isPaused = false;
+        fullText = "";
+        currentCharIndex = 0;
         submitBtn.textContent = "Speak";
     };
-
+    
     synth.speak(currentUtterance);
     submitBtn.textContent = "Pause";
 });
-
 
 speedBtn.forEach(btn => {
     btn.addEventListener("click", () => {
         speedBtn.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-
         speechRate = parseFloat(btn.dataset.speed);
-
         if (synth.speaking) {
             synth.cancel();
             isPaused = false;
+            fullText = "";
+            currentCharIndex = 0;
             submitBtn.textContent = "Speak";
         }
     });
+});
+
+window.addEventListener("beforeunload", () => synth.cancel());
+
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        synth.cancel();
+        isPaused = false;
+        fullText = "";
+        currentCharIndex = 0;
+        submitBtn.textContent = "Speak";
+    }
 });
 
 loadVoices();
