@@ -60,12 +60,21 @@ let fullText = "";
 let currentCharIndex = 0;
 const isFirefox = /firefox/i.test(navigator.userAgent);
 
+
+// TODO(Firefox): Rework pause/resume handling.
+// Firefox does not reliably support speechSynthesis.pause()/resume().
+
+// Issues to fix:
+// 1. Pause restarts speech
+// 2. Double press required 
+
 submitBtn.addEventListener("click", () => {
     const text = speechInput.value.trim();
     if (!text) {  
         alert("Please enter some text to convert to speech.");
         return;
     }
+
 
     if (synth.speaking && isPaused) {
         if (isFirefox) {
