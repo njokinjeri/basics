@@ -1,6 +1,8 @@
 const passwordDisplay = document.getElementById('password-display');
 const charRangeLength = document.getElementById('character-range-length');
 const charRangeSlider = document.getElementById('character-range-slider');
+const copyPassword = document.querySelector('.copy-icon');
+
 
 const upperCaseInput = document.getElementById('upper-case-char');
 const lowerCaseInput = document.getElementById('lower-case-char');
@@ -11,6 +13,7 @@ const strengthBars = document.querySelectorAll('.strength-bar');
 const strengthLabel = document.getElementById('strength-label');
 const generateBtn = document.querySelector('button');
 
+passwordDisplay.value = '';
 
 function generatePassword(charLength) {
     const types = {
@@ -87,6 +90,31 @@ function checkPasswordStrength(password) {
     strengthLabel.style.color = color;
 }
 
+async function copyToClipboard() {
+    let copyPassword = passwordDisplay.value;
+
+    if(!copyPassword) {
+        alert("No password to copy!");
+            return;
+    }
+
+    try {
+        await navigator.clipboard.writeText(copyPassword);
+
+        const wrapper = passwordDisplay.parentElement;
+        const tooltip = document.createElement('div')
+        tooltip.textContent = "Copied"
+        tooltip.className = "tooltip";
+        wrapper.appendChild(tooltip);
+
+        setTimeout(() => tooltip.remove(), 1000);
+
+    } catch (err) {
+        console.error('Failed to copy password', err);
+        alert("Failed to copy password");
+    }
+}
+
 function updateSliderFill() {
     const value = charRangeSlider.value;
     const max = charRangeSlider.max;
@@ -95,7 +123,7 @@ function updateSliderFill() {
 
     const percentage = (value / max) * 100;
 
-    charRangeSlider.style.background = `Linear-gradient(
+    charRangeSlider.style.background = `linear-gradient(
         to right,
         var(--electric-mint) 0%,
         var(--electric-mint) ${percentage}%,
@@ -103,6 +131,8 @@ function updateSliderFill() {
         var(--abyss-black) 0%
     )`;
 }
+
+copyPassword.addEventListener('click', copyToClipboard);
 
 updateSliderFill();
 

@@ -71,6 +71,7 @@ form {
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .password-display-wrapper input {
@@ -86,6 +87,17 @@ form {
 
 .copy-icon {
     cursor: pointer;
+}
+
+.tooltip {
+    position: absolute;
+    top: 25%;
+    right: -20%;
+    background-color: var(--electric-mint);
+    color: var(--abyss-black);
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    z-index: 1000;
 }
 
 .password-generator-wrapper {
