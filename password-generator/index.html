@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="/icons/bug.png">
+    <title>Password Generator</title>
+</head>
+<body>
+    <main>
+        <h1>Password Generator</h1>
+        <form>
+            <div class="password-display-wrapper">
+                <input type="text" name="password-output" id="password-display" placeholder="P4$5W0rD!" readonly>
+                <img class="copy-icon" src="./assets/icon-copy.svg" alt="copy-icon">
+            </div>
+            <div class="password-generator-wrapper">
+                <div class="character-range">
+                    <label for="character-range-slider">Character Length
+                        <span id="character-range-length">10</span>
+                    </label>
+                    <input type="range" name="custom-range" id="character-range-slider" min="1" max="20" value="10" autocomplete="off">
+                </div>
+                <div class="custom-list-options">
+                    <div class="character-custom">
+                        <input type="checkbox" name="upper-case" id="upper-case-char" autocomplete="off">
+                        <label for="upper-case-char">Include Uppercase Letters</label>
+                    </div>
+                    <div class="character-custom">
+                        <input type="checkbox" name="lower-case" id="lower-case-char" autocomplete="off">
+                        <label for="lower-case-char">Include Lowercase Letters</label>
+                    </div>                
+                    <div class="character-custom">
+                        <input type="checkbox" name="number" id="number-char" autocomplete="off">
+                        <label for="number-char">Include Numbers</label>
+                    </div>                
+                    <div class="character-custom">
+                        <input type="checkbox" name="symbol" id="symbol-char" autocomplete="off">
+                        <label for="symbol-char">Include Symbols</label>
+                    </div>
+                </div>
+                <div class="password-strength-indicator">
+                    <p>STRENGTH</p>
+                    <div class="strength-bar-indicator">
+                        <span id="strength-label"></span>
+                        <div class="strength-bar-wrapper">
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                    <button type="submit"> GENERATE
+                        <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="currentColor" d="m5.106 12 6-6-6-6-1.265 1.265 3.841 3.84H.001v1.79h7.681l-3.841 3.84z"/>
+                        </svg>
+                    </button>
+            </div>
+        </form>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
