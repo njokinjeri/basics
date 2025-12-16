@@ -2,7 +2,7 @@
 
 ![Thumbnail for the Password Generator challenge](./assets/screenshot.png)
 
-Challenge
+### Challenge
 
 Users should be able to:
 
