@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="theme-1">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,14 +15,14 @@
       <div class="theme-toggle">
         <h2>THEME</h2>
         <div class="toggle-wrapper">
-          <div data-theme="1">1</div>
-          <div data-theme="2">2</div>
-          <div data-theme="3">3</div>
+          <div data-theme="theme-1" class="theme-option">1</div>
+          <div data-theme="theme-2" class="theme-option">2</div>
+          <div data-theme="theme-3" class="theme-option">3</div>
         </div>
       </div>
     </header>
     <section>
-      <div id="calculation-display"></div>
+      <input type="text" name="calculation-display" id="calculation-display" class="input-display" inputmode="decimal" readonly>
       <div class="arithmetic-display">
         <button type="button" class="btn delete-btn">DEL</button>
         <button type="button" class="arithmetic-btn" data-operator="+">+</button>

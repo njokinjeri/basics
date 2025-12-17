@@ -1,0 +1,353 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
+/* Theme 1 */
+[data-theme="theme-1"] {
+    --theme-1-main-background: hsl(222, 26%, 31%);
+    --theme-1-toggle-background: hsl(223, 31%, 20%);
+    --theme-1-screen-background: hsl(224, 36%, 15%);
+    --key-background: hsl(225, 21%, 49%);
+    --key-background-bright: hsl(225, 30%, 61%);
+    --key-shadow: hsl(224, 28%, 35%);
+    --red: hsl(6, 63%, 50%);
+    --bright-red: hsl(6, 85%, 46%);
+    --dark-red: hsl(6, 70%, 34%);
+    --light-grayish-orange: hsl(30, 25%, 89%);
+    --grayish-orange: hsl(28, 16%, 65%);
+    --very-dark-grayish-blue: hsl(221, 14%, 31%);
+    --white: hsl(0, 0%, 100%);
+    
+    /* Functional mappings */
+    --bg-main: var(--theme-1-main-background);
+    --bg-toggle: var(--theme-1-toggle-background);
+    --bg-screen: var(--theme-1-screen-background);
+    --btn-primary: var(--light-grayish-orange);
+    --btn-primary-shadow: var(--grayish-orange);
+    --btn-secondary: var(--key-background);
+    --btn-secondary-active: var(--key-background-bright);
+    --btn-secondary-shadow: var(--key-shadow);
+    --btn-accent: var(--red);
+    --btn-active: var(--bright-red);
+    --btn-accent-shadow: var(--dark-red);
+    --text-primary: var(--white);
+    --text-secondary: var(--very-dark-grayish-blue);
+    --text-primary-active: var(--white);
+    --input-text-display: var(--white);
+}
+
+/* Theme 2 */
+[data-theme="theme-2"] {
+    --main-background: hsl(0, 0%, 90%);
+    --toggle-background: hsl(0, 5%, 81%);
+    --screen-background: hsl(0, 0%, 93%);
+    --dark-moderate-cyan: hsl(185, 42%, 37%);
+    --light-moderate-cyan: hsl(185, 54%, 49%);
+    --very-dark-cyan: hsl(185, 58%, 25%);
+    --orange: hsl(25, 98%, 40%);
+    --bright-orange: hsl(25, 100%, 50%);
+    --dark-orange: hsl(25, 99%, 27%);
+    --light-grayish-yellow: hsl(45, 7%, 89%);
+    --dark-grayish-orange: hsl(35, 11%, 61%);
+    --very-dark-grayish-yellow: hsl(60, 10%, 19%);
+    --white: hsl(0, 0%, 100%);
+    --black: hsl(0, 0%, 0%);
+    
+    /* Functional mappings */
+    --bg-main: var(--main-background);
+    --bg-toggle: var(--toggle-background);
+    --bg-screen: var(--screen-background);
+    --btn-primary: var(--light-grayish-yellow);
+    --btn-primary-shadow: var(--dark-grayish-orange);
+    --btn-secondary: var(--dark-moderate-cyan);
+    --btn-secondary-active: var(--light-moderate-cyan);
+    --btn-secondary-shadow: var(--very-dark-cyan);
+    --btn-accent: var(--orange);
+    --btn-active: var(--bright-orange);
+    --btn-accent-shadow: var(--dark-orange);
+    --text-primary: var(--very-dark-grayish-yellow);
+    --text-secondary: var(--very-dark-grayish-yellow);
+    --text-primary-active: var(--white);
+    --input-text-display: var(--black);
+}
+
+/* Theme 3 */
+[data-theme="theme-3"] {
+    --theme-3-main-background: hsl(268, 75%, 9%);
+    --very-dark-violet: hsl(268, 71%, 12%);
+    --light-yellow: hsl(52, 100%, 62%);
+    --very-dark-blue: hsl(198, 20%, 13%);
+    --dark-violet: hsl(281, 89%, 26%);
+    --light-violet: hsl(281, 83%, 44%);
+    --vivid-magenta: hsl(285, 91%, 52%);
+    --pure-cyan: hsl(176, 96%, 39%);
+    --bright-cyan: hsl(176, 95%, 42%);
+    --soft-cyan: hsl(177, 92%, 70%);
+    --dark-violet-key: hsl(268, 47%, 21%);
+    --dark-magenta: hsl(290, 70%, 36%);
+    
+    /* Functional mappings */
+    --bg-main: var(--theme-3-main-background);
+    --bg-toggle: var(--very-dark-violet);
+    --bg-screen: var(--very-dark-blue);
+    --btn-primary: var(--dark-violet-key);
+    --btn-primary-shadow: var(--dark-magenta);
+    --btn-secondary: var(--dark-violet);
+    --btn-secondary-active: var(--light-violet);
+    --btn-secondary-shadow: var(--vivid-magenta);
+    --btn-accent: var(--pure-cyan);
+    --btn-active: var(--bright-cyan);
+    --btn-accent-shadow: var(--soft-cyan);
+    --text-primary: var(--light-yellow);
+    --text-secondary: var(--light-yellow);
+    --text-primary-active: var(--light-violet);
+    --input-text-display: var(--light-yellow);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    font-family: "League Spartan", sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+main {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+header {
+    width: 28rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+}
+
+.theme-toggle h2 {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+
+.toggle-wrapper {
+    width: 4.5rem;
+    height: 1.5rem;
+    background-color: var(--bg-toggle);
+    color: var(--text-primary);
+    border-radius: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.toggle-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background-color: var(--btn-accent);
+    transform: translateY(-50%);
+    transition: transform 0.25s ease;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.toggle-wrapper:hover::before {
+    background-color: var(--btn-active);
+}
+
+.theme-option {
+    position: absolute;
+    top: -1.25rem;
+    width: 33.333%;
+    text-align: center;
+    user-select: none;
+    z-index: 2;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.theme-option:nth-child(1) { left: 0; }
+
+.theme-option:nth-child(2) { left: 33.333%; }
+.theme-option:nth-child(3) { left: 66.666%; }
+
+.toggle-wrapper.theme-1::before { transform: translate(0%, -50%); }
+
+.toggle-wrapper.theme-2::before { transform: translate(120%, -50%); }
+
+.toggle-wrapper.theme-3::before { transform: translate(240%, -50%); }
+
+section {
+    width: 28rem;
+    height: 40rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.input-display {
+    width: 100%;
+    height: 8rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--bg-screen);
+    color: var(--input-text-display);
+    background-color: var(--bg-toggle);
+    outline: none;
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: inherit;
+    text-align: right;
+    padding: 0rem 2rem;
+}
+
+.arithmetic-display {
+    width: 100%;
+    height: 36rem;
+    background-color: var(--bg-toggle);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    grid-template-areas: 
+        "seven eight nine del"
+        "four five six plus"
+        "one two three minus"
+        "dot zero divide multiply"
+        "reset reset equal equal";
+}
+
+.arithmetic-btn[data-element="0"] { grid-area: zero; }
+.arithmetic-btn[data-element="1"] { grid-area: one; }
+.arithmetic-btn[data-element="2"] { grid-area: two; }
+.arithmetic-btn[data-element="3"] { grid-area: three; }
+.arithmetic-btn[data-element="4"] { grid-area: four; }
+.arithmetic-btn[data-element="5"] { grid-area: five; }
+.arithmetic-btn[data-element="6"] { grid-area: six; }
+.arithmetic-btn[data-element="7"] { grid-area: seven; }
+.arithmetic-btn[data-element="8"] { grid-area: eight; }
+.arithmetic-btn[data-element="9"] { grid-area: nine; }
+.arithmetic-btn[data-element="."] { grid-area: dot; }
+
+.arithmetic-btn[data-operator="+"] { grid-area: plus; }
+.arithmetic-btn[data-operator="-"] { grid-area: minus; }
+.arithmetic-btn[data-operator="*"] { grid-area: multiply; }
+.arithmetic-btn[data-operator="/"] { grid-area: divide; }
+
+.delete-btn { 
+    grid-area: del; 
+    background-color: var(--btn-secondary); 
+    color: var(--white); 
+    box-shadow: 0 5px var(--btn-secondary-shadow);
+}
+
+.delete-btn:hover {
+    background-color: var(--btn-secondary-active);
+}
+
+.delete-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px var(--btn-secondary-shadow);
+    background-color: var(--btn-secondary-active);
+}
+
+.reset-btn { 
+    grid-area: reset; 
+    background-color: var(--btn-secondary); 
+    color: var(--white); 
+    box-shadow: 0 5px var(--btn-secondary-shadow);
+}
+
+.reset-btn:hover {
+    background-color: var(--btn-secondary-active);
+}
+
+.reset-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px var(--btn-secondary-shadow);
+}
+
+.equal-btn { 
+    grid-area: equal;
+    background-color: var(--btn-accent); 
+    color: var(--white); 
+    box-shadow: 0 5px var(--btn-accent-shadow);
+}
+
+.equal-btn:hover {
+    background-color: var(--btn-active);
+}
+
+.equal-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px var(--btn-accent-shadow);
+}
+
+.delete-btn,
+.reset-btn,
+.equal-btn {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.arithmetic-btn {
+    color: var(--text-secondary);
+    background-color: var(--btn-primary);
+    font-size: 2rem;
+    font-weight: 800;
+    box-shadow: 0 5px var(--btn-primary-shadow);
+    transition: all 0.2s ease;
+}
+
+.arithmetic-btn:hover {
+    background-color: var(--text-primary-active);
+}
+
+.arithmetic-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px var(--btn-primary-shadow);
+}
+
+button {
+    border-radius: 0.25rem;
+    border: none;
+    user-select: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    header, section {
+        width: 32rem;
+    }
+
+    section {
+        height: 34rem;
+    }
+}
