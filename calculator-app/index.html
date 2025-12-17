@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="theme-1">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="/icons/bug.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Calculator</title>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>calc</h1>
+      <div class="theme-toggle">
+        <h2>THEME</h2>
+        <div class="toggle-wrapper">
+          <div data-theme="theme-1" class="theme-option">1</div>
+          <div data-theme="theme-2" class="theme-option">2</div>
+          <div data-theme="theme-3" class="theme-option">3</div>
+        </div>
+      </div>
+    </header>
+    <section>
+      <input type="text" name="calculation-display" id="calculation-display" class="input-display" inputmode="decimal" readonly>
+      <div class="arithmetic-display">
+        <button type="button" class="btn delete-btn">DEL</button>
+        <button type="button" class="arithmetic-btn" data-operator="+">+</button>
+        <button type="button" class="arithmetic-btn" data-operator="-">-</button>
+        <button type="button" class="arithmetic-btn" data-operator="*">x</button>
+        <button type="button" class="arithmetic-btn" data-operator="/">/</button>
+        <button type="button" class="arithmetic-btn" data-element="9">9</button>
+        <button type="button" class="arithmetic-btn" data-element="8">8</button>
+        <button type="button" class="arithmetic-btn" data-element="7">7</button>
+        <button type="button" class="arithmetic-btn" data-element="6">6</button>
+        <button type="button" class="arithmetic-btn" data-element="5">5</button>
+        <button type="button" class="arithmetic-btn" data-element="4">4</button>
+        <button type="button" class="arithmetic-btn" data-element="3">3</button>
+        <button type="button" class="arithmetic-btn" data-element="2">2</button>
+        <button type="button" class="arithmetic-btn" data-element="1">1</button>
+        <button type="button" class="arithmetic-btn" data-element="0">0</button>
+        <button type="button" class="arithmetic-btn" data-element=".">.</button>
+        <button type="button" class="btn reset-btn">RESET</button>
+        <button type="button" class="btn equal-btn">=</button>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
