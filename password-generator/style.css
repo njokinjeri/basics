@@ -55,7 +55,8 @@ h1 {
 }
 
 form {
-    width: 29rem;
+    width: 95%;
+    max-width: 29rem;
     height: 34rem;
     display: flex;
     flex-direction: column;
