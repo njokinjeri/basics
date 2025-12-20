@@ -47,10 +47,12 @@ figure {
 }
 
 .product-image {
+    width: 100%;
     border-radius: 0.5rem;
 }
 
 section {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -121,7 +123,8 @@ h2 {
 }
 
 .product-info {
-    width: 23rem;
+    width: 90%;
+    max-width: 23rem;
     height: 4.5rem;
     border-radius: 0.5rem;
     background-color: var(--frosted-silver);
@@ -154,12 +157,14 @@ h5 {
 }
 
 .product-cta {
+    width: 100%;
     display: flex;
     gap: 1rem;
 }
 
 .btn-primary {
-    width: 8.5rem;
+    width: 40%;
+    max-width: 8.5rem;
     height: 2.25rem;
     border-radius: 0.3rem;
     border: 1px solid var(--lavender) ;
@@ -176,7 +181,8 @@ h5 {
 }
 
 .btn-secondary {
-    width: 11.5rem;
+    width: 50%;
+    max-width: 11.5rem;
     height: 2.25rem;
     display: flex;
     flex-direction: row;

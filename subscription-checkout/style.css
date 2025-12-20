@@ -139,7 +139,7 @@ hr {
 }
 
 .bg-image {
-    width: 32rem;
+    width: 80%;
     position: absolute;
     right: 0;
     bottom: 0;
@@ -336,6 +336,12 @@ label {
     border: 1px solid var(--royal-purple);
     background-color: var(--lavender-mist);
     color: var(--royal-purple);
+}
+
+@media (min-width: 768px) {
+    .bg-image {
+        width: 32rem;
+    }
 }
 
 @media (min-width: 1025px) {

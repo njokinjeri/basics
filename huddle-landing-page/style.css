@@ -176,7 +176,7 @@ h1 {
     width: 100%;
     height: 25vh;
     position: absolute;
-    top: -7rem;
+    top: -5rem;
     background-image: url(./images/bg-section-top-mobile-1.svg);
     background-repeat: no-repeat;
     background-size: 100% 50%;
@@ -189,7 +189,7 @@ h1 {
     width: 100%;
     height: 25vh;
     position: absolute;
-    bottom: -7rem;
+    bottom: -5rem;
     background-image: url(./images/bg-section-bottom-mobile-1.svg);
     background-repeat: no-repeat, no-repeat;
     background-size: 100% 50%;
@@ -202,7 +202,7 @@ h1 {
     width: 100%;
     height: 18vh;
     position: absolute;
-    top: -5rem;
+    top: -4rem;
     background-image: url(./images/bg-section-top-mobile-2.svg);
     background-repeat: no-repeat, no-repeat;
     background-size: 100% 50%;
@@ -215,7 +215,7 @@ h1 {
     width: 100%;
     height: 25vh;
     position: absolute;
-    bottom: -7rem;
+    bottom: -5rem;
     background-image: url(./images/bg-section-bottom-mobile-2.svg);
     background-repeat: no-repeat, no-repeat;
     background-size: 100% 50%;

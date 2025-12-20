@@ -76,7 +76,7 @@ section {
 }
 
 .feature {
-    width: 70vw;
+    width: 90%;
     height: 27.5vh;
     padding: 1.5rem;
     background-color: white;
@@ -109,10 +109,10 @@ section {
 }
 
 .feature-text {
+    width: 100%;
     padding-top: 0.75rem;
     color: var(--grayish-blue);
     font-size: 0.895rem;
-    width: 20.25rem;
 }
 
 @media (min-width: 769px) {

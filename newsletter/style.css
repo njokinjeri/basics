@@ -22,7 +22,7 @@
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--light-gray);
     font-family: "Poppins", sans-serif;
     display: flex;
@@ -31,8 +31,8 @@ body {
 }
 
 main {
-    width: 80vw;
-    height: 60vh;
+    width: 80%;
+    height: 100%;
     padding: 2rem 1.5rem;
     background-color: var(--soft-white);
     border-radius: 1rem;
@@ -42,6 +42,7 @@ main {
 }
 
 article {
+    width: 100%;
     display: flex;
     flex-direction: column;
     place-items: center;
@@ -69,7 +70,7 @@ h1 {
 }
 
 .newsletter-form {
-    width: 60vw;
+    width: 80vw;
     height: 25vh;
     padding: 1.25rem;
     border-radius: 0.75rem;
@@ -81,7 +82,7 @@ h1 {
 }
 
 input {
-    width: 50vw;
+    width: 60vw;
     height: 6vh;
     background-color: var(--light-gray);
     border-radius: 0.5rem;
@@ -96,13 +97,12 @@ input::placeholder {
 }
 
 .newsletter-button input {
-    width: 50vw;
-    height: 6vh;
     color: var(--pure-white);
     font-weight: 600;
     background-color: var(--royal-blue);
     border-radius: 0.5rem;
     border-style: none;
+
 }
 
 .confidentiality-policy {

@@ -44,6 +44,16 @@ aside {
     z-index: 10;
 }
 
+.bank-card-front img {
+    width: 100%;
+    height: 16rem;
+}
+
+.card-logo img {
+    width: 4rem;
+    height: auto;
+}
+
 .front-card-details {
     display: flex;
     flex-direction: column;
@@ -77,6 +87,11 @@ aside {
 
 #display-name {
     width: 80%;
+}
+
+.bank-card-back img {
+    width: 100%;
+    height: 16rem;
 }
 
 .bank-card-back {
@@ -155,11 +170,23 @@ form input {
     width: 100%;
     display: flex;
     flex-direction: row;
+    justify-items: center;
+    align-items: center;
     gap: 2rem;
 }
 
-.expiration-wrapper {
+.expiration-wrapper,
+.cvc-wrapper {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.expiration-wrapper label,
+.cvc-wrapper label {
+    height: 1rem;
 }
 
 .expiration-input-wrapper {
@@ -168,10 +195,6 @@ form input {
 }
 
 .expiration-input-wrapper input {
-    width: 50%;
-}
-
-.cvc-wrapper {
     width: 50%;
 }
 

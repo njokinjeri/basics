@@ -73,7 +73,6 @@ main {
     align-items: center;
     gap: 1.5rem;
     background-color: rgb(162, 231, 236);
-    margin-top: -4rem;
 }
 
 #user-tracking-info hr {

@@ -41,7 +41,8 @@ section {
 
 .logo-container {
     height: 36%;
-    width: 70vw;
+    width: 90%;
+    max-width: 30rem;
     background-color: var(--Dark-blue);
     border-radius: 0.625rem 6.25rem 0.625rem 0.625rem;
     display: flex;
@@ -71,7 +72,8 @@ section {
 
 .data-container {
     height: 26%;
-    width: 70vw;
+    width: 90%;
+    max-width: 30rem;
     background-color: var(--Dark-blue);
     border-radius: 0.625rem;
     margin-top: 1.25rem;
@@ -82,6 +84,7 @@ section {
 }
 
 .meter-container {
+    width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -92,7 +95,7 @@ section {
 meter {
     -webkit-appearance: none;
     appearance: none;
-    width: 50vw;
+    width: 100%;
     height: 1.25rem;
     border-radius: 0.625rem;
     background: var(--Very-dark-blue);
@@ -100,7 +103,7 @@ meter {
 }
 
 meter::-webkit-meter-bar {
-    width: 40vw;
+    width: 80%;
     height: 0.875rem;
     border-radius: 0.625rem;
     background: var(--primary-gradient);
@@ -144,7 +147,7 @@ meter::-webkit-meter-optimum-value {
 
 .data-left-container {
     height: 6vh;
-    width: 30vw;
+    width: 55%;
     background-color: var(--white);
     border-radius: 0.625rem;
     display: flex;
@@ -195,11 +198,11 @@ meter::-webkit-meter-optimum-value {
         align-self: flex-start;
     }
     meter {
-        width: 32rem;
+        width: 100%;
     }
 
     meter::-webkit-meter-bar {
-        width: 26rem;
+        width: 80%;
     }
     .dot {
         left: 78%;

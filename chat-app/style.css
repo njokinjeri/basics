@@ -49,7 +49,7 @@ body::after {
     content: "";
     position: absolute;
     bottom: -5%;
-    right: -18%;
+    right: 0;
     height: 50%;
     width: 40%;
     border-radius: 20rem 20rem 0 0;

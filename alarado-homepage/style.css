@@ -189,13 +189,14 @@ main {
 }
 
 .hero-cta {
-    width: 70vw;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     gap: 1.75rem;
 }
+
 
 .cta-started-btn {
     padding: 0.875rem 1.875rem;
@@ -218,10 +219,9 @@ main {
 }
 
 .cta-highlights {
-    width: 90vw;
-    display: flex;
-    flex-direction: row;
-    gap: 1.75rem;
+    width: 90%;
+    display: inline-flex;
+    gap: 1.5rem;
 }
 
 .cta-highlights p {
@@ -243,7 +243,6 @@ main {
 .feature-hero {
     width: 100%;
 }
-
 
 /* mobile-nav*/
 
@@ -385,7 +384,6 @@ main {
 }
 
 @media (min-width: 1024px) {
-
 
     .alarado-list li a {
         font-size: 1.063rem;

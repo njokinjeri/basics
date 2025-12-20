@@ -16,8 +16,8 @@ body {
 
 .destination-subheader {
     color: var(--white);
-    font-weight: 400;
     font-size: 1.25rem;
+    font-weight: 400;
     font-family: var(--tertiary-font);
     word-spacing: 0.188rem;
     opacity: 0.8;
@@ -93,12 +93,12 @@ body {
 }
 
 .destination-content hr {
-    width: clamp(25rem, 70%, 40rem);
+    width: 90%;
     border: 0.063rem solid var(--white);
 }
 
 #destination-description {
-    width: clamp(25rem, 70%, 40rem);
+    width: 90%;
     text-align: center;
     margin: 0 auto;
 }

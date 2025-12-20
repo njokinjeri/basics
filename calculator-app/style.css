@@ -121,7 +121,7 @@ body {
 }
 
 main {
-    width: 95%;
+    width: 95vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,7 +130,8 @@ main {
 }
 
 header {
-    width: 28rem;
+    width: 100%;
+    max-width: 28rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -203,7 +204,8 @@ header {
 .toggle-wrapper.theme-3::before { transform: translate(240%, -50%); }
 
 section {
-    width: 28rem;
+    width: 100%;
+    max-width: 28rem;
     height: 40rem;
     display: flex;
     flex-direction: column;
