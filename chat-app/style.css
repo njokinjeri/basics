@@ -29,7 +29,6 @@ body {
     display: flex;
     justify-content: center;
     background-color: var(--light-grayish-violet) ;
-    overflow: hidden;
     position: relative;
 }
 
@@ -55,7 +54,7 @@ body::after {
     border-radius: 20rem 20rem 0 0;
     background: hsla(276, 100%, 81%, 0.13);
     z-index: -1;
-    }
+}
 
 section {
     display: flex;
