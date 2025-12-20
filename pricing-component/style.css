@@ -22,6 +22,7 @@
 }
 
 body {
+    min-height: 100vh;
     font-family: "Space Mono", monospace;
     background: url(./images/bg-pattern.svg);
     background-repeat: no-repeat;
@@ -66,7 +67,7 @@ header p {
 
 section {
     width: 90vw;
-    height: 55vh;
+    height: 36rem;
     background: var(--White);
     color: var(--dark-desaturated-blue);
     border-radius: 0.75rem;
@@ -108,7 +109,7 @@ section {
 }
 
 .range-slider {
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 40%;
 }
@@ -177,6 +178,7 @@ input[type="range"]::-moz-range-thumb {
 
 .pricing-toggle {
     display: flex;
+    padding: 0 1rem;
     gap: 1rem;
     font-size: 0.875rem;
     font-weight: 600;
@@ -229,7 +231,6 @@ input[type="range"]::-moz-range-thumb {
 .toggle-switch input:checked+.slider::before {
     transform: translateX(1.5rem);
 }
-
 
 .yearly-billing {
     display: flex;
