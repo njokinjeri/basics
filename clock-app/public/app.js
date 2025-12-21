@@ -120,7 +120,9 @@ function getUserTime() {
     const hours = now.getHours().toString().padStart(2, '0');
     const minutes = now.getMinutes().toString().padStart(2, '0');
 
-    const weekday = now.getDay();
+    const day = now.getDay();
+    const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const weekDayName = dayNames[day];
 
     const getDayOfYear = (date) => {
 
@@ -131,16 +133,25 @@ function getUserTime() {
     }
 
     const getWeekNumber = (date) => {
-        const firstDay = new Date(date.getFullYear(), 0, 1);
-        const days = Math.floor((date - firstDay) / (24 * 60 * 60 * 1000))
-        return Math.ceil((days + firstDay.getDay() + 1) / 7);
-    }
+        const targetDate = new Date(date.valueOf());
+
+        const dayN = (date.getDay() + 6) % 7;
+        targetDate.setDate(targetDate.getDate() - dayN + 3)
+
+        let firstThursday = targetDate.valueOf();
+        targetDate.setMonth(0, 1);
+        if (targetDate.getDay() !== 4) {
+            targetDate.setMonth(0, 1 + ((4 - targetDate.getDate()) + 7) % 7)
+        }
+
+        return 1 + Math.ceil((firstThursday - targetDate) / (7 * 24 * 60 * 60 * 1000));
+    };
 
 
     const formattedTime = `${hours}:${minutes}`
     time.textContent = formattedTime;
     dayOfYear.textContent = getDayOfYear(now);
-    dayOfWeek.textContent = weekday;
+    dayOfWeek.textContent = weekDayName;
     weekNumber.textContent = getWeekNumber(now);
 }
 
