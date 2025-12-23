@@ -8,6 +8,80 @@
     <title>Pomodoro App</title>
 </head>
 <body>
-    <script src="app.js"></script>
+    <main>
+        <h1>pomodoro</h1>
+        <div class="pomodoro-toggle">
+            <div class="count-display-text active-timer" data-mode="pomodoro" role="button">pomodoro</div>
+            <div class="count-display-text" data-mode="short" role="button">short break</div>
+            <div class="count-display-text" data-mode="long" role="button">long break</div>
+        </div>
+        <div class="countdown-display-wrapper">
+            <div class="main-display-wrapper">
+                <svg class="countdown-loop" viewBox="0 0 340 340" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M29.536 75.1017C31.2387 72.5862 34.6582 71.9273 37.1737 73.63C39.6892 75.3327 40.3481 78.7522 38.6454 
+                            81.2677C21.048 107.265 11.5 137.913 11.5 170C11.5 257.537 82.4629 328.5 170 328.5C257.537 328.5 328.5 257.537 328.5 170C328.5 82.4629 257.537 11.5 170 11.5C166.962 11.5 164.5 9.03757 164.5 6C164.5 2.96243 166.962 0.5 170 0.5C263.612 0.5 339.5 76.3877 339.5 170C339.5 263.612 263.612 339.5 170 339.5C76.3877 339.5 0.5 263.612 0.5 170C0.5 135.698 10.716 102.905 29.536 75.1017Z"
+                            fill="currentColor"/>
+                </svg>
+                <h2 id="timer_countdown">25:00</h2>
+                <div class="timer-controls-wrapper">
+                    <h3 id="timer_control">START</h3>
+                    <svg id="restart_icon" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+                        <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="matrix(0 1 1 0 2.5 2.5)">
+                        <path d="m3.98652376 1.07807068c-2.38377179 1.38514556-3.98652376 3.96636605-3.98652376 6.92192932 0 4.418278 3.581722 8 8 8s8-3.581722 8-8-3.581722-8-8-8"/>
+                        <path d="m4 1v4h-4" transform="matrix(1 0 0 -1 0 6)"/></g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="settings-section">
+            <img src="./assets/icon-settings.svg" alt="settings-icon" class="settings-icon">
+        </div>
+        <dialog id="dialog">
+            <form>
+                <div class="settings-header">
+                    <h3>Settings</h3>
+                    <div id="settings_close_icon"><img src="./assets/icon-close.svg" alt="dialog-close-icon"></div>
+                </div>
+                <hr>
+                <div class="time-display-settings">
+                    <h4>TIME (MINUTES)</h4>
+                    <div class="time-settings">
+                        <div class="custom-time-settings">
+                            <label for="pomodoro_custom_timer">pomodoro</label>
+                            <input type="number" name="pomodoro-timer" id="pomodoro_custom_timer">
+                        </div>
+                        <div class="custom-time-settings">
+                            <label for="shortbreak_custom_timer">short break</label>
+                            <input type="number" name="short-break-timer" id="shortbreak_custom_timer">
+                        </div>                    
+                        <div class="custom-time-settings">
+                            <label for="longbreak_custom_timer">long break</label>
+                            <input type="number" name="long-break-timer" id="longbreak_custom_timer">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="font-display-settings">
+                    <h4>FONT</h4>
+                    <div class="font-picker">
+                        <div class="custom-font kumbh-sans active-font" data-font="kumbh-sans">Aa</div>
+                        <div class="custom-font roboto-slab" data-font="roboto-slab">Aa</div>
+                        <div class="custom-font space-mono" data-font="space-mono">Aa</div>
+                    </div>
+                </div>
+                <hr>
+                <div class="color-display-settings">
+                    <h4>COLOR</h4>
+                    <div class="color-picker">
+                        <div class="custom-color red active-color" data-color="red"></div>
+                        <div class="custom-color cyan" data-color="cyan"></div>
+                        <div class="custom-color purple" data-color="purple"></div>
+                    </div>
+                </div>
+                <button class="apply-settings" type="submit">Apply</button>
+            </form> 
+        </dialog>
+    </main>
+    <script src="app.js" defer></script>
 </body>
 </html>
