@@ -118,6 +118,15 @@ main {
     color: var(--theme-color);
     z-index: 10;
     pointer-events: none;
+    transform: rotate(-90deg);
+    transform-origin: center;
+}
+
+.ring {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 8;
+    stroke-linecap: round;
 }
 
 .main-display-wrapper:hover .countdown-loop {

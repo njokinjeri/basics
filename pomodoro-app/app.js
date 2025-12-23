@@ -6,6 +6,7 @@ const timerDisplay = document.getElementById('timer_countdown')
 const countDownLoop = document.querySelector('.countdown-loop');
 const startControl = document.getElementById('timer_control')
 const restartIcon = document.getElementById('restart_icon');
+const ring = document.querySelector('.ring');
 
 const pomodoroInput = document.getElementById('pomodoro_custom_timer');
 const shortBreakInput = document.getElementById('shortbreak_custom_timer');
@@ -60,12 +61,21 @@ function formatTime(seconds) {
 
 function updateDisplay() {
     timerDisplay.textContent = formatTime(timeRemaining);
-    updateProgressRing();
+    updateProgressRing(timeRemaining, totalTime);
 }
 
-/*TODO: add progress ring animation loop*/
-function updateProgressRing() {
+/*timer progress ring animation loop*/
+const radius = 166;
+const circumference = 2 * Math.PI * radius;
+ring.style.strokeDasharray = circumference;
+ring.style.strokeDashoffset = circumference; 
+ring.style.transition = 'stroke-dashoffset 0.3s linear';
+
+function updateProgressRing(timeRemaining, totalTime) {
+    const progress = 1 - (timeRemaining / totalTime); 
+    ring.style.strokeDashoffset = circumference * (1 - progress); 
 }
+
 
 function setTimerMode(mode) {
 
