@@ -56,7 +56,6 @@ h1 {
 
 form {
     width: 95%;
-    max-width: 40rem;
     height: 34rem;
     display: flex;
     flex-direction: column;
@@ -259,4 +258,10 @@ button:hover {
     background: transparent;
     color: var(--electric-mint);
     border: 0.063rem solid var(--electric-mint);
+}
+
+@media (min-width: 769px) {
+    form{ 
+        width: 30rem;
+    }
 }
