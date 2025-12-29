@@ -30,11 +30,13 @@ header {
 }
 
 .ip-address-form {
+    width: 90vw;
     display: flex;
+    justify-content: center;
 }
 
 .ip-address-form input {
-    width: 20rem;
+    width: 90%;
     height: 3.5rem;
     border: none;
     border-top-left-radius: 0.875rem;
