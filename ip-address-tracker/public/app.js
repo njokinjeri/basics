@@ -24,7 +24,7 @@ function initMap(lat = 51.505, lng = -0.09, zoom = 13) {
     marker = L.marker([lat, lng]).addTo(map);
 }
 
-function updateMap(lat, lng) {
+function updateMap(lat, lng, popupText) {
     if (!map) {
         initMap(lat, lng);
     } else {
@@ -35,6 +35,10 @@ function updateMap(lat, lng) {
         marker.remove();
     }
     marker = L.marker([lat, lng]).addTo(map);
+
+    if (popupText) {
+        marker.bindPopup(popupText).openPopup();
+    }
 }
 
 
@@ -59,6 +63,30 @@ async function fetchIPData(ipAddress = '') {
     }
 }
 
+function formatTimezone(timezone) {
+    if (!timezone) return 'N/A';
+
+    try {
+        const now = new Date();
+        const options = {timeZone: timezone, timeZoneName: 'short'};
+        const formatter = new Intl.DateTimeFormat('en-US', options);
+
+        const timeZoneDate = new Date(now.toLocaleString('en-US', {timeZone: timezone}));
+        const utcDate = new Date(now.toLocaleString('en-US', {timeZone: 'UTC'}));
+        const offsetMinutes = (timeZoneDate - utcDate) / (1000 * 60);
+        const offsetHours = Math.floor(Math.abs(offsetMinutes) / 60);
+        const offsetMins = Math.abs(offsetMinutes) % 60;
+
+        const sign = offsetMinutes >= 0 ? '+' : '-';
+        const formattedOffset = `UTC${sign}${String(offsetHours).padStart(2, '0')}:${String(offsetMins).padStart(2, '0')}`
+
+        return formattedOffset;
+
+    } catch (error) {
+        return timezone;
+    }
+}
+
 function updateUI(data) {
 
     userIpAddress.textContent = data.ip || 'N/A';
@@ -66,12 +94,12 @@ function updateUI(data) {
     const locationParts = [data.city, data.country, data.postal].filter(Boolean).join(', ');
     userLocation.textContent = locationParts || 'N/A';
 
-    userTimezone.textContent = data.timezone || 'N/A';
+    userTimezone.textContent = formatTimezone(data.timezone);
     userISP.textContent = data.org || 'N/A';
 
     if(data.loc) {
         const [lat, lng] = data.loc.split(',').map(Number);
-        const location = [data.city, data.region, data.country_code].filter(Boolean).join(', ');
+        const location = [data.city, data.region, data.country].filter(Boolean).join(', ');
         updateMap(lat, lng, location);
     }
 }
@@ -96,7 +124,7 @@ async function handleSearchIP(ip = '') {
     }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     initMap()
     handleSearchIP();
 });
