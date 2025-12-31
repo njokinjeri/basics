@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+    <link rel="icon" type="image/png" href="/icons/bug.png">
+    <link rel="stylesheet" href="style.css">
+    <title>IP Address Tracker</title>
+</head>
+<body>
+    <header>
+        <h1>IP Address Tracker</h1>
+        <form class="ip-address-form">
+            <input id="ip_address_input" type="text" placeholder="Search for any IP address or domain">
+            <button class="ip-search-btn" type="submit">
+                <svg class="arrow-icon" viewBox="-19.04 0 75.804 75.804" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(-831.568 -384.448)">
+                        <path d="M833.068,460.252a1.5,1.5,0,0,1-1.061-2.561l33.557-33.56a2.53,2.53,0,0,0,0-3.564l-33.557-33.558a1.5,1.5,0,0,1,2.122-2.121l33.556,33.558a5.53,5.53,0,0,1,0,7.807l-33.557,33.56A1.5,1.5,0,0,1,833.068,460.252Z"
+                        fill="currentColor"/>
+                    </g>
+                </svg>
+            </button>
+        </form>
+    </header>
+    <main>
+        <section id="user_tracking_info">
+            <div class="user-tracking-details">
+                <p>IP ADDRESS</p>
+                <h2 id="user_ip_address"></h2>
+            </div>
+            <hr>
+            <div class="user-tracking-details">
+                <p>LOCATION</p>
+                <h2 id="user_location"></h2>
+            </div>
+            <hr>
+            <div class="user-tracking-details">
+                <p>TIMEZONE</p>
+                <h2 id="user_timezone"></h2>
+            </div>
+            <hr>
+            <div class="user-tracking-details">
+                <p>ISP</p>
+                <h2 id="user_isp"></h2>
+            </div>
+        </section>
+        <section id="map"></section>
+    </main>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin="">
+    </script>
+    <script src="./app.js"></script>
+</body>
+</html>
