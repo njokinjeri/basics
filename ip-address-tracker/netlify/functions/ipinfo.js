@@ -2,16 +2,18 @@ exports.handler = async (event) => {
     const ip = event.queryStringParameters.ip || '';
     const apiKey = process.env.IPINFO_API_TOKEN;
 
-    const url = `https://ipinfo.io${ip}?token=${apiKey}`;
+    const forwardedFor = event.headers["x-forwarded-for"] || "";
+    const clientIp = forwardedFor.split(",")[0].trim();
+
+    const url = `https://ipinfo.io/${clientIp}?token=${apiKey}`;
     try {
         const response = await fetch(url);
         const data = await response.json();
     
         return {
             statusCode: 200,
-            body: JSON.stringify(data),
             headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
         };
     } catch (error) {
         return {
