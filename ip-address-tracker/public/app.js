@@ -8,7 +8,9 @@ const userTimezone = document.getElementById('user_timezone');
 const userISP = document.getElementById('user_isp');
 
 const CONFIG = {
-    functionUrl: '/api/ipinfo'
+    functionUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? '/api/ipinfo'
+    : '/.netlify/functions/ipinfo'
 };
 
 let map;
