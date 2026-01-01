@@ -91,7 +91,7 @@ header {
 }
 
 .spinner-circle {
-  stroke: currentColor;
+  stroke: rgb(99, 117, 221);
   stroke-linecap: round;
   stroke-dasharray: 50;
   stroke-dashoffset: 0;
