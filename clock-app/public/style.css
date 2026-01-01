@@ -306,7 +306,7 @@ hr{
 
     .more-section.show {
         gap: 2rem;
-        padding: 1rem;
+        padding: 2rem 1rem;
     }
     .more-display-wrapper {
         gap: 2rem;
