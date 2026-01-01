@@ -1,5 +1,6 @@
 const ipInput = document.getElementById('ip_address_input');
 const searchBtn = document.querySelector('.ip-search-btn');
+const ipForm = document.querySelector('.ip-address-form');
 
 const userIpAddress = document.getElementById('user_ip_address');
 const userLocation = document.getElementById('user_location');
@@ -40,7 +41,6 @@ function updateMap(lat, lng, popupText) {
         marker.bindPopup(popupText).openPopup();
     }
 }
-
 
 async function fetchIPData(ipAddress = '') {
     try {
@@ -87,6 +87,120 @@ function formatTimezone(timezone) {
     }
 }
 
+function validateIP(ip) {
+    if (!ip) return true;
+
+    ip = ip.trim();
+
+    const ipv4Regex = /^(\d{1,3}\.){3}\d{1,3}$/;
+    if (ipv4Regex.test(ip)) {
+        const parts = ip.split('.');
+        return parts.every(part => {
+            const num = parseInt(part);
+            return num >= 0 && num <= 255;
+        });
+    }
+
+    const ipv6Regex = /^([0-9a-fA-F]{0,4}:){2,7}[0-9a-fA-F]{0,4}$/;
+    if (ipv6Regex.test(ip)) {
+        return true;
+    }
+
+    return false;
+}
+
+function showError(message) {
+    let errorEl = document.getElementById('ip-error-message');
+
+    if (!errorEl) {
+        errorEl = document.createElement('div');
+        errorEl.id = 'ip-error-message';
+        errorEl.classList.add('error-message');
+
+        ipForm.appendChild(errorEl);
+    }
+    
+    errorEl.textContent = message;
+    errorEl.classList.add('show');
+    
+    if (ipInput) {
+        ipInput.classList.add('input-error');
+    }
+}
+
+function hideError(message) {
+    let errorEl = document.getElementById('ip-error-message');
+
+    if (errorEl) {
+        errorEl.classList.remove('show');
+    }
+    if (ipInput) {
+        ipInput.classList.remove('input-error');
+    }
+}
+
+function setLoadingState(isLoading) {
+    if (searchBtn) {
+        searchBtn.disabled = isLoading;
+
+        if (isLoading) {
+            searchBtn.innerHTML = `
+                <svg class="spinner" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="spinner-circle" cx="12" cy="12" r="10" stroke-width="3" fill="none"/>
+                </svg>
+            `;
+        } else {
+            searchBtn.innerHTML = `
+                <svg class="arrow-icon" viewBox="-19.04 0 75.804 75.804" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(-831.568 -384.448)">
+                        <path d="M833.068,460.252a1.5,1.5,0,0,1-1.061-2.561l33.557-33.56a2.53,2.53,0,0,0,0-3.564l-33.557-33.558a1.5,1.5,0,0,1,2.122-2.121l33.556,33.558a5.53,5.53,0,0,1,0,7.807l-33.557,33.56A1.5,1.5,0,0,1,833.068,460.252Z"
+                        fill="currentColor"/>
+                    </g>
+                </svg>
+            `;
+        }
+    }
+
+    if (ipInput) {
+        ipInput.disabled = isLoading;
+    }
+
+    if (isLoading) {
+        userIpAddress.textContent = 'Loading...';
+        userLocation.textContent = 'Loading...';
+        userTimezone.textContent = 'Loading...';
+        userISP.textContent = 'Loading...';
+    }
+}
+
+async function handleSearchIP(ip = '') {
+    try {
+       hideError();
+
+       ip = ip.trim();
+
+       if (ip && !validateIP(ip)) {
+        showError('Please enter a valid IP address (e.g., 8.8.8.8)');
+        return;
+       }
+
+       setLoadingState(true)
+
+        const data = await fetchIPData(ip);
+        updateUI(data);
+
+    } catch (error) {
+        userIpAddress.textContent = 'Error';
+        userLocation.textContent = 'N/A';
+        userTimezone.textContent = 'N/A';
+        userISP.textContent = 'N/A';
+        
+        showError('Unable to find this IP address. Please check and try again.');
+    } finally {
+        setLoadingState(false);
+    }
+}
+
 function updateUI(data) {
 
     userIpAddress.textContent = data.ip || 'N/A';
@@ -105,26 +219,28 @@ function updateUI(data) {
 }
 
 
-async function handleSearchIP(ip = '') {
-    try {
-        userIpAddress.textContent = 'Loading...';
-        userLocation.textContent = 'Loading...';
-        userTimezone.textContent = 'Loading...';
-        userISP.textContent = 'Loading...';
-
-        const data = await fetchIPData(ip);
-        updateUI(data);
-
-    } catch (error) {
-       userIpAddress.textContent = 'Error';
-        userLocation.textContent = 'N/A';
-        userTimezone.textContent = 'N/A';
-        userISP.textContent = 'N/A';
-       alert("Failed to find IP address details. Please check the IP and try again")
-    }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     initMap()
     handleSearchIP();
+
+    if (searchBtn) {
+        searchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const ip = ipInput ? ipInput.value.trim() : '';
+            handleSearchIP(ip);
+        });
+    }
+
+    if (ipInput) {
+        ipInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSearchIP(ipInput.value.trim());
+            }
+        });
+
+        ipInput.addEventListener('input', () => {
+            hideError();
+        })
+    }
 });
