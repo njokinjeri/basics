@@ -280,9 +280,6 @@ hr{
 }
 
 @media (max-width: 480px) {
-    main {
-        min-height: 100vh;
-    }
     .time-display {
         width: 85%;
     }
