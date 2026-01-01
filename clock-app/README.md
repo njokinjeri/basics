@@ -2,7 +2,7 @@
 A dynamic clock application with time-based greetings, background wallpapers, and geolocation features.
 
 ## Live Site
-[View Clock App](https://bejewelled-shortbread-b8d056.netlify.app/)
+[View Clock App](https://clock-app-demo.netlify.app/)
 
 ## Tech Stack
 - **Frontend**: Vanilla JavaScript, HTML5, CSS3
