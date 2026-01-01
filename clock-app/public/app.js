@@ -73,7 +73,7 @@ const quotes = [
     {author: "Eisen", text: "Being afraid isn’t a bad thing. It’s my fear that’s brought me this far."},
     {author: "Frieren", text: "The greatest joy of magic lies in searching for it."},
     {author: "Wirbel", text: "Death isn’t the only goodbye in this life."},
-    {author: "Eisen", text: "I’ll tell you the secret to fighting strong enemies. It’s easy, keep getting up and attack them with your moves continuously."},
+    {author: "Eisen", text: "Fear doesn’t make you weak, it gives you strength to stand tall."},
 ]
 
 let currentQuote = Math.floor(Math.random() * quotes.length);
