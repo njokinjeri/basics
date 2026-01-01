@@ -56,9 +56,9 @@ main {
 }
 
 .pomodoro-toggle {
-    width: 100%;
+    width: 98%;
     max-width: 25rem;
-    height: 4rem;
+    height: 3.125rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,16 +69,17 @@ main {
 }
 
 .count-display-text {
+    flex: 1;
     font-weight: 600;
     text-align: center;
     color: var(--light-blue);
+    padding: 0.875rem 0.25rem;
 }
 
 .count-display-text.active-timer {
     background-color: var(--theme-color);
     color: var(--darker-blue);
     border-radius: 2rem;
-    padding: 1rem 2rem;
 }
 
 .count-display-text.active-timer:hover {
@@ -353,4 +354,21 @@ dialog::backdrop {
 
 .apply-settings:hover {
     background-color: var(--theme-color-hover);
+}
+
+@media (max-width: 480px) {
+    body {
+        overflow: scroll;
+    }
+    .countdown-display-wrapper {
+        width: 22rem;
+        height: 22rem;  
+    }
+    .main-display-wrapper {
+        height: 20rem;
+        width: 20rem;
+    }
+    #timer_countdown {
+        font-size: 5rem;
+    }
 }
