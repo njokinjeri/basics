@@ -21,7 +21,7 @@
 }
 
 body {
-    min-height: 100dvh;
+    min-height: 100vh;
     background: linear-gradient(120deg,#7429c6,#c951e7,#4f46e5
     );
     background-size: 400% 400%;
@@ -126,8 +126,6 @@ main h1 {
 }
 
 .mistakes {
-    width: 50%;
-    align-self: flex-end;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -223,6 +221,8 @@ main h1 {
     .stats {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
         gap: 1rem;
     }
 }
