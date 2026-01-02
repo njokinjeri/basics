@@ -2,7 +2,7 @@
 
 ![Design preview guess the word game challenge](./design/preview.jpg)
 
-### challenge
+### Challenge
 
 Users should be able to:
 

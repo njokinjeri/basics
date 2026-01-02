@@ -8,6 +8,38 @@
     <title>Guess The Word Game</title>
 </head>
 <body>
-    
+    <main>
+        <h1>Word Scramblle</h1>
+        <div class="scramble-display" aria-live="polite">
+            <span id="scrambled-word"></span>
+        </div>
+        <div class="stats">
+            <div class="tries" aria-label="Tries remaining">
+                <p>Tries 
+                    (<span id="tries-count">0</span>
+                    <span></span>):
+                </p>
+                <div class="tries-dots">
+                    <div class="tries-dot" aria-hidden="true"></div>
+                    <div class="tries-dot" aria-hidden="true"></div>
+                    <div class="tries-dot" aria-hidden="true"></div>
+                    <div class="tries-dot" aria-hidden="true"></div>
+                    <div class="tries-dot" aria-hidden="true"></div>
+                </div>
+            </div>
+            <div class="mistakes">
+                <p>Mistakes:</p>
+                <span class="mistake-letters"></span>
+            </div>
+        </div>
+        <form class="word-input" autocomplete="off">
+            <input type="text" name="letter-input" class="letter-box" id="letter-input" placeholder="_" maxlength="1"/>
+        </form>
+        <div class="actions">
+            <button type="button" id="random-btn">Random</button>
+            <button type="button" id="reset-btn">Reset</button>
+        </div>
+    </main>
+    <script src="app.js"></script>
 </body>
 </html>
