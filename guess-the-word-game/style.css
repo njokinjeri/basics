@@ -21,7 +21,7 @@
 }
 
 body {
-    height: 100svh;
+    height: 100vh;
     background: linear-gradient(120deg,#7429c6,#c951e7,#4f46e5
     );
     background-size: 400% 400%;
@@ -218,6 +218,12 @@ main h1 {
 
 
 @media (max-width: 480px) {
+
+    body {
+        height: 100svh;
+        padding-top: 5vh;
+        align-items: flex-start;
+    }
     .stats {
         display: flex;
         flex-direction: column;
