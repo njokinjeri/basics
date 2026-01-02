@@ -12,6 +12,7 @@ let guessedLetters = [];
 let wrongLetters = [];
 let tries = 0;
 const MAX_TRIES = 5;
+let gameOver = false;
 
 
 async function getRandomWord() {
@@ -76,6 +77,8 @@ function displayWordProgress() {
 
 
 function handleLetterGuess(e, index) {
+    if (gameOver) return;
+
     const input = e.target;
     const letter = input.value.toUpperCase();
 
@@ -104,7 +107,7 @@ function updateTriesCount() {
     });
 
     if (tries >= MAX_TRIES) {
-        endGame(false);
+        setGameOver(false);
     }
 }
 
@@ -115,10 +118,15 @@ function updateMistakes() {
 
 
 function submitGuess() {
+
+    if (gameOver) return;
+
+    if (guessedLetters.includes(undefined)) return;
+
     const userGuess = guessedLetters.join('').toUpperCase();
 
     if (userGuess === currentWord) {
-        endGame(true);
+        setGameOver(true);
         return;
     }
 
@@ -138,7 +146,7 @@ function submitGuess() {
     updateMistakes();
 
     if (tries >= MAX_TRIES) {
-        endGame(false);
+        setGameOver(false);
     } else {
         alert(`Try again! You have ${MAX_TRIES - tries} tries left.`);
     }
@@ -147,15 +155,20 @@ function submitGuess() {
 
 function checkWin() {
     if (guessedLetters.join('').toUpperCase() === currentWord.toUpperCase()) {
-        endGame(true);
+        setGameOver(true);
         return true;
     } 
     return false;
 }
 
+function setGameOver(won) {
+    gameOver = true;
 
-function endGame(won) {
-    wordInputWrapper.querySelectorAll('input').forEach(index => index.disabled = true);
+    wordInputWrapper
+        .querySelectorAll('.letter-box')
+        .forEach(input => input.disabled = true);
+
+    randomizeBtn.disabled = true;
 
     if (won) {
         setTimeout(() => {
@@ -166,7 +179,7 @@ function endGame(won) {
     } else {
         setTimeout(() => {
             alert (
-                `😔 Game Over! The word was: "${currentWord.toUpperCase()}". Try again!`
+                `😔 Out of Tries! The word was: "${currentWord.toUpperCase()}". Try again!`
             )
         }, 200);
     }
@@ -192,17 +205,57 @@ async function startGame() {
 
 
 async function  resetGame() {
+    gameOver = false
     guessedLetters = [];
     wrongLetters = [];
     tries = 0;
     updateTriesCount();
     updateMistakes();
 
+    randomizeBtn.disabled = false;
+
+    currentWord = await getRandomWord();
+
+    const scrambled = scrambledWord(currentWord);
+    scrambledWordEl.textContent = scrambled;
+
     displayWordProgress();
 }
 
 
-randomizeBtn.addEventListener('click', startGame);
+async function startNewWord() {
+    guessedLetters = [];
+    wrongLetters = [];
+
+    clearInputFeedback();
+
+    currentWord = await getRandomWord();
+
+    const scrambled = scrambledWord(currentWord);
+    scrambledWordEl.textContent = scrambled;
+
+    displayWordProgress();
+    console.log('Word to guess', currentWord);
+}
+
+function clearInputFeedback() {
+    const inputs = wordInputWrapper.querySelectorAll('.letter-box');
+    inputs.forEach(input => {
+        input.classList.remove('wrong');
+        input.value = '';
+    });
+
+    updateMistakes();
+}
+
+
+
+randomizeBtn.addEventListener('click', () => {
+    if (gameOver) return;
+    startNewWord();
+});
+
+
 resetBtn.addEventListener('click', resetGame);
 
 
