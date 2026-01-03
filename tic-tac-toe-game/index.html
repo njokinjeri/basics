@@ -4,10 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="/icons/bug.png">
+    <link rel="icon" type="image/png" href="./images/tic-tac-toe-icon.png">
     <title>Tic Tac Toe Game</title>
 </head>
 <body>
+    <main>
+        <section class="game-controls">
+            <img class="game-logo" src="./images/logo.svg" alt="game-logo">
+            <div class="player-turn-update" aria-live="polite">
+                <svg class="player-icon" viewBox="83 11 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M114.557 16.2897L109.71 11.4431C109.12 10.8523 108.162 10.8523 107.571 11.4431L99 20.014L90.429 11.4431C89.8383 10.8523 88.8805 10.8523 88.2897 11.4431L83.4431 16.2897C82.8523 16.8805 82.8523 17.8383 83.4431 18.429L92.014 27L83.4431 35.571C82.8523 36.1617 82.8523 37.1195 83.4431 37.7103L88.2897 42.5569C88.8805 43.1477 89.8383 43.1477 90.429 42.5569L99 33.986L107.571 42.5569C108.162 43.1477 109.12 43.1477 109.71 42.5569L114.557 37.7103C115.148 37.1195 115.148 36.1617 114.557 35.571L105.986 27L114.557 18.429C115.148 17.8383 115.148 16.8805 114.557 16.2897Z" 
+                    fill="currentColor"/>
+                </svg>
+                <p>TURN</p>
+            </div>
+            <button class="restart-btn" type="button" aria-label="Restart game">
+                <svg class="restart-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.364 8.05026L17.6569 7.34315C14.5327 4.21896 9.46734 4.21896 6.34315 7.34315C3.21895 10.4673 3.21895 15.5327 6.34315 18.6569C9.46734 21.7811 14.5327 21.7811 17.6569 18.6569C19.4737 16.84 20.234 14.3668 19.9377 12.0005M18.364 8.05026H14.1213M18.364 8.05026V3.80762" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </section>
+        <section class="game-board" role="grid" aria-label="Tic Tac Toe Board">
+            <button class="cell" data-index="0" aria-label="Cell 1"></button>
+            <button class="cell" data-index="1" aria-label="Cell 2"></button>
+            <button class="cell" data-index="2" aria-label="Cell 3"></button>
+            <button class="cell" data-index="3" aria-label="Cell 4"></button>
+            <button class="cell" data-index="4" aria-label="Cell 5"></button>
+            <button class="cell" data-index="5" aria-label="Cell 6"></button>
+            <button class="cell" data-index="6" aria-label="Cell 7"></button>
+            <button class="cell" data-index="7" aria-label="Cell 8"></button>
+            <button class="cell" data-index="8" aria-label="Cell 9"></button>
+        </section>
+        <section class="player-controls">
+            <div class="score you">
+                <p>X (YOU)</p>
+                <div id="score-you"></div>
+            </div>
+            <div class="score ties">
+                <p>TIES</p>
+                <div id="score-ties">0</div>
+            </div>
+            <div class="score cpu">
+                <p>O (CPU)</p>
+                <div id="score-cpu">0</div>
+            </div>
+        </section>
+    </main>
+    <div class="modal-overlay" hidden>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="game-result-title">
+            <h2>You Win!</h2>
+            <div class="game-result">
+                <svg class="player-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.002 1.147 32 18.145 48.998 1.147a3 3 0 0 1 4.243 0l9.612 9.612a3 3 0 0 1 0 4.243L45.855 32l16.998 16.998a3 3 0 0 1 0 4.243l-9.612 9.612a3 3 0 0 1-4.243 0L32 45.855 15.002 62.853a3 3 0 0 1-4.243 0L1.147 53.24a3 3 0 0 1 0-4.243L18.145 32 1.147 15.002a3 3 0 0 1 0-4.243l9.612-9.612a3 3 0 0 1 4.243 0Z" 
+                    fill="currentColor" fill-rule="evenodd"/>
+                </svg>
+                <p class="modal-message">TAKES THE ROUND</p>
+            </div>
+            <div class="modal-actions">
+                <button id="quit">QUIT</button>
+                <button id="next_round">NEXT ROUND</button>
+            </div>
+        </div>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>

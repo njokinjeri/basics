@@ -1,16 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Outfit:wght@100..900&display=swap');
 :root {
   --color-bg-primary: hsl(202, 32%, 15%);
   --color-bg-secondary: hsl(199, 35%, 19%);
-  --color-text-muted: hsl(198, 23%, 72%);
-  --color-text-muted-hover: hsl(197, 33%, 89%);
+  --color-text-muted: hsl(195, 36%, 82%);
+  --color-text-muted-hover: hsl(197, 33%, 89%); 
   --color-accent-warning: hsl(39, 88%, 58%);
   --color-accent-warning-hover: hsl(39, 100%, 69%);
   --color-accent-success: hsl(178, 60%, 48%);
   --color-accent-success-hover: hsl(178, 75%, 65%);
   --shadow-color-dark: hsl(201, 45%, 11%);
   --shadow-color-light: hsl(199, 17%, 51%);
+  --shadow-accent-yellow: hsl(39, 88%, 40%);
+  --font-display-outfit: "Outfit", sans-serif;
+  --font-display-mochiy: "Mochiy Pop One", sans-serif;
 }
 
 * {
@@ -20,5 +22,274 @@
 }
 
 body {
-    font-family: "Outfit", sans-serif;
+    height: 100dvh;
+    background-color: var(--color-bg-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.game-controls {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.game-logo {
+    width: 6rem;
+}
+
+.player-turn-update {
+    width: 10rem;
+    height: 4rem;
+    padding: 0 2rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-muted);
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, var(--shadow-color-dark) 0px -4px 0px inset;
+}
+
+.player-icon {
+    display: block;
+    width: auto;
+    height: 3rem;
+}
+
+.player-turn-update p {
+    font-size: 1.25rem;
+    font-weight: 600;
+    font-family: var(--font-display-outfit);
+}
+
+.restart-btn {
+    width: 3.5rem;
+    height: 3.75rem;
+    background-color: var(--color-text-muted);
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, var(--shadow-color-light) 0px -4px 0px inset;
+    cursor: pointer;
+    transition:
+        transform 0.1s ease,
+        background-color 0.15s ease,
+}
+
+.restart-btn:hover {
+    transform: translateY(-1px);
+    background-color: var(--color-text-muted-hover);
+}
+
+.restart-btn:active {
+    transform: translateY(2px);
+}
+
+.game-board {
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-content: center;
+    gap: 1.25rem;
+}
+
+.game-board .cell {
+    aspect-ratio: 1 / 1;  
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    background-color: var(--color-bg-secondary);
+    box-shadow:
+        rgba(0, 0, 0, 0.4) 0px 2px 4px,
+        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+        var(--shadow-color-dark) 0px -6px 0px inset;
+}
+
+
+.player-controls {
+    width: 95%;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.score {
+    width: 12rem;
+    height: 4rem;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display-outfit);
+}
+
+.score > div {
+    font-weight: 600;
+}
+
+.score:nth-child(1)  {
+    background-color: var(--color-accent-success);
+}
+
+.score:nth-child(1):hover {
+    background-color: var(--color-accent-success-hover);
+}
+
+.score:nth-child(2)  {
+    background-color: var(--color-text-muted);
+}
+
+.score:nth-child(2):hover  {
+    background-color: var(--color-text-muted-hover);
+}
+
+.score:nth-child(3)  {
+    background-color: var(--color-accent-warning);
+}
+
+.score:nth-child(3):hover  {
+    background-color: var(--color-accent-warning-hover);
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    place-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    width: 100%;
+    color: var(--color-text-muted);
+    background-color: var(--color-bg-secondary);
+    padding: 2rem;
+    font-family: var(--font-display-mochiy);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.game-result {
+    color: var(--color-accent-success);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.modal-message {
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    font-weight: 600;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.modal-actions button  {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.5rem 1.75rem;
+    border-radius: 0.325rem;
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+    transition:
+        transform 0.1s ease,
+        background-color 0.15s ease,
+        box-shadow 0.1s ease;
+}
+
+button:nth-child(1) {
+    background-color: var(--color-text-muted);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, var(--shadow-color-light) 0px -3px 0px inset;
+}
+
+button:nth-child(1):hover {
+    transform: translateY(-1px);
+    background-color: var(--color-text-muted-hover);
+}
+
+button:nth-child(1):active {
+    transform: translateY(2px);
+}
+
+button:nth-child(2)  {
+    background-color: var(--color-accent-warning);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, var(--shadow-accent-yellow) 0px -4px 0px inset;
+}
+
+button:nth-child(2):hover  {
+    transform: translateY(-1px);
+    background-color: var(--color-accent-warning-hover);
+}
+
+button:nth-child(2):active {
+    transform: translateY(2px);
+}
+
+@media (max-width: 480px) {
+    .game-controls {
+        width: 100%;
+    }
+
+    .game-logo {
+        width: 3rem;
+    }
+
+    .player-turn-update {
+        width: 6.5rem;
+        height: 3rem;
+        padding: 0;
+    }
+    
+    .player-icon {
+        width: auto;
+        height: 1rem;
+    }
+
+    .player-turn-update p {
+        font-size: 1rem;
+    }
+    
+    .restart-btn {
+        width: 3rem;
+        height: 3rem;
+    }
+    .modal-message {
+        font-size: clamp(0.75rem, 5vw, 1.5rem);
+    }
+}
+
+@media (min-width: 780px) {
+    main {
+        width: 45rem;
+    }
 }
