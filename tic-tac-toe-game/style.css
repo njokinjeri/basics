@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root {
+  --color-bg-primary: hsl(202, 32%, 15%);
+  --color-bg-secondary: hsl(199, 35%, 19%);
+  --color-text-muted: hsl(198, 23%, 72%);
+  --color-text-muted-hover: hsl(197, 33%, 89%);
+  --color-accent-warning: hsl(39, 88%, 58%);
+  --color-accent-warning-hover: hsl(39, 100%, 69%);
+  --color-accent-success: hsl(178, 60%, 48%);
+  --color-accent-success-hover: hsl(178, 75%, 65%);
+  --shadow-color-dark: hsl(201, 45%, 11%);
+  --shadow-color-light: hsl(199, 17%, 51%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Outfit", sans-serif;
+}
