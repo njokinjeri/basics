@@ -221,8 +221,7 @@ main h1 {
 
     body {
         height: 100svh;
-        padding-top: 5vh;
-        align-items: flex-start;
+
     }
     .stats {
         display: flex;
