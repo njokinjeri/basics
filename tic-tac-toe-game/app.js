@@ -7,8 +7,14 @@ const ui = {
         vsPlayer: document.getElementById('vs_player')
     },
 
-    playerTurnDisplay: document.querySelector('.player-turn-update'),
     restartBtn: document.querySelector('.restart-btn'),
+    restartModal: {
+    overlay: document.querySelector('.restart-modal-overlay'),
+    confirmBtn: document.getElementById('confirm-restart'),
+    cancelBtn: document.getElementById('cancel-restart')
+    }, 
+
+    playerTurnDisplay: document.querySelector('.player-turn-update'),
     boardCells: document.querySelectorAll('.cell'),
 
     modal: document.querySelector('.modal-overlay'),
@@ -37,6 +43,7 @@ const gameState = {
     gameMode: null,
     isGameActive: false,
     gameStarted: false,
+    cpuThinking: false,
     scores: {
         you: 0,
         ties: 0,
@@ -44,6 +51,7 @@ const gameState = {
     }
 };
 
+let cpuTimer = null;
 
 const WIN_PATTERNS =  [
     [0, 1, 2],
@@ -133,14 +141,20 @@ function selectGameMode(mode) {
     gameState.currentPlayer = 'X';
 
     if (gameState.gameMode === 'cpu' && gameState.cpuSign === 'X') {
-        setTimeout(() =>{
-            cpuMove();
-        }, 500);
+        triggerCpuMove();
     }
+
 }
 
 
 function cpuMove() {
+    if (
+        !gameState.isGameActive ||
+        gameState.currentPlayer !== gameState.cpuSign
+    ) {
+        return;
+    }
+
     const bestMove = getBestMove();
     makeMove(bestMove, gameState.cpuSign);
 
@@ -153,6 +167,7 @@ function cpuMove() {
     gameState.currentPlayer = gameState.playerSign;
     updateTurnDisplay();
 }
+
 
 
 function getBestMove() {
@@ -211,6 +226,25 @@ function minimax(board, depth, isMaximizing) {
 }
 
 
+function triggerCpuMove() {
+    if (
+        !gameState.isGameActive ||
+        gameState.gameMode !== 'cpu' ||
+        gameState.currentPlayer !== gameState.cpuSign ||
+        gameState.cpuThinking
+    ) {
+        return;
+    }
+
+    gameState.cpuThinking = true;
+
+    cpuTimer = setTimeout(() => {
+        cpuMove();
+        gameState.cpuThinking = false;
+    }, 1000);
+}
+
+
 function attachEventListeners() {
     if (ui.menuButtons.pickX) {
         ui.menuButtons.pickX.addEventListener('click', () => selectPlayerSign('X'));
@@ -232,8 +266,20 @@ function attachEventListeners() {
     ui.boardCells.forEach(cell => {
         cell.addEventListener('click', handleCellClick);
     });
+    
+    ui.restartBtn.addEventListener('click', () => {
+        if (ui.restartModal.overlay) ui.restartModal.overlay.style.display = 'flex';
+    });
 
-    ui.restartBtn.addEventListener('click', restartGame);
+    ui.restartModal.confirmBtn.addEventListener('click', () => {
+        goToMenu();
+    });
+    
+    ui.restartModal.cancelBtn.addEventListener('click', () => {
+        if (ui.restartModal.overlay) ui.restartModal.overlay.style.display = 'none';
+    });
+    
+
     ui.quitBtn.addEventListener('click', quitGame);
     ui.nextRoundBtn.addEventListener('click', nextRound)
 }
@@ -261,11 +307,14 @@ function handleCellClick(e) {
     gameState.currentPlayer = gameState.currentPlayer === 'X' ? 'O' : 'X';
     updateTurnDisplay();
 
-    if (gameState.gameMode === 'cpu' && gameState.currentPlayer === gameState.cpuSign && gameState.isGameActive) {
-        setTimeout(() => {
-            cpuMove();
-        }, 500)
+    if (
+        gameState.gameMode === 'cpu' &&
+        gameState.currentPlayer === gameState.cpuSign &&
+        gameState.isGameActive
+    ) {
+        triggerCpuMove();
     }
+
 }
 
 
@@ -274,14 +323,14 @@ function makeMove(index, player) {
   const cell = ui.boardCells[index];
   
   if (player === 'X') {
-    cell.innerHTML = `<svg viewBox="83 11 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    cell.innerHTML = `<svg class="mark-icon x-icon" viewBox="83 11 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M114.557 16.2897L109.71 11.4431C109.12 10.8523 108.162 10.8523 107.571 11.4431L99 20.014L90.429 11.4431C89.8383 10.8523 88.8805 10.8523 88.2897 11.4431L83.4431 16.2897C82.8523 16.8805 82.8523 17.8383 83.4431 18.429L92.014 27L83.4431 35.571C82.8523 36.1617 82.8523 37.1195 83.4431 37.7103L88.2897 42.5569C88.8805 43.1477 89.8383 43.1477 90.429 42.5569L99 33.986L107.571 42.5569C108.162 43.1477 109.12 43.1477 109.71 42.5569L114.557 37.7103C115.148 37.1195 115.148 36.1617 114.557 35.571L105.986 27L114.557 18.429C115.148 17.8383 115.148 16.8805 114.557 16.2897Z" 
                                     fill="currentColor"/>
                         </svg>`;           
     cell.classList.add('x-mark');
 
   } else {
-    cell.innerHTML = `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    cell.innerHTML = `<svg class="mark-icon o-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                             <path d="M32 0c17.673 0 32 14.327 32 32 0 17.673-14.327 32-32 32C14.327 64 0 49.673 0 32 0 14.327 14.327 0 32 0Zm0 18.963c-7.2 0-13.037 5.837-13.037 13.037 0 7.2 5.837 13.037 13.037 13.037 7.2 0 13.037-5.837 13.037-13.037 0-7.2-5.837-13.037-13.037-13.037Z" 
                                     fill="currentColor"/>
                         </svg>`;
@@ -314,71 +363,50 @@ function checkGameResult(board = gameState.board) {
 
 function handleGameEnd(result) {
   gameState.isGameActive = false;
-  
-  if (ui.winnerIcon) {
-    ui.winnerIcon.classList.remove('x-winner', 'o-winner');
-  }
-  
-  if (ui.roundHighlight) {
-    ui.roundHighlight.classList.remove('x-winner', 'o-winner', 'tie-result');
-  }
+  ui.boardCells.forEach(cell => cell.disabled = true);
 
-  if (ui.roundHighlight) {
-    ui.roundHighlight.classList.remove('tie-result');
-  }
-  
+  if (ui.winnerIcon) ui.winnerIcon.classList.remove('x-winner', 'o-winner');
+  if (ui.roundHighlight) ui.roundHighlight.classList.remove('x-winner', 'o-winner', 'tie-result');
+
   if (result.winner === 'tie') {
     gameState.scores.ties++;
     ui.modalMessage.textContent = '';
-    if (ui.winnerIcon) {
-      ui.winnerIcon.style.display = 'none';
-    }
+    if (ui.winnerIcon) ui.winnerIcon.style.display = 'none';
     if (ui.roundHighlight) {
       ui.roundHighlight.textContent = 'ROUND TIED!';
       ui.roundHighlight.classList.add('tie-result');
     }
   } else {
+    setTimeout(() => {
+      result.line.forEach(index => ui.boardCells[index].classList.add('win-cell'));
+    }, 500);
+
     if (ui.winnerIcon) {
       ui.winnerIcon.style.display = 'block';
       updateWinnerIcon(result.winner);
     }
-    
-      if (ui.roundHighlight) {
+
+    if (ui.roundHighlight) {
       ui.roundHighlight.textContent = 'TAKES THE ROUND';
-      if (result.winner === 'X') {
-        ui.roundHighlight.classList.add('x-winner');
-      } else {
-        ui.roundHighlight.classList.add('o-winner');
-      }
+      ui.roundHighlight.classList.add(result.winner === 'X' ? 'x-winner' : 'o-winner');
     }
-    
+
     if (gameState.gameMode === 'cpu') {
-      if (result.winner === gameState.playerSign) {
-        gameState.scores.you++;
-        ui.modalMessage.textContent = 'YOU WON!';
-      } else {
-        gameState.scores.cpu++;
-        ui.modalMessage.textContent = 'OH NO, YOU LOST…';
-      }
+      ui.modalMessage.textContent = (result.winner === gameState.playerSign) ? 'YOU WON!' : 'OH NO, YOU LOST…';
     } else {
-      if (result.winner === gameState.playerSign) {
-        gameState.scores.you++;
-        ui.modalMessage.textContent = 'PLAYER 1 WINS!';
-      } else {
-        gameState.scores.cpu++;
-        ui.modalMessage.textContent = 'PLAYER 2 WINS!';
-      }
+      ui.modalMessage.textContent = (result.winner === gameState.playerSign) ? 'PLAYER 1 WINS!' : 'PLAYER 2 WINS!';
     }
+
+    if (result.winner === gameState.playerSign) gameState.scores.you++;
+    else if (result.winner === gameState.cpuSign || result.winner !== gameState.playerSign) gameState.scores.cpu++;
   }
-  
+
   updateScoreDisplay();
   saveGameState();
-  
+
   setTimeout(() => {
-    if (ui.modal) {
-      ui.modal.style.display = 'flex';
-    }
-  }, 1000);
+    if (ui.modal) ui.modal.style.display = 'flex';
+  }, 1500);
 }
 
 
@@ -406,19 +434,28 @@ function updateScoreDisplay() {
 
 
 function restartGame() {
+    if (cpuTimer) {
+        clearTimeout(cpuTimer);
+        cpuTimer = null;
+    }
+
     gameState.board = ['', '', '', '', '', '', '', '', ''];
     gameState.currentPlayer = 'X';
     gameState.isGameActive = true;
+    gameState.gameStarted = true;
+    gameState.cpuThinking = false;
 
     ui.boardCells.forEach(cell => {
         cell.innerHTML = '';
         cell.disabled = false;
-        cell.classList.remove('x-mark', 'o-mark')
+        cell.classList.remove('x-mark', 'o-mark');
+        cell.classList.remove('win-cell');
     });
 
     updateTurnDisplay();
-}
 
+    triggerCpuMove(); 
+}
 
 function nextRound() {
   if (ui.modal) {
@@ -436,6 +473,8 @@ function nextRound() {
     }
   }
 
+  triggerCpuMove();
+
 }
 
 
@@ -452,6 +491,35 @@ function quitGame() {
 }
 
 
+function goToMenu() {
+    if (cpuTimer) {
+        clearTimeout(cpuTimer);
+        cpuTimer = null;
+    }
+
+    gameState.board = ['', '', '', '', '', '', '', '', ''];
+    gameState.currentPlayer = 'X';
+    gameState.playerSign = 'X';
+    gameState.cpuSign = 'O';
+    gameState.gameMode = null;
+    gameState.isGameActive = false;
+    gameState.gameStarted = false;
+    gameState.cpuThinking = false;
+
+    ui.boardCells.forEach(cell => {
+        cell.innerHTML = '';
+        cell.disabled = false;
+        cell.classList.remove('x-mark', 'o-mark');
+    });
+
+    if (ui.modal) ui.modal.style.display = 'none';
+    if (ui.restartModal.overlay) ui.restartModal.overlay.style.display = 'none';
+    if (ui.menu) ui.menu.style.display = 'flex';
+}
+
+
+
+
 function loadGameState() {
     const saved = localStorage.getItem('tictactoe');
     if (saved) {
@@ -466,4 +534,6 @@ function saveGameState() {
     }))
 }
 
-init();
+document.addEventListener('DOMContentLoaded', () => {
+    init();
+});

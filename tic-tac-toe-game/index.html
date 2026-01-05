@@ -48,6 +48,15 @@
                     <path d="M18.364 8.05026L17.6569 7.34315C14.5327 4.21896 9.46734 4.21896 6.34315 7.34315C3.21895 10.4673 3.21895 15.5327 6.34315 18.6569C9.46734 21.7811 14.5327 21.7811 17.6569 18.6569C19.4737 16.84 20.234 14.3668 19.9377 12.0005M18.364 8.05026H14.1213M18.364 8.05026V3.80762" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
+            <div class="restart-modal-overlay" style="display: none;">
+                <div class="restart-modal-content">
+                    <h2 class="restart-message">Restart game?</h2>
+                    <div class="restart-buttons">
+                        <button id="confirm-restart" type="button">YES, RESTART</button>
+                        <button id="cancel-restart" type="button">NO, CANCEL</button>
+                    </div>
+                </div>
+            </div>
         </section>
         <section class="game-board" role="grid" aria-label="Tic Tac Toe Board">
             <button class="cell" data-index="0" aria-label="Cell 1"></button>
