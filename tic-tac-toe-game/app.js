@@ -401,11 +401,12 @@ function handleGameEnd(result) {
     else if (result.winner === gameState.cpuSign || result.winner !== gameState.playerSign) gameState.scores.cpu++;
   }
 
-  updateScoreDisplay();
   saveGameState();
 
   setTimeout(() => {
-    if (ui.modal) ui.modal.style.display = 'flex';
+    if (ui.modal) 
+        ui.modal.style.display = 'flex';
+        updateScoreDisplay();
   }, 1500);
 }
 
