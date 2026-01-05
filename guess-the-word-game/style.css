@@ -30,6 +30,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     overflow: hidden;
 }
 
@@ -198,6 +199,7 @@ main h1 {
         background-color 0.15s ease,
         box-shadow 0.1s ease;
 }
+
 .actions button:hover {
     transform: translateY(-1px);
     background-color: var(--violet);
@@ -216,6 +218,89 @@ main h1 {
         var(--dark-violet) 0px -1px 0px inset;
 }
 
+
+.modal {
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 1000;
+    background-color: rgba(0,0,0,0.5); 
+}
+
+.guess-icon {
+    height: 5rem;
+    width: 5rem;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 36rem;
+    height: 20rem;
+    background-color: var(--dark-blue);
+    padding: 2rem;
+    text-align: center;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close {
+    color: var(--light-gray);
+    float: right;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+  color: var(--pink);
+}
+
+.modal-message {
+    color: var(--light-gray);
+    margin-top: 2rem;
+    font-size: 1.25rem;
+}
+
+#modalOkBtn {
+    width: 4rem;
+    height: 2.5rem;
+    margin-top: 2rem;
+    border-radius: 0.5rem;
+    background-color: var(--pink);
+    font-family: inherit;
+    color: var(--white);
+    font-weight: 600;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, var(--dark-pink) 0px -3px 0px inset;
+    cursor: pointer;
+    user-select: none;
+    transition:
+        transform 0.1s ease,
+        background-color 0.15s ease,
+        box-shadow 0.1s ease;
+}
+
+#modalOkBtn:hover {
+    transform: translateY(-1px);
+    background-color: var(--violet);
+    box-shadow:
+        rgba(0, 0, 0, 0.45) 0px 4px 6px,
+        rgba(0, 0, 0, 0.35) 0px 10px 15px -3px,
+        var(--dark-violet) 0px -3px 0px inset;
+}
+
+#modalOkBtn:active {
+    transform: translateY(2px);
+    background-color: var(--violet);
+    box-shadow:
+        rgba(0, 0, 0, 0.3) 0px 1px 2px,
+        rgba(0, 0, 0, 0.2) 0px 4px 6px -3px,
+        var(--dark-violet) 0px -1px 0px inset;
+}
 
 @media (max-width: 480px) {
 

@@ -7,6 +7,11 @@ const mistakeLetters = document.querySelector('.mistake-letters');
 const randomizeBtn = document.getElementById('random-btn');
 const resetBtn = document.getElementById('reset-btn');
 
+const modal = document.getElementById('game_modal');
+const modalMessage = document.querySelector('.modal-message');
+const closeModal = document.querySelector('.close');
+const modalOkBtn = document.getElementById('modalOkBtn');
+
 let currentWord = 'SCRAMBLE';
 let guessedLetters = [];
 let wrongLetters = [];
@@ -148,7 +153,7 @@ function submitGuess() {
     if (tries >= MAX_TRIES) {
         setGameOver(false);
     } else {
-        alert(`Try again! You have ${MAX_TRIES - tries} tries left.`);
+        showModal(`Try again! You have ${MAX_TRIES - tries} tries left.`);
     }
 }
 
@@ -172,13 +177,13 @@ function setGameOver(won) {
 
     if (won) {
         setTimeout(() => {
-            alert(
+            showModal(
                 `🎉 Congratulations! You guessed the word: "${currentWord.toUpperCase()}"!`
             )
         }, 200);
     } else {
         setTimeout(() => {
-            alert (
+            showModal (
                 `😔 Out of Tries! The word was: "${currentWord.toUpperCase()}". Try again!`
             )
         }, 200);
@@ -258,5 +263,16 @@ randomizeBtn.addEventListener('click', () => {
 
 resetBtn.addEventListener('click', resetGame);
 
+function showModal(message) {
+    modalMessage.textContent = message;
+    modal.style.display = 'flex';
+}
+
+closeModal.onclick = () => modal.style.display = 'none';
+modalOkBtn.onclick = () => modal.style.display = 'none';
+
+window.onclick = (e) => {
+    if (e.target === modal) modal.style.display = 'none';
+}
 
 document.addEventListener('DOMContentLoaded', startGame);
