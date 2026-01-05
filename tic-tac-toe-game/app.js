@@ -107,7 +107,6 @@ function updateTurnDisplay() {
   }
 }
 
-
 function selectGameMode(mode) {
     gameState.gameMode = mode;
 
@@ -178,7 +177,7 @@ function getBestMove() {
 
 
 function minimax(board, depth, isMaximizing) {
-  const result = checkGameResult();
+  const result = checkGameResult(board);
   
   if (result) {
     if (result.winner === gameState.cpuSign) return 10 - depth;
@@ -293,7 +292,7 @@ function makeMove(index, player) {
 }
 
 
-function checkGameResult() {
+function checkGameResult(board = gameState.board) {
     for (let pattern of WIN_PATTERNS) {
         const [a, b, c] = pattern;
         if (gameState.board[a] && 
@@ -314,37 +313,88 @@ function checkGameResult() {
 
 
 function handleGameEnd(result) {
-    gameState.isGameActive = false;
+  gameState.isGameActive = false;
+  
+  if (ui.winnerIcon) {
+    ui.winnerIcon.classList.remove('x-winner', 'o-winner');
+  }
+  
+  if (ui.roundHighlight) {
+    ui.roundHighlight.classList.remove('x-winner', 'o-winner', 'tie-result');
+  }
 
-    if (result.winner === 'tie') {
-        gameState.scores.ties++;
-        ui.modalMessage.textContent = "It's a Tie!";
-
-    } else if (gameState.gameMode === 'cpu') {
-        if (result.winner === gameState.playerSign) {
-            gameState.scores.you++;
-            ui.modalMessage.textContent = 'You Win!'
-        } else {
-            gameState.scores.cpu++;
-            ui.modalMessage.textContent = 'CPU Wins!'
-        }
-    } else {
-
-        if (result.winner === gameState.playerSign) {
-            gameState.scores.you++;
-            ui.modalMessage.textContent = 'Player 1 Wins!';
-        } else {
-            gameState.scores.cpu++;
-            ui.modalMessage.textContent = 'Player 2 Wins!';
-        }
+  if (ui.roundHighlight) {
+    ui.roundHighlight.classList.remove('tie-result');
+  }
+  
+  if (result.winner === 'tie') {
+    gameState.scores.ties++;
+    ui.modalMessage.textContent = '';
+    if (ui.winnerIcon) {
+      ui.winnerIcon.style.display = 'none';
     }
+    if (ui.roundHighlight) {
+      ui.roundHighlight.textContent = 'ROUND TIED!';
+      ui.roundHighlight.classList.add('tie-result');
+    }
+  } else {
+    if (ui.winnerIcon) {
+      ui.winnerIcon.style.display = 'block';
+      updateWinnerIcon(result.winner);
+    }
+    
+      if (ui.roundHighlight) {
+      ui.roundHighlight.textContent = 'TAKES THE ROUND';
+      if (result.winner === 'X') {
+        ui.roundHighlight.classList.add('x-winner');
+      } else {
+        ui.roundHighlight.classList.add('o-winner');
+      }
+    }
+    
+    if (gameState.gameMode === 'cpu') {
+      if (result.winner === gameState.playerSign) {
+        gameState.scores.you++;
+        ui.modalMessage.textContent = 'YOU WON!';
+      } else {
+        gameState.scores.cpu++;
+        ui.modalMessage.textContent = 'OH NO, YOU LOST…';
+      }
+    } else {
+      if (result.winner === gameState.playerSign) {
+        gameState.scores.you++;
+        ui.modalMessage.textContent = 'PLAYER 1 WINS!';
+      } else {
+        gameState.scores.cpu++;
+        ui.modalMessage.textContent = 'PLAYER 2 WINS!';
+      }
+    }
+  }
+  
+  updateScoreDisplay();
+  saveGameState();
+  
+  setTimeout(() => {
+    if (ui.modal) {
+      ui.modal.style.display = 'flex';
+    }
+  }, 1000);
+}
 
-    updateScoreDisplay();
-    saveGameState();
 
-    setTimeout(() => {
-        ui.modal.style.display = 'flex';
-    }, 500);
+
+function updateWinnerIcon(winner) {
+  if (!ui.winnerIcon) return;
+  
+  if (winner === 'X') {
+    ui.winnerIcon.setAttribute('viewBox', '0 0 64 64');
+    ui.winnerIcon.innerHTML = `<path d="M15.002 1.147 32 18.145 48.998 1.147a3 3 0 0 1 4.243 0l9.612 9.612a3 3 0 0 1 0 4.243L45.855 32l16.998 16.998a3 3 0 0 1 0 4.243l-9.612 9.612a3 3 0 0 1-4.243 0L32 45.855 15.002 62.853a3 3 0 0 1-4.243 0L1.147 53.24a3 3 0 0 1 0-4.243L18.145 32 1.147 15.002a3 3 0 0 1 0-4.243l9.612-9.612a3 3 0 0 1 4.243 0Z" fill="currentColor" fill-rule="evenodd"/>`;
+    ui.winnerIcon.classList.add('x-winner')
+  } else {
+    ui.winnerIcon.setAttribute('viewBox', '0 0 64 64');
+    ui.winnerIcon.innerHTML = `<path d="M32 0c17.673 0 32 14.327 32 32 0 17.673-14.327 32-32 32C14.327 64 0 49.673 0 32 0 14.327 14.327 0 32 0Zm0 18.963c-7.2 0-13.037 5.837-13.037 13.037 0 7.2 5.837 13.037 13.037 13.037 7.2 0 13.037-5.837 13.037-13.037 0-7.2-5.837-13.037-13.037-13.037Z" fill="currentColor"/>`;
+    ui.winnerIcon.classList.add('o-winner')
+  }
 }
 
 
@@ -365,14 +415,27 @@ function restartGame() {
         cell.disabled = false;
         cell.classList.remove('x-mark', 'o-mark')
     });
+
+    updateTurnDisplay();
 }
 
 
 function nextRound() {
   if (ui.modal) {
     ui.modal.style.display = 'none';
+
+    restartGame();
+    updateTurnDisplay();
+    
+    if (
+        gameState.gameMode === 'cpu' &&
+        gameState.cpuSign === 'X' &&
+        gameState.isGameActive
+    ) {
+        setTimeout(cpuMove, 500);
+    }
   }
-  restartGame();
+
 }
 
 

@@ -12,6 +12,7 @@
   --shadow-color-light: hsl(199, 17%, 51%);
   --shadow-accent-yellow: hsl(39, 88%, 40%);
   --shadow-accent-cyan: hsl(178, 67%, 30%);
+  --color-accent-gray:  #A8BFC9; 
   --font-display-outfit: "Outfit", sans-serif;
   --font-display-mochiy: "Mochiy Pop One", sans-serif;
 }
@@ -332,9 +333,27 @@ main {
     height: 3rem;
 }
 
+.modal-message {
+    font-size: clamp(0.75rem, 2vw, 1rem);
+}
+
 .round-highlight {
     font-size: clamp(1.75rem, 5vw, 3rem);
     font-weight: 600;
+}
+
+.winner-icon.x-winner,
+.round-highlight.x-winner {
+    color: var(--color-accent-success);
+}
+
+.winner-icon.o-winner,
+.round-highlight.o-winner {
+    color: var(--color-accent-warning);
+}
+
+.round-highlight.tie-result {
+    color: var(--color-accent-gray);
 }
 
 .modal-actions {
@@ -415,6 +434,10 @@ main {
     .round-highlight {
         font-size: clamp(0.75rem, 5vw, 1.5rem);
     }
+    .modal-message {
+        font-size: clamp(0.55rem, 2vw, 1rem);
+    }
+
 }
 
 @media (min-width: 780px) {
