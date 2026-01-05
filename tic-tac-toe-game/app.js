@@ -68,9 +68,11 @@ const WIN_PATTERNS =  [
 function init() {
     loadGameState();
     updateScoreDisplay();
+    updateScoreColors();
     attachEventListeners()
     showMenu();
     showModal();
+
 }
 
 
