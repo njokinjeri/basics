@@ -12,13 +12,14 @@
     --white: #ffffff;
     --dark-blue: #1e213f;
     --darker-blue: #161932;
+    --linear-gradient: linear-gradient(315deg, #2e325a 0%, #0e112a 100%);
+    --box-shadow: -50px -50px 100px #272c5a, 50px 50px 100px #121530;
+
 
     /*fonts*/
     --kumbh-sans: 'Kumbh Sans', sans-serif;
     --roboto-slab: 'Roboto Slab', serif;
     --space-mono: 'Space Mono', monospace;
-    --linear-gradient: linear-gradient(315deg, #2e325a 0%, #0e112a 100%);
-    --box-shadow: -50px -50px 100px #272c5a, 50px 50px 100px #121530;
 
     /*active theme tokens*/
     --theme-color: var(--red);
@@ -40,6 +41,11 @@ body {
     background-color: var(--dark-blue);
     color: var(--light-blue);
     overflow: hidden;
+}
+
+div {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 main {
