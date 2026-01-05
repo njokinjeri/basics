@@ -11,6 +11,7 @@
   --shadow-color-dark: hsl(201, 45%, 11%);
   --shadow-color-light: hsl(199, 17%, 51%);
   --shadow-accent-yellow: hsl(39, 88%, 40%);
+  --shadow-accent-cyan: hsl(178, 67%, 30%);
   --font-display-outfit: "Outfit", sans-serif;
   --font-display-mochiy: "Mochiy Pop One", sans-serif;
 }
@@ -25,10 +26,133 @@ body {
     height: 100dvh;
     background-color: var(--color-bg-primary);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
     overflow: hidden;
+}
+
+.menu-overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 2000;
+    background-color: var(--color-bg-primary);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.sign-picker {
+    width: 90%;
+    max-width: 35rem;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-muted);
+    font-family: var(--font-display-outfit);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, var(--shadow-color-dark) 0px -6px 0px inset;
+}
+
+.sign-picker h1 {
+    font-size: clamp(0.5rem, 5vw, 1.125rem);
+}
+
+.sign-picker p {
+    font-size: clamp(0.5rem, 5vw, 1rem);
+    opacity: 0.5;
+    word-spacing: 0.125rem;
+}
+
+.player-symbol {
+    width: 95%;
+    border-radius: 0.75rem;
+    background-color: var(--shadow-color-dark);
+    display: flex;
+    justify-content: center;
+}
+
+.sign-btn {
+  width: 50%;
+  height: 3.5rem;
+  margin: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--shadow-color-dark);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+
+.sign-btn.selected {
+    border: none;
+    color: var(--shadow-color-dark);
+    background-color: var(--color-text-muted);
+}
+
+.sign-btn svg {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.choose-player {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.choose-player .player-option-btn {
+    width: 90vw;
+    max-width: 35rem;
+    height: 4rem;
+    padding: 0 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        transform 0.1s ease,
+        background-color 0.15s ease,
+        box-shadow 0.1s ease;
+}
+
+.choose-player button:nth-child(1) {
+    background-color: var(--color-accent-warning);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, var(--shadow-accent-yellow) 0px -6px 0px inset;
+}
+
+.choose-player button:nth-child(1):hover {
+    transform: translateY(-1px);
+    background-color: var(--color-accent-warning-hover);
+}
+
+.choose-player button:nth-child(1):active {
+    transform: translateY(2px);
+}
+
+
+.choose-player button:nth-child(2) {
+    background-color: var(--color-accent-success);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, var(--shadow-accent-cyan) 0px -6px 0px inset;
+}
+
+.choose-player button:nth-child(2):hover {
+    transform: translateY(-1px);
+    background-color: var(--color-accent-success-hover);
+}
+
+.choose-player button:nth-child(2):active {
+    transform: translateY(2px);
 }
 
 main {
@@ -124,7 +248,6 @@ main {
         var(--shadow-color-dark) 0px -6px 0px inset;
 }
 
-
 .player-controls {
     width: 95%;
     display: inline-flex;
@@ -174,11 +297,11 @@ main {
 }
 
 .modal-overlay {
+    display: none;
+    place-items: center;
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    place-items: center;
     z-index: 1000;
 }
 
@@ -203,7 +326,13 @@ main {
     gap: 1rem;
 }
 
-.modal-message {
+.winner-icon {
+    display: block;
+    width: auto;
+    height: 3rem;
+}
+
+.round-highlight {
     font-size: clamp(1.75rem, 5vw, 3rem);
     font-weight: 600;
 }
@@ -227,31 +356,31 @@ main {
         box-shadow 0.1s ease;
 }
 
-button:nth-child(1) {
+.modal-actions button:nth-child(1) {
     background-color: var(--color-text-muted);
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, var(--shadow-color-light) 0px -3px 0px inset;
 }
 
-button:nth-child(1):hover {
+.modal-actions button:nth-child(1):hover {
     transform: translateY(-1px);
     background-color: var(--color-text-muted-hover);
 }
 
-button:nth-child(1):active {
+.modal-actions button:nth-child(1):active {
     transform: translateY(2px);
 }
 
-button:nth-child(2)  {
+.modal-actions button:nth-child(2)  {
     background-color: var(--color-accent-warning);
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, var(--shadow-accent-yellow) 0px -4px 0px inset;
 }
 
-button:nth-child(2):hover  {
+.modal-actions button:nth-child(2):hover  {
     transform: translateY(-1px);
     background-color: var(--color-accent-warning-hover);
 }
 
-button:nth-child(2):active {
+.modal-actions button:nth-child(2):active {
     transform: translateY(2px);
 }
 
@@ -270,7 +399,7 @@ button:nth-child(2):active {
         padding: 0;
     }
     
-    .player-icon {
+    .winner-icon {
         width: auto;
         height: 1rem;
     }
@@ -283,7 +412,7 @@ button:nth-child(2):active {
         width: 3rem;
         height: 3rem;
     }
-    .modal-message {
+    .round-highlight {
         font-size: clamp(0.75rem, 5vw, 1.5rem);
     }
 }

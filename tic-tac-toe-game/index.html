@@ -8,6 +8,31 @@
     <title>Tic Tac Toe Game</title>
 </head>
 <body>
+    <section class="menu-overlay">
+        <img class="game-logo" src="./images/logo.svg" alt="game-logo">
+        <div class="sign-picker">
+            <h1>PICK PLAYER 1'S MARK</h1>
+            <div class="player-symbol">
+                <button id="pick_x" class="sign-btn selected" aria-label="Pick X">
+                    <svg viewBox="83 11 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M114.557 16.2897L109.71 11.4431C109.12 10.8523 108.162 10.8523 107.571 11.4431L99 20.014L90.429 11.4431C89.8383 10.8523 88.8805 10.8523 88.2897 11.4431L83.4431 16.2897C82.8523 16.8805 82.8523 17.8383 83.4431 18.429L92.014 27L83.4431 35.571C82.8523 36.1617 82.8523 37.1195 83.4431 37.7103L88.2897 42.5569C88.8805 43.1477 89.8383 43.1477 90.429 42.5569L99 33.986L107.571 42.5569C108.162 43.1477 109.12 43.1477 109.71 42.5569L114.557 37.7103C115.148 37.1195 115.148 36.1617 114.557 35.571L105.986 27L114.557 18.429C115.148 17.8383 115.148 16.8805 114.557 16.2897Z" 
+                            fill="currentColor"/>
+                    </svg>
+                </button>
+                <button id="pick_o" class="sign-btn" aria-label="Pick O">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32 0c17.673 0 32 14.327 32 32 0 17.673-14.327 32-32 32C14.327 64 0 49.673 0 32 0 14.327 14.327 0 32 0Zm0 18.963c-7.2 0-13.037 5.837-13.037 13.037 0 7.2 5.837 13.037 13.037 13.037 7.2 0 13.037-5.837 13.037-13.037 0-7.2-5.837-13.037-13.037-13.037Z" 
+                                fill="currentColor"/>
+                    </svg>
+                </button>
+            </div>
+            <p class="menu-reminder">REMEMBER: X GOES FIRST</p>
+        </div>
+        <div class="choose-player">
+            <button class="player-option-btn" id="vs_cpu">NEW GAME (VS CPU)</button>
+            <button class="player-option-btn" id="vs_player">NEW GAME (VS PLAYER)</button>
+        </div>
+    </section>
     <main>
         <section class="game-controls">
             <img class="game-logo" src="./images/logo.svg" alt="game-logo">
@@ -37,32 +62,32 @@
         </section>
         <section class="player-controls">
             <div class="score you">
-                <p>X (YOU)</p>
-                <div id="score-you"></div>
+                <p id="you_label">X (YOU)</p>
+                <div id="score_you"></div>
             </div>
             <div class="score ties">
                 <p>TIES</p>
-                <div id="score-ties">0</div>
+                <div id="score_ties">0</div>
             </div>
             <div class="score cpu">
-                <p>O (CPU)</p>
-                <div id="score-cpu">0</div>
+                <p id="opponent_label">O (CPU)</p>
+                <div id="score_cpu">0</div>
             </div>
         </section>
     </main>
-    <div class="modal-overlay" hidden>
+    <div class="modal-overlay">
         <div class="modal" role="dialog" aria-modal="true" aria-labelledby="game-result-title">
-            <h2>You Win!</h2>
+            <h2 class="modal-message">You Win!</h2>
             <div class="game-result">
-                <svg class="player-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <svg class="winner-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15.002 1.147 32 18.145 48.998 1.147a3 3 0 0 1 4.243 0l9.612 9.612a3 3 0 0 1 0 4.243L45.855 32l16.998 16.998a3 3 0 0 1 0 4.243l-9.612 9.612a3 3 0 0 1-4.243 0L32 45.855 15.002 62.853a3 3 0 0 1-4.243 0L1.147 53.24a3 3 0 0 1 0-4.243L18.145 32 1.147 15.002a3 3 0 0 1 0-4.243l9.612-9.612a3 3 0 0 1 4.243 0Z" 
                     fill="currentColor" fill-rule="evenodd"/>
                 </svg>
-                <p class="modal-message">TAKES THE ROUND</p>
+                <p class="round-highlight">TAKES THE ROUND</p>
             </div>
             <div class="modal-actions">
-                <button id="quit">QUIT</button>
-                <button id="next_round">NEXT ROUND</button>
+                <button class="modal-btn" id="quit">QUIT</button>
+                <button class="modal-btn" id="next_round">NEXT ROUND</button>
             </div>
         </div>
     </div>
