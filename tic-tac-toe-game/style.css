@@ -34,6 +34,12 @@ body {
     overflow: hidden;
 }
 
+button {
+  -webkit-tap-highlight-color: transparent; 
+  outline: none; 
+}
+
+
 .menu-overlay {
     height: 100%;
     width: 100%;
@@ -367,27 +373,27 @@ main {
     font-weight: 600;
 }
 
-.score:nth-child(1)  {
+.score.x-color  {
     background-color: var(--color-accent-success);
 }
 
-.score:nth-child(1):hover {
+.score.x-color:hover {
     background-color: var(--color-accent-success-hover);
 }
 
-.score:nth-child(2)  {
+.score.neutral  {
     background-color: var(--color-text-muted);
 }
 
-.score:nth-child(2):hover  {
+.score.neutral:hover  {
     background-color: var(--color-text-muted-hover);
 }
 
-.score:nth-child(3)  {
+.score.o-color  {
     background-color: var(--color-accent-warning);
 }
 
-.score:nth-child(3):hover  {
+.score.o-color:hover  {
     background-color: var(--color-accent-warning-hover);
 }
 

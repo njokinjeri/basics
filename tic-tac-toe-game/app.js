@@ -100,6 +100,8 @@ function selectPlayerSign(sign) {
             ui.menuButtons.pickX.classList.remove('selected');
         }
     }
+
+    updateScoreColors();
 }
 
 function updateTurnDisplay() {
@@ -424,6 +426,23 @@ function updateWinnerIcon(winner) {
     ui.winnerIcon.innerHTML = `<path d="M32 0c17.673 0 32 14.327 32 32 0 17.673-14.327 32-32 32C14.327 64 0 49.673 0 32 0 14.327 14.327 0 32 0Zm0 18.963c-7.2 0-13.037 5.837-13.037 13.037 0 7.2 5.837 13.037 13.037 13.037 7.2 0 13.037-5.837 13.037-13.037 0-7.2-5.837-13.037-13.037-13.037Z" fill="currentColor"/>`;
     ui.winnerIcon.classList.add('o-winner')
   }
+}
+
+
+function updateScoreColors() {
+    ui.scores.you.parentElement.classList.remove('x-color', 'o-color', 'neutral');
+    ui.scores.cpu.parentElement.classList.remove('x-color', 'o-color', 'neutral');
+    ui.scores.ties.parentElement.classList.remove('x-color', 'o-color', 'neutral');
+
+    ui.scores.ties.parentElement.classList.add('neutral');
+
+    if (gameState.playerSign === 'X') {
+        ui.scores.you.parentElement.classList.add('x-color');
+        ui.scores.cpu.parentElement.classList.add('o-color');
+    } else {
+        ui.scores.you.parentElement.classList.add('o-color');
+        ui.scores.cpu.parentElement.classList.add('x-color');
+    }
 }
 
 
