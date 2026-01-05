@@ -64,6 +64,11 @@ main {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
+button {
+  -webkit-tap-highlight-color: transparent; 
+  outline: none; 
+}
+
 main h1 {
     background-image: linear-gradient(to right, #7429c6,#c951e7);
     background-clip: text;
