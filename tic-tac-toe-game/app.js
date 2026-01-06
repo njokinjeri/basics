@@ -82,6 +82,7 @@ function showMenu() {
     }
 }
 
+
 function showModal() {
     if (ui.modal) {
         ui.modal.style.display = 'flex'
@@ -106,6 +107,7 @@ function selectPlayerSign(sign) {
     updateScoreColors();
 }
 
+
 function updateTurnDisplay() {
   if (ui.playerTurnDisplay) {
     const icon = ui.playerTurnDisplay.querySelector('.player-icon');
@@ -118,6 +120,7 @@ function updateTurnDisplay() {
     }
   }
 }
+
 
 function selectGameMode(mode) {
     gameState.gameMode = mode;
@@ -171,7 +174,6 @@ function cpuMove() {
     gameState.currentPlayer = gameState.playerSign;
     updateTurnDisplay();
 }
-
 
 
 function getBestMove() {
@@ -415,7 +417,6 @@ function handleGameEnd(result) {
 }
 
 
-
 function updateWinnerIcon(winner) {
   if (!ui.winnerIcon) return;
   
@@ -479,6 +480,7 @@ function restartGame() {
     triggerCpuMove(); 
 }
 
+
 function nextRound() {
   if (ui.modal) {
     ui.modal.style.display = 'none';
@@ -538,9 +540,6 @@ function goToMenu() {
     if (ui.restartModal.overlay) ui.restartModal.overlay.style.display = 'none';
     if (ui.menu) ui.menu.style.display = 'flex';
 }
-
-
-
 
 function loadGameState() {
     const saved = localStorage.getItem('tictactoe');
