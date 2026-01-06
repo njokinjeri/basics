@@ -205,7 +205,6 @@ async function startGame() {
 
     displayWordProgress();
 
-    console.log('Word to guess', currentWord);
 }
 
 
@@ -240,7 +239,6 @@ async function startNewWord() {
     scrambledWordEl.textContent = scrambled;
 
     displayWordProgress();
-    console.log('Word to guess', currentWord);
 }
 
 function clearInputFeedback() {
