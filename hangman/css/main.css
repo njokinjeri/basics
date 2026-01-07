@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap');
+
+:root {
+    --blue-500: #3C74FF;
+    --blue-600: #356DF8;
+    --blue-300: #67B6FF;
+    --blue-400: #7199FF;
+    --indigo-900: #140E66;
+    --indigo-800: #344ABA;
+    --indigo-950-alpha: rgba(0, 20, 121, 0.83);
+    --violet-500: #9D2DF5;
+    --violet-500-alpha: #9e2df558;
+    --pink-400: #fc90fc;
+    --pink-500: #FE71FE;
+    --slate-900: #243041;
+    --slate-950: #261676;
+    --slate-950-alpha: #26167677;
+    --blue-700-alpha: #0043ece2;
+    --opaque-background: #26167677;
+    --font-memoirs: "Mouse Memoirs", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
