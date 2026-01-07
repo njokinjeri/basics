@@ -22,6 +22,7 @@
     --slate-950-alpha: #26167677;
     --blue-700-alpha: #0043ece2;
     --opaque-background: #26167677;
+    --white: #fff;
     --font-memoirs: "Mouse Memoirs", sans-serif;
 }
 
@@ -34,14 +35,13 @@
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
     font-family: var(--font-memoirs);
     background-image: url(../images/background-mobile.svg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     display: flex;
-    overflow: hidden;
 }
 
 div button {
@@ -71,6 +71,21 @@ button {
     outline: none;
 }
 
+nav {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav > h1 {
+    font-size: 5rem;
+    background: linear-gradient(180deg, var(--blue-300),var(--white));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .menu-overlay,
 .game-outcome-overlay {
     display: none
@@ -78,8 +93,8 @@ button {
 
 .go-back-btn,
 .hamburger-menu {
-    width: 7rem;
-    height: 7rem;
+    width: 5.75rem;
+    height: 5.75rem;
     border-radius: 50%;
     background: linear-gradient(180deg, var(--pink-500), var(--hazy-pink), var(--lavender-pink), var(--lavender), var(--blue-400));
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.2), inset 0 0.75rem 0.75rem rgba(255,255,255,0.15); 
@@ -103,8 +118,8 @@ button {
 
 .icon-wrapper,
 .hamburger-menu-wrapper {
-    width: 5.75rem;
-    height: 5.75rem;
+    width: 4.75rem;
+    height: 4.75rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -112,15 +127,53 @@ button {
     background-color: rgba(255,255,255,0.1);
 }
 
+.icon-wrapper:hover,
+.hamburger-menu-wrapper:hover {
+    background-color: rgba(235, 230, 230, 0.25);
+}
+
 .back-icon,
 .hamburger-icon {
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+@media (max-width: 480px) {
+    nav > h1 {
+        font-size: 3rem;
+    }
 }
 
 @media (min-width: 768px) {
     body {
         background-image: url(../images/background-tablet.svg);
+    }
+
+    nav {
+        display: flex;
+    }
+
+    nav > h1 {
+        margin: 0 auto;
+        font-size: 6rem;
+    }
+
+    .go-back-btn,
+    .hamburger-menu {
+        width: 7rem;
+        height: 7rem;
+    }
+
+    .icon-wrapper,
+    .hamburger-menu-wrapper {
+        width: 5.75rem;
+        height: 5.75rem;
+    }
+    
+    .back-icon,
+    .hamburger-icon {
+        width: 3rem;
+        height: 3rem;
     }
 }
 

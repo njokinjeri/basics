@@ -6,5 +6,16 @@ export function showScreen(screenName) {
     });
 
     document.querySelector(`.${screenName}`).classList.add('active');
+    localStorage.setItem('currentScreen', screenName);
 }
 
+
+export function initializeScreen() {
+    const savedScreen = localStorage.getItem('currentScreen');
+
+    if (savedScreen) {
+        showScreen(savedScreen)
+    } else {
+        showScreen('start-state');
+    }
+}
