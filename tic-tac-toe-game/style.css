@@ -574,7 +574,7 @@ main {
     }
 }
 
-@media (min-width: 780px) {
+@media (min-width: 768px) {
     main {
         width: 45rem;
     }
