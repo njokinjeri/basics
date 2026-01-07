@@ -1,0 +1,119 @@
+.start-state {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.start-wrapper {
+    width: 90%;
+    height: 32rem;
+    max-width: 45rem;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background: linear-gradient(180deg, var(--indigo-800), var(--indigo-950-alpha));
+    box-shadow: inset 0 0.6rem 0 0.2rem var(--blue-500), 0 1rem 0 0.2rem var(--indigo-900);
+    position: relative;
+}
+
+.hangman-logo {
+    max-width: 60%;
+    position: absolute;
+    top: -4rem;
+}
+
+.play-btn {
+    width: 14rem;
+    height: 14rem;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(180deg, var(--lavender-pink), var(--violet-500));
+    box-shadow: 0 0.2rem 0 0.4rem var(--gray-blue);
+    transition: transform 0.15s ease;
+    cursor: pointer;
+}
+
+.play-btn:hover {
+    transform: translateY(-2px);
+}
+
+.play-btn:active {
+    transform: translateY(1px);
+}
+
+.play-icon {
+    width: 5rem;
+    height: 5rem;
+}
+
+.play-btn-wrapper {
+    width: 12.75rem;
+    height: 12.75rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, var(--pink-500), var(--hazy-pink), var(--lavender-pink), var(--lavender));
+}
+
+.play-btn-wrapper:hover {
+    background: linear-gradient(180deg,var(--pink-400), var(--lavender-pink), var(--lavender));
+}
+
+.instructions-btn {
+    width: 18rem;
+    height: 4rem;
+    background-color: var(--blue-600);
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 0.2rem 0 0.3rem var(--indigo-900);
+    transition: transform 0.15s ease;
+}
+
+.guide-btn-wrapper {
+    width: 98%;
+    height: 3.275rem;
+    align-self: flex-end;
+    background-color: var(--blue-700);
+    color: white;
+    border-radius: 2rem;
+    font-size: 2rem;
+    box-shadow: 0 0.8rem 1.5rem rgba(0,0,0,0.25);
+}
+
+.guide-btn-wrapper:hover {
+    background-color: rgba(235, 230, 230, 0.25);
+}
+
+.instructions-btn:hover {
+    transform: translateY(-2px);
+}
+
+.instructions-btn:active {
+    transform: translateY(1px);
+}
+
+@media (max-width: 480px) {
+    .hangman-logo {
+        top: -3rem;
+    }
+}
+
+@media (min-width: 780px) {
+    .hangman-logo {
+        width: auto;
+        top: -5rem;
+    }
+}

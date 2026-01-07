@@ -5,11 +5,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./images/hangman.png" type="image/x-icon">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/start.css">
+    <link rel="stylesheet" href="css/instructions.css">
+    <link rel="stylesheet" href="css/category.css">
     <link rel="stylesheet" href="css/game.css">
     <title>Hangman Game</title>
 </head>
 <body>
+    <main>
+        <section class="screen start-state active">
+            <div class="start-wrapper">
+                <img class="hangman-logo" src="./images/logo.svg" alt="hangman-logo">
+                <div class="play-btn">
+                    <div class="play-btn-wrapper">
+                        <img class="play-icon" src="./images/icon-play.svg" alt="play-icon">
+                    </div>
+                </div>
+                <div class="instructions-btn">
+                    <button class="guide-btn-wrapper">HOW TO PLAY</button>
+                </div>
+            </div>
+        </section>
+        <section class="screen instructions-state">
+            <nav class="instructions-menu">
+                <div class="go-back-btn">
+                    <div class="icon-wrapper">
+                        <img class="back-icon" src="./images/icon-back.svg" alt="back-icon">
+                    </div>
+                </div>
+                <h1>How to Play</h1>
+            </nav>
+            <article class="instructions">
+                <div class="instruction-template">
+                    <h2 class="instruction-number">O1</h2>
+                    <h2 class="instruction-heading">CHOOSE A CATEGORY</h2>
+                    <p class="instruction-text">
+                        First, choose a word category, like animals or movies. 
+                        The computer then randomly selects a secret word from 
+                        that topic and shows you blanks for each letter of the word.
+                    </p>
+                </div>
+                <div class="instruction-template">
+                    <h2 class="instruction-number">O2</h2>
+                    <h2 class="instruction-heading">GUESS LETTERS</h2>
+                    <p class="instruction-text">
+                        Take turns guessing letters. The computer fills in the 
+                        relevant blank spaces if your guess is correct. If it’s wrong, 
+                        you lose some health, which empties after eight incorrect guesses.
+                    </p>
+                </div>
+                <div class="instruction-template">
+                    <h2 class="instruction-number">O3</h2>
+                    <h2 class="instruction-heading">WIN OR LOSE</h2>
+                    <p class="instruction-text">
+                        You win by guessing all the letters in the word before 
+                        your health runs out. If the health bar empties before you guess the word, 
+                        you lose.
+                    </p>
+                </div>
+            </article>
+        </section>
+        <section class="screen categories-state">
+            <nav class="category-menu">
+                <div class="go-back-btn">
+                    <div class="icon-wrapper">
+                        <img class="back-icon" src="./images/icon-back.svg" alt="back-icon">
+                    </div>
+                </div>
+                <h1>Pick a Category</h1>
+            </nav>
+            <article>
+                <div class="category movies-category">MOVIES</div>
+                <div class="category tv-shows-category">TV SHOWS</div>
+                <div class="category countries-category">COUNTRIES</div>
+                <div class="category capital-cities-category">CAPITAL CITIES</div>
+                <div class="category animals-category">ANIMALS</div>
+                <div class="category sports-category">SPORTS</div>
+            </article>
+        </section>
+        <section class="screen game-board">
+            <nav class="game-board-menu">
+                <div class="game-controls">
+                    <div class="hamburger-control">
+                        <div class="hamburger-menu">
+                            <div class="hamburger-menu-wrapper">
+                                <img class="hamburger-icon" src="./images/icon-menu.svg" alt="menu-icon">
+                            </div>
+                        </div>
+                        <div class="menu-overlay">
+                            <div class="modal">
+                                <h2 class="paused-text">PAUSED</h2>
+                                <div class="modal-wrapper">
+                                    <button class="continue">CONTINUE</button>
+                                    <button class="new-category">NEW CATEGORY</button>
+                                    <button class="quit-game">QUIT GAME</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <h1 id="selected-category"></h1>
+                </div>
+                <div class="hearts-control">
+                    <div class="hearts-bar">
+                        <div class="hearts-range"></div>
+                    </div>
+                    <img class="heart-icon" src="./images/icon-heart.svg" alt="heart-icon">
+                </div>
+            </nav>
+            <div class="category-character"></div>
+            <article class="game-keyboard">
+            </article>
+        </section>
+        <div class="game-outcome-overlay">
+            <div class="modal">
+                <h2 class="win-lose-heading"></h2>
+                <div class="modal-wrapper">
+                    <button class="play-again">PLAY AGAIN</button>
+                    <button class="new-category">NEW CATEGORY</button>
+                    <button class="quit-game">QUIT GAME</button>
+                </div>
+            </div>
+        </div>
+    </main>
     <script type="module" src="./js/main.js"></script>
 </body>
 </html>

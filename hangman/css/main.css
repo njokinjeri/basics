@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap');
 
 :root {
-    --blue-500: #3C74FF;
+    --blue-700: #1a59fa;
     --blue-600: #356DF8;
+    --blue-500: #3C74FF;
     --blue-300: #67B6FF;
     --blue-400: #7199FF;
+    --gray-blue: #1b2636;
     --indigo-900: #140E66;
     --indigo-800: #344ABA;
     --indigo-950-alpha: rgba(0, 20, 121, 0.83);
@@ -12,6 +14,9 @@
     --violet-500-alpha: #9e2df558;
     --pink-400: #fc90fc;
     --pink-500: #FE71FE;
+    --hazy-pink: #db80ff;
+    --lavender-pink: #b68cff;
+    --lavender: #9294ff;
     --slate-900: #243041;
     --slate-950: #261676;
     --slate-950-alpha: #26167677;
@@ -20,9 +25,108 @@
     --font-memoirs: "Mouse Memoirs", sans-serif;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+body {
+    height: 100vh;
+    font-family: var(--font-memoirs);
+    background-image: url(../images/background-mobile.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    overflow: hidden;
+}
+
+div button {
+    -webkit-tap-highlight-color: transparent; 
+    outline: none; 
+}
+
+main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: flex;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.menu-overlay,
+.game-outcome-overlay {
+    display: none
+}
+
+.go-back-btn,
+.hamburger-menu {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    background: linear-gradient(180deg, var(--pink-500), var(--hazy-pink), var(--lavender-pink), var(--lavender), var(--blue-400));
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.2), inset 0 0.75rem 0.75rem rgba(255,255,255,0.15); 
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.go-back-btn:hover,
+.hamburger-menu:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.8rem 1.5rem rgba(0,0,0,0.25), inset 0 0.75rem 0.75rem rgba(255,255,255,0.2);
+}
+
+.go-back-btn:active,
+.hamburger-menu:active {
+    transform: translateY(1px);
+    box-shadow: 0 0.3rem 0.6rem rgba(0,0,0,0.15), inset 0 0.5rem 0.5rem rgba(255,255,255,0.12);
+}
+
+.icon-wrapper,
+.hamburger-menu-wrapper {
+    width: 5.75rem;
+    height: 5.75rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255,255,255,0.1);
+}
+
+.back-icon,
+.hamburger-icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+@media (min-width: 768px) {
+    body {
+        background-image: url(../images/background-tablet.svg);
+    }
+}
+
+
+@media (min-width: 1024px) {
+    body {
+        background-image: url(../images/background-desktop.svg);
+    }
+}
