@@ -142,6 +142,24 @@ nav > h1 {
     nav > h1 {
         font-size: 3rem;
     }
+
+    .go-back-btn,
+    .hamburger-menu {
+        width: 4.75rem;
+        height: 4.75rem;
+    }
+
+    .icon-wrapper,
+    .hamburger-menu-wrapper {
+        width: 3.75rem;
+        height: 3.75rem;
+    }
+    
+    .back-icon,
+    .hamburger-icon {
+        width: 2rem;
+        height: 2rem;
+    }
 }
 
 @media (min-width: 768px) {

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/instructions.css">
     <link rel="stylesheet" href="css/category.css">
     <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/modal.css">
     <title>Hangman Game</title>
 </head>
 <body>
@@ -90,7 +91,7 @@
             </article>
         </section>
         <section class="screen game-state">
-            <nav class="game-board-menu">
+            <div class="game-board-menu">
                 <div class="game-controls">
                     <div class="hamburger-control">
                         <div class="hamburger-menu">
@@ -109,7 +110,7 @@
                             </div>
                         </div>
                     </div> 
-                    <h1 id="selected-category"></h1>
+                    <h1 id="selected-category">Countries</h1>
                 </div>
                 <div class="hearts-control">
                     <div class="hearts-bar">
@@ -117,10 +118,9 @@
                     </div>
                     <img class="heart-icon" src="./images/icon-heart.svg" alt="heart-icon">
                 </div>
-            </nav>
+            </div>
             <div class="category-character"></div>
-            <article class="game-keyboard">
-            </article>
+            <article class="game-keyboard"></article>
         </section>
         <div class="game-outcome-overlay">
             <div class="modal">
