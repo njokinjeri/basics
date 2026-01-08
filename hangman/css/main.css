@@ -4,12 +4,14 @@
     --blue-700: #1a59fa;
     --blue-600: #356DF8;
     --blue-500: #3C74FF;
-    --blue-300: #67B6FF;
+    --blue-550: #2463ff;;
     --blue-400: #7199FF;
+    --blue-300: #67B6FF;
     --gray-blue: #1b2636;
+    --indigo-950-alpha: rgba(0, 20, 121, 0.83);
+    --indigo-950: #0d0853;
     --indigo-900: #140E66;
     --indigo-800: #344ABA;
-    --indigo-950-alpha: rgba(0, 20, 121, 0.83);
     --violet-500: #9D2DF5;
     --violet-500-alpha: #9e2df558;
     --pink-400: #fc90fc;
@@ -87,7 +89,7 @@ nav > h1 {
 }
 
 .menu-overlay,
-.game-outcome-overlay {
+.outcome-overlay {
     display: none
 }
 

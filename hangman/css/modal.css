@@ -1,0 +1,93 @@
+.modal-overlay {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.menu-overlay.active,
+.outcome-overlay.active {
+    display: flex;
+}
+
+.modal-decorative {
+    width: 90%;
+    max-width: 40rem;
+    height: 25rem;
+    padding: 0.125rem;
+    background-color: var(--blue-500);
+    box-shadow: 0 -0.62rem 0 0.2rem var(--blue-500);
+    color: var(--white);
+    border-radius: 4rem;
+}
+
+.modal {
+    width: 100%;
+    height: 100%;
+    border-radius: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background: linear-gradient(180deg, var(--indigo-800), var(--indigo-950-alpha), var(--indigo-900));
+    box-shadow: inset 0 -0.8rem 0 0 var(--indigo-950);
+}
+
+.modal-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+}
+
+.modal .modal-message {
+    font-size: 5rem;
+    font-weight: 600;
+    background: linear-gradient(180deg, var(--blue-300),var(--white));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: absolute;
+    bottom: 66%;
+}
+
+.modal-btn {
+    padding: 0.875rem 5rem;
+    font-size: 1.875rem;
+    font-family: inherit;
+    text-align: center;
+    border-radius: 2rem;
+    color: var(--white);
+    background: var(--blue-550);
+    box-shadow: inset 0.1rem 0.3rem 0 .3rem var(--blue-500),0 0.2rem 0 0.3rem var(--indigo-900);
+}
+
+.modal-btn:hover {
+    background-color: rgba(244, 244, 248, 0.582);
+}
+
+
+.modal-btn:last-child {
+    background: linear-gradient(180deg, var(--pink-500), var(--hazy-pink), var(--lavender-pink), var(--lavender), var(--blue-400));
+    box-shadow: inset 0.1rem 0.3rem 0 .3rem var(--violet-500),0 0.2rem 0 0.3rem var(--indigo-900);
+}
+
+.modal-btn:last-child:hover {
+    background: linear-gradient(180deg,var(--pink-400), var(--lavender-pink));
+}
+
+@media (max-width: 480px) {
+    .modal .modal-message {
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .modal .modal-message {
+        font-size: 6.5rem;
+    }
+}
