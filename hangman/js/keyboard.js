@@ -32,8 +32,6 @@ function handleKeyPress(e) {
 
     button.disabled = true;
     button.classList.add('used');
-
-    console.log('Pressed:', letter);
 }
 
 export function disableKey(letter) {
