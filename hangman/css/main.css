@@ -88,11 +88,6 @@ nav > h1 {
     -webkit-text-fill-color: transparent;
 }
 
-.menu-overlay,
-.outcome-overlay {
-    display: none
-}
-
 .go-back-btn,
 .hamburger-menu {
     width: 5.75rem;

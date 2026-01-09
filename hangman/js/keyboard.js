@@ -1,5 +1,12 @@
+import { guessLetter, getGameState } from './game.js';
+
 export function createKeyboard() {
     const keyboardContainer = document.querySelector('.game-keyboard');
+
+    if (!keyboardContainer) {
+        console.error('Keyboard container not found!');
+        return;
+    }
 
     const keys = [
         ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
@@ -27,20 +34,23 @@ export function createKeyboard() {
 }
 
 function handleKeyPress(e) {
+    const { gameOver } = getGameState();
+    if (gameOver) return;
+
     const letter = e.target.dataset.letter;
     const button = e.target;
 
     button.disabled = true;
     button.classList.add('used');
+
+    guessLetter(letter);
 }
 
-export function disableKey(letter) {
-    const button = document.querySelector(`[data-letter="${letter}"]`);
-
-    if (button) {
-        button.disabled = true;
-        button.classList.add(used)
-    }
+export function disableAllKeys() {
+    const buttons = document.querySelectorAll('.key-btn');
+    buttons.forEach(btn => {
+        btn.disabled = true;
+    });
 }
 
 export function resetKeyboard() {

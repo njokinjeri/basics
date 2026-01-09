@@ -38,11 +38,13 @@
 .hearts-bar {
     width: 8rem;
     height: 1.5rem;
+    padding: 0 0.325rem;
     border-radius: 1rem;
     background-color: var(--white);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .hearts-range {
@@ -50,6 +52,9 @@
     height: 0.75rem;
     border-radius: 1rem;
     background-color: var(--indigo-900);
+    transition: width 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .heart-icon {
@@ -61,16 +66,19 @@
     width: 90%;
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
     align-items: center;
     padding: 2rem 0;
 }
 
+
 .letter-box {
-    flex: 0 0 3rem;
+    flex: 0 0 4rem;
+    height: 7rem;
     padding: 3rem 0;
     background-color: var(--blue-700);
+    color: var(--white);
     box-shadow: 0 0.2rem 0 0.3rem var(--indigo-900), inset 0 0.75rem 0.75rem rgba(255,255,255,0.15);
     border-radius: 2rem;
     display: flex;
@@ -79,13 +87,15 @@
     font-size: 3rem;
     font-weight: 600;
     cursor: pointer;
-    /*opacity: 0.2;*/
+    opacity: 0.3;
+    box-sizing: border-box;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    transform: rotateX(0deg) scale(1); 
 }
 
 .letter-box.revealed {
-    background: var(--blue-700-alpha);
-    color: var(--white);
     opacity: 1;
+    transform: rotateX(360deg) scale(1.05);
 }
 
 .game-keyboard {

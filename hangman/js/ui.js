@@ -1,8 +1,11 @@
 import { loadData, loadGameState } from './data.js';
 import { createKeyboard } from './keyboard.js';
 import { createCharacterDisplay } from './characterDisplay.js';
+import { resetModals } from "./modals.js";
+import { initGame } from "./game.js";
 
 export function showScreen(screenName) {
+    resetModals();
     document.querySelectorAll('.screen').forEach(screen => {
         screen.classList.remove('active');
     });
@@ -31,8 +34,8 @@ export async function initializeScreen() {
     document.querySelectorAll('.screen').forEach(screen => {
         screen.classList.remove('active');
     });
-    document.querySelector(`.${savedScreen}`).classList.add('active');
     
+    document.querySelector(`.${savedScreen}`).classList.add('active');
     history.replaceState({ screen: savedScreen }, '', `#${savedScreen}`);
 
     if (savedScreen === 'game-state') {
@@ -49,6 +52,7 @@ async function restoreGame() {
 
         createKeyboard();
         createCharacterDisplay(gameState.word);
+        initGame(gameState.word);
     }
 }
 

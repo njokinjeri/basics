@@ -1,4 +1,5 @@
-.modal-overlay {
+.menu-overlay,
+.outcome-overlay {
     display: none;
     justify-content: center;
     align-items: center;
