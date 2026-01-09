@@ -29,11 +29,11 @@ categoriesBtns.forEach(btn => {
             saveGameState(categoryName, word);
             document.querySelector('#selected-category').textContent = categoryName;
             
-            setTimeout(() => {
-                createKeyboard();
-                createCharacterDisplay(word);
-                initGame(word); 
-            }, 50);
+       
+            createKeyboard();
+            createCharacterDisplay(word);
+            initGame(word); 
+
         } else {
             console.error('No word found!'); 
         }

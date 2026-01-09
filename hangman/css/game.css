@@ -38,7 +38,7 @@
 .hearts-bar {
     width: 8rem;
     height: 1.5rem;
-    padding: 0 0.325rem;
+    padding: 0 0.5rem;
     border-radius: 1rem;
     background-color: var(--white);
     display: flex;
