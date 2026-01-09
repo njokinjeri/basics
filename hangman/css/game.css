@@ -74,9 +74,9 @@
 
 
 .letter-box {
-    flex: 0 0 4rem;
-    height: 7rem;
-    padding: 3rem 0;
+    flex: 0 0 3rem;
+    height: 5rem;
+    padding: 2rem 0;
     background-color: var(--blue-700);
     color: var(--white);
     box-shadow: 0 0.2rem 0 0.3rem var(--indigo-900), inset 0 0.75rem 0.75rem rgba(255,255,255,0.15);
@@ -160,8 +160,9 @@
     }
 
     .letter-box {
-        flex: 0 0 5rem;
-        padding: 3.75rem 0;
+        flex: 0 0 4rem;
+        height: 7rem;
+        padding: 3rem 0;
     }
     
     .key-btn {
@@ -185,8 +186,8 @@
     }
 
     .letter-box {
-        flex: 0 0 5.5rem;
-        padding: 4.5rem 0;
+        flex: 0 0 5rem;
+        padding: 4rem 0;
         border-radius: 3rem;
     }
     
