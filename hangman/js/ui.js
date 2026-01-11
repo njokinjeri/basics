@@ -6,6 +6,7 @@ import { initGame } from "./game.js";
 
 export function showScreen(screenName) {
     resetModals();
+
     document.querySelectorAll('.screen').forEach(screen => {
         screen.classList.remove('active');
     });
@@ -29,18 +30,28 @@ window.addEventListener('popstate', (event) => {
 
 
 export async function initializeScreen() {
-    const savedScreen = localStorage.getItem('currentScreen') || 'start-state';
+    let savedScreen;
+
+    if (sessionStorage.getItem('activeSession') === 'true') {
+        savedScreen = localStorage.getItem('currentScreen') || 'start-screen';
+    } else {
+        savedScreen = 'start-state';
+        sessionStorage.setItem('activeSession', 'true');
+    }
+
 
     document.querySelectorAll('.screen').forEach(screen => {
         screen.classList.remove('active');
     });
     
     document.querySelector(`.${savedScreen}`).classList.add('active');
+
     history.replaceState({ screen: savedScreen }, '', `#${savedScreen}`);
 
     if (savedScreen === 'game-state') {
         await restoreGame();
     }
+
 }
 
 async function restoreGame() {
@@ -56,4 +67,8 @@ async function restoreGame() {
     }
 }
 
+export function resetScreenOnLogout() {
+    localStorage.removeItem('currentScreen');
+    sessionStorage.removeItem('activeSession');
+}
 
