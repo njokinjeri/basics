@@ -1,0 +1,84 @@
+.start-page {
+    width: 90%;
+    max-width: 32rem;
+    height: 32rem;
+    background-color: var(--purple);
+    border: 4px solid black;
+    border-radius: 2rem;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    box-shadow: 0 0.6rem 0.1rem 0 black;
+    overflow: hidden;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.menu-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.menu-controls button {
+    width: 70vw;
+    max-width: 25rem;
+    height: 4.5rem;
+    border-radius: 1rem;
+    border: none;
+    outline: 3px solid black;
+    box-shadow: 0 0.7rem 0 0 black;
+    font-size: 1.325rem;
+    font-weight: 800;
+    padding: 0 1rem;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.menu-controls button:hover {
+    transform: translateY(-1px);
+}
+
+.menu-controls button:hover {
+    transform: translateY(2px);
+}
+
+.menu-controls button:nth-child(1) {
+    background-color: var(--red);
+    color: #fff;
+}
+
+.menu-controls button:nth-child(1):hover {
+    outline-color: var(--dark-red);
+    box-shadow: 0 0.6rem 0 0 var(--dark-red);
+}
+
+.menu-controls button:nth-child(2){
+    background-color: var(--yellow);
+    color: #000;
+}
+
+.menu-controls button:nth-child(2):hover {
+    outline-color: var(--dark-yellow);
+    box-shadow: 0 0.6rem 0 0 var(--dark-yellow);
+}
+
+.menu-controls button:nth-child(3){
+    background-color: #fff;
+    color: #000;
+}
+
+.menu-controls button:nth-child(3):hover {
+    outline-color: var(--dark-purple);
+    box-shadow: 0 0.6rem 0 0 var(--dark-purple);
+}
+
+
+@media (max-width: 480px) {
+    .menu-controls button {
+        font-size: 1rem;
+    }
+}

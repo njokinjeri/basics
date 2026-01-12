@@ -4,10 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/start.css">
+    <link rel="stylesheet" href="./css/rules.css">
+    <link rel="stylesheet" href="./css/game.css">
+    <link rel="stylesheet" href="./css/modal.css">
     <link rel="shortcut icon" href="./images/connect-4.png" type="image/x-icon">
     <title>Connect Four Game</title>
 </head>
 <body>
-    <script src="./js/main.js"></script>
+    <main>
+        <section class="screen start-page">
+            <div class="game-logo">
+                <img class="game-logo" src="./images/logo.svg" alt="game-logo">
+            </div>
+            <div class="menu-controls">
+                <button class="btn cpu-option">
+                    <span>PLAY VS CPU</span>
+                    <img class="btn-icon vs-cpu-icon" src="./images/player-vs-cpu.svg" alt="player-vs-cpu-icon">
+                </button>
+                <button class="btn multiplayer-option">
+                    <span>PLAY VS PLAYER</span>
+                    <img class="btn-icon vs-player-icon" src="./images/player-vs-player.svg" alt="player-vs-cpu-icon">
+                </button>
+                <button class="btn game-rules">
+                    <span>GAME RULES</span>
+                </button>
+            </div>
+        </section>
+        <section class="screen rules-page">
+            <div class="rules-wrapper">
+                <h1 class="game-rules-heading">RULES</h1>
+                <div class="game-objective">
+                    <h2 class="game-objective-heading">OBJECTIVE</h2>
+                    <p> Be the first player to connect 4 of the same colored discs in a 
+                        row (either vertically, horizontally, or diagonally).
+                    </p>
+                </div>
+                <div class="game-steps">
+                    <h2 class="game-steps-heading">HOW TO PLAY</h2>
+                    <ol class="game-rules-list">
+                        <li>Red goes first in the first game.</li>
+                        <li>Player must alternate turns, and only one disc can be dropped in each turn.</li>
+                        <li>The game ends when there is a 4-in-a-row or a stalemate</li>
+                        <li>The starter of the previous game goes second on the next game.</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="rules-check">
+            </div>
+        </section>
+        <section class="screen game-page">
+            <nav>
+                <button class="game-btn menu">
+                    <span>MENU</span>
+                </button>
+                <div class="menu-overlay">
+                    <div class="modal">
+                        <h3 class="modal-message">PAUSE</h3>
+                        <div class="modal-btns-wrapper">
+                            <button>CONTINUE GAME</button>
+                            <button>RESTART</button>
+                            <button>QUIT GAME</button>
+                        </div>
+                    </div>
+                </div>
+                <img class="game-logo" src="./images/logo.svg" alt="game-logo">
+                <button class="game-btn restart">RESTART</button>
+            </nav>
+            <article class="game-board">
+                <div class="player-one">
+                    <p class="vs-player player-1">Player 1</p>
+                    <p class="win-stats"><strong>0</strong></p>
+                </div>
+                <div class="player-two">
+                    <p class="vs-player cpu">CPU</p>
+                    <p class="win-stats"><strong>0</strong></p>
+                </div>
+                <div class="game-board">
+                    <picture class="board board-back">
+                        <source media="(max-width: 640px)" srcset="./images/board-layer-black-small.svg">
+                        <img src="./images/board-layer-black-large.svg" alt="board-back" draggable="false">
+                    </picture>
+                    <div id="slots"></div>
+                    <div id="discs"></div>
+                    <picture class="board board-front">
+                        <source media="(max-width: 640px )" srcset="./images/board-layer-white-small.svg">
+                        <img src="./images/board-layer-white-large.svg" alt="board-white" draggable="false">
+                    </picture>
+                </div>
+                <div class="player-turn-counter">
+                    <svg width="197" height="165" viewBox="0 0 197 165" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <defs><filter x="-4.2%" y="-4.2%" width="108.4%" height="116.2%" filterUnits="objectBoundingBox" id="a">
+                            <feMorphology radius="3" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"/>
+                            <feOffset dy="10" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+                            <feComposite in="shadowOffsetOuter1" in2="SourceAlpha" operator="out" result="shadowOffsetOuter1"/>
+                            <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" in="shadowOffsetOuter1"/>
+                            </filter><path d="M12.239 34.847 87.279 3.25a20 20 0 0 1 15.454-.029l75.96 31.65A20 20 0 0 1 191 53.333V130c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20V53.28a20 20 0 0 1 12.239-18.433Z" id="b"/>
+                        </defs>
+                        <g transform="translate(3 2)" fill="none" fill-rule="evenodd">
+                            <use fill="#000" filter="url(#a)" xlink:href="#b"/>
+                            <path stroke="#000" stroke-width="3" fill="#FFCE67"
+                                d="M86.697 1.868a21.5 21.5 0 0 1 16.613-.03l75.96 31.65A21.478 21.478 0 0 1 191 53.333V130c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20V53.28a20 20 0 0 1 12.239-18.433Z"
+                            />
+                            <g fill="#fff" font-family="SpaceGrotesk-Bold, Space Grotesk" font-weight="bold" >
+                                <text id="player-turn-label" class="player-label-text" x="50%" y="30%" text-anchor="middle" dominant-baseline="middle" font-size="16">
+                                    PLAYER 1'S TURN
+                                </text>
+                                <text id="timer" class="timer-text" x="50%" y="60%" text-anchor="middle" dominant-baseline="middle" font-size="56">
+                                    30s
+                                </text>
+                            </g>
+                        </g>           
+                    </svg>
+                </div>
+                <div class="winner-display">
+                    <p class="winner-text"></p>
+                    <h4><strong>WINS</strong></h4>
+                    <button class="game-btn play-again">PLAY AGAIN</button>
+                </div>
+            </article>
+            <div class="winner-indicator"></div>
+        </section>
+    </main>
+    <script type="module" src="./js/main.js" defer></script>
 </body>
 </html>
