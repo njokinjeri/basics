@@ -1,3 +1,8 @@
+function updateBodyTheme(screenName) {
+    const state = screenName.replace('-page', '');
+    document.body.setAttribute('data-state', state);
+}
+
 export function showScreen(screenName) {
 
     document.querySelectorAll('.screen').forEach(screen => {
@@ -5,6 +10,8 @@ export function showScreen(screenName) {
     });
 
     document.querySelector(`.${screenName}`).classList.add('active');
+
+    updateBodyTheme(screenName)
 
     history.pushState({ screen: screenName }, '', `#${screenName}`);
     localStorage.setItem('currentScreen', screenName);
@@ -16,6 +23,8 @@ window.addEventListener('popstate', (event) => {
         document.querySelectorAll('.screen').forEach(screen => {
             screen.classList.remove('active')
         });
+
+        updateBodyTheme(event.state.screen);
 
         document.querySelector(`.${event.state.screen}`).classList.add('active');
         localStorage.setItem('currentScreen', event.state.screen)
@@ -38,8 +47,9 @@ export async function initializeScreen() {
         screen.classList.remove('active');
     });
     
-    
     document.querySelector(`.${savedScreen}`).classList.add('active');
+
+    updateBodyTheme(savedScreen);
 
     history.replaceState({ screen: savedScreen }, '', `#${savedScreen}`);
 }

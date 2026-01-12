@@ -3,6 +3,7 @@
 :root {
     --dark-purple: #5C2DD5;
     --purple: #7945FF;
+    --blue: #3128df;
     --red: #FD6687;
     --dark-red: #df385c;
     --yellow: #FFCE67;
@@ -10,18 +11,28 @@
 }
 
 body {
-    min-height: 100vh;
+    height: 100vh;
     font-family: "Space Grotesk", sans-serif;
-    background-color: var(--dark-purple);
     display: flex;
 }
+
+body[data-state="start"] { 
+    background-color: var(--dark-purple); 
+}
+
+body[data-state="rules"],
+body[data-state="game"] { 
+    background-color: var(--purple); 
+}
+
 
 div, button {
     -webkit-tap-highlight-color: transparent;
 }
 
+
 main {
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

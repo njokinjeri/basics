@@ -1,8 +1,10 @@
-import './ui.js'
+import { setupModalListeners } from "./modal.js"
+import { initializeScreen } from "./ui.js"
 import './start.js'
 import './navigation.js'
-import { initializeScreen } from "./ui.js"
+
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeScreen();
+    setupModalListeners();
 })
