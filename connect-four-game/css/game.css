@@ -65,7 +65,8 @@ nav {
     position: relative;
 }
 
-.player-label {
+.player-label,
+.player-two-label {
     font-size: 1.25rem;
     font-weight: 600;
 }
@@ -141,11 +142,16 @@ nav {
 
 .player-turn-counter {
     grid-area: player-turn-counter;
+    display: none;
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 75%);
     z-index: 100;
+}
+
+.player-turn-counter.active {
+    display: flex
 }
 
 .player-turn-counter.active {
@@ -178,6 +184,10 @@ nav {
 
 .winner-display.active {
     display: flex;
+}
+
+.winner-text {
+    font-weight: 600;
 }
 
 .winner-indicator {

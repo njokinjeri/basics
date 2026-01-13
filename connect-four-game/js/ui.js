@@ -1,9 +1,11 @@
+import { initGame } from "./game.js";
+
 function updateBodyTheme(screenName) {
     const state = screenName.replace('-page', '');
     document.body.setAttribute('data-state', state);
 }
 
-export function showScreen(screenName) {
+export function showScreen(screenName, gameMode = 'cpu') {
 
     document.querySelectorAll('.screen').forEach(screen => {
         screen.classList.remove('active');
@@ -13,8 +15,13 @@ export function showScreen(screenName) {
 
     updateBodyTheme(screenName)
 
-    history.pushState({ screen: screenName }, '', `#${screenName}`);
+    history.pushState({ screen: screenName, mode: gameMode }, '', `#${screenName}`);
     localStorage.setItem('currentScreen', screenName);
+
+    if (screenName === 'game-page') {
+        localStorage.setItem('gameMode', gameMode);
+        initGame(gameMode);
+    }
 }
 
 
@@ -27,7 +34,12 @@ window.addEventListener('popstate', (event) => {
         updateBodyTheme(event.state.screen);
 
         document.querySelector(`.${event.state.screen}`).classList.add('active');
-        localStorage.setItem('currentScreen', event.state.screen)
+        localStorage.setItem('currentScreen', event.state.screen);
+
+        if (event.state.screen === 'game-page') {
+            const mode = event.state.mode || localStorage.getItem('gameMode') || 'cpu';
+            initGame(mode);
+        }
     }
 });
 
@@ -52,10 +64,16 @@ export async function initializeScreen() {
     updateBodyTheme(savedScreen);
 
     history.replaceState({ screen: savedScreen }, '', `#${savedScreen}`);
+
+    if (savedScreen === 'game-page') {
+        const mode = localStorage.getItem('gameMode') || 'cpu';
+        initGame(mode);
+    }
 }
 
 
 export function resetScreenOnLogout() {
     localStorage.removeItem('currentScreen');
+    localStorage.removeItem('gameMode');
     sessionStorage.removeItem('activeSession');
 }

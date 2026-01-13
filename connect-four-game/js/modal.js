@@ -1,5 +1,5 @@
 import { showScreen } from "./ui.js";
-import { restartGame } from "./game.js";
+import { restartGame, quitGame } from "./game.js";
 
 const menuBtn = document.querySelector('.menu')
 const menuModal = document.querySelector('.menu-overlay');
@@ -39,6 +39,7 @@ export function setupModalListeners() {
     });
 
     quitGameBtn.addEventListener('click', () => {
+        quitGame();
         resetModals();
         showScreen('start-page')
     });

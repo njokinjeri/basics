@@ -1,13 +1,17 @@
 import { showScreen } from "./ui.js";
 
 const gameRulesBtn = document.querySelector('.game-rules');
-const gameBoardBtns = document.querySelectorAll('.cpu-option, .multiplayer-option')
+const cpuButton = document.querySelector('.cpu-option');
+const multiplayerButton = document.querySelector('.multiplayer-option');
 
-gameBoardBtns.forEach(btn => { 
-    btn.addEventListener('click', () => {
-        showScreen('game-page')
-    });
-});
+
+cpuButton.addEventListener('click', () => {
+    showScreen('game-page', 'cpu')
+})
+
+multiplayerButton.addEventListener('click', () => {
+    showScreen('game-page', 'pvp')
+})
 
 gameRulesBtn.addEventListener('click', () => {
     showScreen('rules-page')

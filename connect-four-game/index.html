@@ -73,12 +73,12 @@
                 <div class="player-one">
                     <img class="player-icon-tag tag-player-1" src="./images/player-one.svg" alt="player-1-icon">
                     <p class="vs-player player-label">PLAYER 1</p>
-                    <p class="win-stats"><strong>0</strong></p>
+                    <p class="win-stats player-one-score"><strong>0</strong></p>
                 </div>
                 <div class="player-two">
-                    <img class="player-icon-tag tag-player-2" src="./images/player-two.svg" alt="player-2-icon">
-                    <p class="vs-player player-label">PLAYER 2</p>
-                    <p class="win-stats"><strong>0</strong></p>
+                    <img class="player-icon-tag tag-player-2" src="./images/cpu.svg" alt="player-2-icon">
+                    <p class="vs-player player-two-label">CPU</p>
+                    <p class="win-stats player-two-score"><strong>0</strong></p>
                 </div>
                 <div class="game-board-layer">
                     <picture class="board board-back">
@@ -94,7 +94,7 @@
                         </picture>
                     </picture>
                     <div class="player-turn-counter">
-                        <svg width="197" height="165" viewBox="0 0 197 165" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <svg class="svg-counter" width="197" height="165" viewBox="0 0 197 165" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <defs><filter x="-4.2%" y="-4.2%" width="108.4%" height="116.2%" filterUnits="objectBoundingBox" id="a">
                                 <feMorphology radius="3" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"/>
                                 <feOffset dy="10" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
@@ -104,10 +104,10 @@
                             </defs>
                             <g transform="translate(3 2)" fill="none" fill-rule="evenodd">
                                 <use fill="#000" filter="url(#a)" xlink:href="#b"/>
-                                <path stroke="#000" stroke-width="3" fill="#FFCE67"
+                                <path stroke="#000" stroke-width="3" fill="currentColor"
                                     d="M86.697 1.868a21.5 21.5 0 0 1 16.613-.03l75.96 31.65A21.478 21.478 0 0 1 191 53.333V130c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20V53.28a20 20 0 0 1 12.239-18.433Z"
                                 />
-                                <g fill="#000" font-family="SpaceGrotesk-Bold, Space Grotesk" font-weight="bold" >
+                                <g fill="CurrentColor" font-family="SpaceGrotesk-Bold, Space Grotesk" font-weight="bold" >
                                     <text id="player-turn-label" class="player-label-text" x="50%" y="30%" text-anchor="middle" dominant-baseline="middle" font-size="16">
                                         PLAYER 1'S TURN
                                     </text>
@@ -120,7 +120,7 @@
                     </div>
                     <div class="winner-display">
                         <p class="winner-text"></p>
-                        <h4><strong>WINS</strong></h4>
+                        <h4 class="winner-heading"><strong>WINS</strong></h4>
                         <button class="game-btn play-again">PLAY AGAIN</button>
                     </div>
                 </div>
