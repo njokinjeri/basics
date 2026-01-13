@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 
+
 :root {
     --dark-purple: #5C2DD5;
     --purple: #7945FF;
@@ -8,6 +9,12 @@
     --dark-red: #df385c;
     --yellow: #FFCE67;
     --dark-yellow: #d4a337;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 body {

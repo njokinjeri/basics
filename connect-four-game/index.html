@@ -55,9 +55,7 @@
         </section>
         <section class="screen game-page">
             <nav>
-                <button class="game-btn menu">
-                    <span>MENU</span>
-                </button>
+                <button class="game-btn menu">MENU</button>
                 <div class="menu-overlay">
                     <div class="modal">
                         <h3 class="modal-message">PAUSE</h3>
@@ -73,54 +71,58 @@
             </nav>
             <article class="game-board">
                 <div class="player-one">
-                    <p class="vs-player player-1">Player 1</p>
+                    <img class="player-icon-tag tag-player-1" src="./images/player-one.svg" alt="player-1-icon">
+                    <p class="vs-player player-label">PLAYER 1</p>
                     <p class="win-stats"><strong>0</strong></p>
                 </div>
                 <div class="player-two">
-                    <p class="vs-player cpu">CPU</p>
+                    <img class="player-icon-tag tag-player-2" src="./images/player-two.svg" alt="player-2-icon">
+                    <p class="vs-player player-label">PLAYER 2</p>
                     <p class="win-stats"><strong>0</strong></p>
                 </div>
-                <div class="game-board">
+                <div class="game-board-layer">
                     <picture class="board board-back">
-                        <source media="(max-width: 640px)" srcset="./images/board-layer-black-small.svg">
+                        <source media="(max-width: 480px)" srcset="./images/board-layer-black-small.svg">
                         <img src="./images/board-layer-black-large.svg" alt="board-back" draggable="false">
+
+                        <div id="slots"></div>
+                        <div id="discs"></div>
+
+                        <picture class="board board-front">
+                            <source media="(max-width: 480px )" srcset="./images/board-layer-white-small.svg">
+                            <img src="./images/board-layer-white-large.svg" alt="board-white" draggable="false">
+                        </picture>
                     </picture>
-                    <div id="slots"></div>
-                    <div id="discs"></div>
-                    <picture class="board board-front">
-                        <source media="(max-width: 640px )" srcset="./images/board-layer-white-small.svg">
-                        <img src="./images/board-layer-white-large.svg" alt="board-white" draggable="false">
-                    </picture>
-                </div>
-                <div class="player-turn-counter">
-                    <svg width="197" height="165" viewBox="0 0 197 165" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <defs><filter x="-4.2%" y="-4.2%" width="108.4%" height="116.2%" filterUnits="objectBoundingBox" id="a">
-                            <feMorphology radius="3" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"/>
-                            <feOffset dy="10" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
-                            <feComposite in="shadowOffsetOuter1" in2="SourceAlpha" operator="out" result="shadowOffsetOuter1"/>
-                            <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" in="shadowOffsetOuter1"/>
-                            </filter><path d="M12.239 34.847 87.279 3.25a20 20 0 0 1 15.454-.029l75.96 31.65A20 20 0 0 1 191 53.333V130c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20V53.28a20 20 0 0 1 12.239-18.433Z" id="b"/>
-                        </defs>
-                        <g transform="translate(3 2)" fill="none" fill-rule="evenodd">
-                            <use fill="#000" filter="url(#a)" xlink:href="#b"/>
-                            <path stroke="#000" stroke-width="3" fill="#FFCE67"
-                                d="M86.697 1.868a21.5 21.5 0 0 1 16.613-.03l75.96 31.65A21.478 21.478 0 0 1 191 53.333V130c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20V53.28a20 20 0 0 1 12.239-18.433Z"
-                            />
-                            <g fill="#fff" font-family="SpaceGrotesk-Bold, Space Grotesk" font-weight="bold" >
-                                <text id="player-turn-label" class="player-label-text" x="50%" y="30%" text-anchor="middle" dominant-baseline="middle" font-size="16">
-                                    PLAYER 1'S TURN
-                                </text>
-                                <text id="timer" class="timer-text" x="50%" y="60%" text-anchor="middle" dominant-baseline="middle" font-size="56">
-                                    30s
-                                </text>
-                            </g>
-                        </g>           
-                    </svg>
-                </div>
-                <div class="winner-display">
-                    <p class="winner-text"></p>
-                    <h4><strong>WINS</strong></h4>
-                    <button class="game-btn play-again">PLAY AGAIN</button>
+                    <div class="player-turn-counter">
+                        <svg width="197" height="165" viewBox="0 0 197 165" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs><filter x="-4.2%" y="-4.2%" width="108.4%" height="116.2%" filterUnits="objectBoundingBox" id="a">
+                                <feMorphology radius="3" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"/>
+                                <feOffset dy="10" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+                                <feComposite in="shadowOffsetOuter1" in2="SourceAlpha" operator="out" result="shadowOffsetOuter1"/>
+                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" in="shadowOffsetOuter1"/>
+                                </filter><path d="M12.239 34.847 87.279 3.25a20 20 0 0 1 15.454-.029l75.96 31.65A20 20 0 0 1 191 53.333V130c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20V53.28a20 20 0 0 1 12.239-18.433Z" id="b"/>
+                            </defs>
+                            <g transform="translate(3 2)" fill="none" fill-rule="evenodd">
+                                <use fill="#000" filter="url(#a)" xlink:href="#b"/>
+                                <path stroke="#000" stroke-width="3" fill="#FFCE67"
+                                    d="M86.697 1.868a21.5 21.5 0 0 1 16.613-.03l75.96 31.65A21.478 21.478 0 0 1 191 53.333V130c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20V53.28a20 20 0 0 1 12.239-18.433Z"
+                                />
+                                <g fill="#000" font-family="SpaceGrotesk-Bold, Space Grotesk" font-weight="bold" >
+                                    <text id="player-turn-label" class="player-label-text" x="50%" y="30%" text-anchor="middle" dominant-baseline="middle" font-size="16">
+                                        PLAYER 1'S TURN
+                                    </text>
+                                    <text id="timer" class="timer-text" x="50%" y="60%" text-anchor="middle" dominant-baseline="middle" font-size="56">
+                                        30s
+                                    </text>
+                                </g>
+                            </g>           
+                        </svg>
+                    </div>
+                    <div class="winner-display">
+                        <p class="winner-text"></p>
+                        <h4><strong>WINS</strong></h4>
+                        <button class="game-btn play-again">PLAY AGAIN</button>
+                    </div>
                 </div>
             </article>
             <div class="winner-indicator"></div>
