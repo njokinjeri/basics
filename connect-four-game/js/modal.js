@@ -32,7 +32,11 @@ export function setupModalListeners() {
         hidePauseMenu()
     });
 
-    restartBtn.addEventListener('click', restartGame());
+    restartBtn.addEventListener('click', () => {
+        restartGame();
+        resetModals();
+
+    });
 
     quitGameBtn.addEventListener('click', () => {
         resetModals();
