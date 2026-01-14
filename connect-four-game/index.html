@@ -81,18 +81,14 @@
                     <p class="win-stats player-two-score"><strong>0</strong></p>
                 </div>
                 <div class="game-board-layer">
-                    <picture class="board board-back">
-                        <source media="(max-width: 480px)" srcset="./images/board-layer-black-small.svg">
-                        <img src="./images/board-layer-black-large.svg" alt="board-back" draggable="false">
+                    <div class="board">
+                        <img class="board-back" src="./images/board-layer-black-large.svg" alt="board-back" draggable="false">
 
                         <div id="slots"></div>
                         <div id="discs"></div>
 
-                        <picture class="board board-front">
-                            <source media="(max-width: 480px )" srcset="./images/board-layer-white-small.svg">
-                            <img src="./images/board-layer-white-large.svg" alt="board-white" draggable="false">
-                        </picture>
-                    </picture>
+                        <img class="board-front" src="./images/board-layer-white-large.svg" alt="board-front" draggable="false">
+                    </div>
                     <div class="player-turn-counter">
                         <svg class="svg-counter" width="197" height="165" viewBox="0 0 197 165" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <defs><filter x="-4.2%" y="-4.2%" width="108.4%" height="116.2%" filterUnits="objectBoundingBox" id="a">

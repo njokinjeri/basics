@@ -51,7 +51,7 @@ export function initGame(mode = 'cpu') {
 
     createBoard();
     createSlots();
-    attachEvenListeners();
+    attachEventListeners();
     showPlayerCounter();
     restartGame();
     isInitialized = true;
@@ -70,8 +70,8 @@ function createSlots() {
         slot.className = 'slot';
         slot.dataset.col = col;
         slot.addEventListener('click', () =>  handleSlotClick(col));
-        slot.addEventListener('mouseenter', () => handleSlotClick(col, true));
-        slot.addEventListener('mouseleave', () => handleSlotClick(col, false))
+        slot.addEventListener('mouseenter', () => handleSlotHover(col, true));
+        slot.addEventListener('mouseleave', () => handleSlotHover(col, false))
         slots.appendChild(slot);
     }
 }
@@ -107,7 +107,82 @@ function makeMove(row, col) {
 }
 
 
+function makeCPUMove() {
+    if (!gameActive || currentPlayer !== PLAYER_TWO) return;
 
+    const col = getMediumMove();
+
+    const row = getAvailableRow(col);
+    if (row !== -1) {
+        makeMove(row, col)
+    }
+}
+
+
+function getMediumMove() {
+
+    const winMove = findWinningMove(PLAYER_TWO);
+    if (winMove !== -1) return winMove;
+
+    const blockMove = findWinningMove(PLAYER_ONE);
+    if (blockMove !== -1) return blockMove;
+
+    const centerCols = [3, 2, 4, 1, 5, 0, 6];
+    for (const col of centerCols) {
+        if (getAvailableRow(col) !== -1) {
+            return col;
+        }
+    }
+
+    return getRandomMove();
+}
+
+
+function findWinningMove(player) {
+    for (let col = 0; col < COLS; col++) {
+        const row = getAvailableRow(col);
+        if (row === -1) continue;
+
+        board[row][col] = player;
+        const isWin = checkWin(row, col);
+        board[row][col] = 0;
+
+        if (isWin) return col;
+    }
+    return -1;
+}
+
+
+function getRandomMove() {
+    const availableCols = [];
+    for (let col = 0; col < COLS; col++) {
+        if (getAvailableRow(col) !== -1) {
+            availableCols.push(col);
+        }
+    }
+    return availableCols[Math.floor(Math.random() * availableCols.length)];
+}
+
+
+function handleSlotHover(col, isHovering) {
+    if (!gameActive) return;
+
+    const availableRow = getAvailableRow(col);
+    if (availableRow === -1) return;
+
+    const existingPreview = document.querySelector('.preview-marker');
+    if (existingPreview) {
+        existingPreview.remove();
+    }
+
+    if (isHovering) {
+        const preview = document.createElement('div');
+        preview.className = 'preview-marker';
+        preview.style.setProperty('--row', -1);
+        preview.style.setProperty('--col', col);
+        discs.appendChild(preview);
+    }
+}
 
 
 function dropDisc(row, col, player) {
@@ -123,7 +198,6 @@ function dropDisc(row, col, player) {
 }
 
 
-
 function getAvailableRow(col) {
     for (let row = ROWS - 1; row >= 0; row--) {
         if (board[row][col] === 0) {
@@ -137,15 +211,56 @@ function getAvailableRow(col) {
 function checkWin(row, col) {
     const player = board[row][col];
     
-    if (checkDirection(row, col, 0, 1, player)) return true;
+    if (checkDirection(row, col, 0, 1, player)) {
+        highlightWinningDiscs(row, col, 0, 1);
+        return true;
+    }
     
-    if (checkDirection(row, col, 1, 0, player)) return true;
+    if (checkDirection(row, col, 1, 0, player)) {
+        highlightWinningDiscs(row, col, 1, 0);
+        return true;
+    }
     
-    if (checkDirection(row, col, 1, 1, player)) return true;
+    if (checkDirection(row, col, 1, 1, player)) {
+        highlightWinningDiscs(row, col, 1, 1);
+        return true;
+    }
     
-    if (checkDirection(row, col, 1, -1, player)) return true;
+    if (checkDirection(row, col, 1, -1, player)) {
+        highlightWinningDiscs(row, col, 1, -1);
+        return true;
+    }
     
     return false;
+}
+
+
+function highlightWinningDiscs(row, col, rowDir, colDir) {
+    const player = board[row][col];
+    const winningPositions = [[row, col]];
+    
+    let r = row + rowDir;
+    let c = col + colDir;
+    while (r >= 0 && r < ROWS && c >= 0 && c < COLS && board[r][c] === player) {
+        winningPositions.push([r, c]);
+        r += rowDir;
+        c += colDir;
+    }
+    
+    r = row - rowDir;
+    c = col - colDir;
+    while (r >= 0 && r < ROWS && c >= 0 && c < COLS && board[r][c] === player) {
+        winningPositions.push([r, c]);
+        r -= rowDir;
+        c -= colDir;
+    }
+    
+    winningPositions.forEach(([r, c]) => {
+        const disc = document.querySelector(`.disc[data-row="${r}"][data-col="${c}"]`);
+        if (disc) {
+            disc.classList.add('winning');
+        }
+    });
 }
 
 
@@ -201,8 +316,11 @@ function handleWin() {
         }
     }
 
-    hidePlayerCounter();
-    showWinnerDisplay();
+    setTimeout(() => {
+        hidePlayerCounter();
+        showWinnerDisplay();
+    }, 800);
+
 }
 
 
@@ -315,12 +433,6 @@ function updateTimerDisplay() {
 }
 
 
-function handleTimeOut() {
-    stopTimer();
-    switchPlayer();
-}
-
-
 function handleWinnerOnTimeOut() {
     gameActive = false;
     stopTimer();
@@ -376,7 +488,7 @@ export function quitGame() {
 }
 
 
-function attachEvenListeners() {
+function attachEventListeners() {
     restartGameBtn?.addEventListener('click', restartGame);
     playAgainBtn?.addEventListener('click', () => {
         winnerIndicator.style.backgroundColor = 'var(--dark-purple)';
