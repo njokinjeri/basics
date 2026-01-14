@@ -70,8 +70,6 @@ function createSlots() {
         slot.className = 'slot';
         slot.dataset.col = col;
         slot.addEventListener('click', () =>  handleSlotClick(col));
-        slot.addEventListener('mouseenter', () => handleSlotHover(col, true));
-        slot.addEventListener('mouseleave', () => handleSlotHover(col, false))
         slots.appendChild(slot);
     }
 }
@@ -161,27 +159,6 @@ function getRandomMove() {
         }
     }
     return availableCols[Math.floor(Math.random() * availableCols.length)];
-}
-
-
-function handleSlotHover(col, isHovering) {
-    if (!gameActive) return;
-
-    const availableRow = getAvailableRow(col);
-    if (availableRow === -1) return;
-
-    const existingPreview = document.querySelector('.preview-marker');
-    if (existingPreview) {
-        existingPreview.remove();
-    }
-
-    if (isHovering) {
-        const preview = document.createElement('div');
-        preview.className = 'preview-marker';
-        preview.style.setProperty('--row', -1);
-        preview.style.setProperty('--col', col);
-        discs.appendChild(preview);
-    }
 }
 
 
