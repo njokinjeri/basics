@@ -105,6 +105,29 @@ function makeMove(row, col) {
 }
 
 
+function getAvailableRow(col) {
+    for (let row = ROWS - 1; row >= 0; row--) {
+        if (board[row][col] === 0) {
+            return row
+        }
+    }
+    return -1;
+}
+
+
+function dropDisc(row, col, player) {
+    const disc = document.createElement('div');
+    disc.className = `disc player-${player}`;
+    disc.dataset.row = row;
+    disc.dataset.col = col;
+
+    disc.style.setProperty('--row', row);
+    disc.style.setProperty('--col', col);
+
+    discs.appendChild(disc);
+}
+
+
 function makeCPUMove() {
     if (!gameActive || currentPlayer !== PLAYER_TWO) return;
 
@@ -125,11 +148,88 @@ function getMediumMove() {
     const blockMove = findWinningMove(PLAYER_ONE);
     if (blockMove !== -1) return blockMove;
 
+    const buildMove = findBuildMove(PLAYER_TWO);
+    if (buildMove !== -1) return buildMove;
+
     const centerCols = [3, 2, 4, 1, 5, 0, 6];
     for (const col of centerCols) {
-        if (getAvailableRow(col) !== -1) {
+        const row = getAvailableRow(col);
+        if (row !== -1 && !isMoveDangerous(col)) {
             return col;
         }
+    }
+
+    return getSafeRandomMove();
+}
+
+
+function findBuildMove(player) {
+    const goodMoves = [];
+    
+    for (let col = 0; col < COLS; col++) {
+        const row = getAvailableRow(col);
+        if (row === -1 || isMoveDangerous(col)) continue;
+
+        board[row][col] = player;
+        const connections = countConnections(row, col, player);
+        board[row][col] = 0;
+
+        if (connections > 0) {
+            goodMoves.push({ col, connections });
+        }
+    }
+
+    if (goodMoves.length > 0) {
+        goodMoves.sort((a, b) => b.connections - a.connections);
+        return goodMoves[0].col;
+    }
+
+    return -1;
+}
+
+
+function countConnections(row, col, player) {
+    let connections = 0;
+    const directions = [[0, 1], [1, 0], [1, 1], [1, -1]];
+    
+    for (const [rowDir, colDir] of directions) {
+        const count = 1 + 
+            countInDirection(row, col, rowDir, colDir, player) +
+            countInDirection(row, col, -rowDir, -colDir, player);
+        
+        if (count >= 2) connections += count;
+    }
+    
+    return connections;
+}
+
+
+function isMoveDangerous(col) {
+    const row = getAvailableRow(col);
+    if (row === -1 || row === 0) return false;
+
+    board[row][col] = PLAYER_TWO;
+
+    const rowAbove = row - 1;
+    board[rowAbove][col] = PLAYER_ONE;
+    const opponentWins = checkWinWithoutHighlight(rowAbove, col);
+    board[rowAbove][col] = 0;
+    board[row][col] = 0;
+
+    return opponentWins;
+}
+
+
+function getSafeRandomMove() {
+    const safeCols = [];
+    for (let col = 0; col < COLS; col++) {
+        if (getAvailableRow(col) !== -1 && !isMoveDangerous(col)) {
+            safeCols.push(col);
+        }
+    }
+
+    if (safeCols.length > 0) {
+        return safeCols[Math.floor(Math.random() * safeCols.length)];
     }
 
     return getRandomMove();
@@ -142,7 +242,7 @@ function findWinningMove(player) {
         if (row === -1) continue;
 
         board[row][col] = player;
-        const isWin = checkWin(row, col);
+        const isWin = checkWinWithoutHighlight(row, col);
         board[row][col] = 0;
 
         if (isWin) return col;
@@ -159,29 +259,6 @@ function getRandomMove() {
         }
     }
     return availableCols[Math.floor(Math.random() * availableCols.length)];
-}
-
-
-function dropDisc(row, col, player) {
-    const disc = document.createElement('div');
-    disc.className = `disc player-${player}`;
-    disc.dataset.row = row;
-    disc.dataset.col = col;
-
-    disc.style.setProperty('--row', row);
-    disc.style.setProperty('--col', col);
-
-    discs.appendChild(disc);
-}
-
-
-function getAvailableRow(col) {
-    for (let row = ROWS - 1; row >= 0; row--) {
-        if (board[row][col] === 0) {
-            return row
-        }
-    }
-    return -1;
 }
 
 
@@ -207,6 +284,18 @@ function checkWin(row, col) {
         highlightWinningDiscs(row, col, 1, -1);
         return true;
     }
+    
+    return false;
+}
+
+
+function checkWinWithoutHighlight(row, col) {
+    const player = board[row][col];
+    
+    if (checkDirection(row, col, 0, 1, player)) return true;  
+    if (checkDirection(row, col, 1, 0, player)) return true;  
+    if (checkDirection(row, col, 1, 1, player)) return true;  
+    if (checkDirection(row, col, 1, -1, player)) return true; 
     
     return false;
 }
@@ -245,7 +334,6 @@ function checkDirection(row, col, rowDir, colDir, player) {
     let count = 1;
     
     count += countInDirection(row, col, rowDir, colDir, player);
-    
     count += countInDirection(row, col, -rowDir, -colDir, player);
     
     return count >= 4;
