@@ -306,6 +306,11 @@ nav {
     .win-stats {
         font-size: 2rem;
     }
+
+    .player-turn-counter,
+    .winner-display {
+        transform: translate(-50%, 85%);
+    }
 }
 
 @media (min-width: 640px) {
