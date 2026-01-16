@@ -44,7 +44,7 @@ window.addEventListener('popstate', (event) => {
 });
 
 
-export async function initializeScreen() {
+export function initializeScreen() {
     let savedScreen;
 
     if (sessionStorage.getItem('activeSession') === 'true') {
