@@ -2,7 +2,7 @@
 
 This repository is my playground for experimenting with the core building blocks of the web: HTML, CSS, and Vanilla JavaScript.
 
-The projects here are small, self-contained experiments and challenges created to explore frontend fundamentals, UI/UX ideas, and implementation techniques without relying on frameworks, preprocessors, or external libraries.
+The projects here are small, self-contained experiments and challenges created to explore frontend fundamentals, UI/UX ideas, and implementation techniques without relying on frameworks, or preprocessors.
 
 The challenges are sourced from platforms like [**Frontend Mentor**](https://www.frontendmentor.io/home) and [**Dev Challenges**](https://devchallenges.io/dashboard), offering real-world scenarios that test everything from responsive layouts to accessibility and user interactivity.
 
