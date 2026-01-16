@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --desaturated-blue: hsl(229, 25%, 31%);
-    --blue: hsl(229, 64%, 46%);
-    --grayish-blue: hsl(217, 16%, 45%);
+    --navy-900: hsl(237, 49%, 15%); 
+    --navy-800: hsl(214, 47%, 23%);   
+    --navy-700: hsl(229, 25%, 31%);  
+    --slate-500: hsl(217, 16%, 45%);  
+    --slate-100: hsl(217, 38%, 82%); 
+    --grey: hsl(217deg, 16%, 45%); 
+    --blue-600: hsl(229, 64%, 46%);
 }
 
 * {
@@ -13,10 +17,22 @@
 }
 
 body {
+    height: 100vh;
+    width: 100vw;
     font-family: "Barlow Semi Condensed", sans-serif;
+    background: radial-gradient(circle at top center, var(--navy-800) 0%, var(--navy-900) 70%);    
 }
 
 
 div, button {
     -webkit-tap-highlight-color: transparent;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }

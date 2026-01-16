@@ -4,10 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/modal.css">
+    <link rel="stylesheet" href="./css/game.css">
     <link rel="icon" type="image/png" href="./images/rock-paper-scissors.png">
     <title>Rock Paper Scissors Game</title>
 </head>
 <body>
-    <script src="./js/main.js"></script>
+    <main>
+        <section class="game-screen">
+            <div class="logo-score-wrapper">
+                <img class="page-logo" src="./images/logo.svg" alt="game-logo">
+                <div class="score-wrapper">
+                    <p class="score-text">SCORE</p>
+                    <p class="user-score">0</p>
+                </div>
+            </div>
+            <div class="game-board">
+                <div class="board pick-board">
+                    <img class="anchor" src="./images/bg-triangle.svg" alt="anchor">
+                </div>
+                <div class="board result-board">
+                    <div class="picked">
+                        <p class="picked-text">YOU PICKED</p>
+                        <div class="choice user-choice"></div>
+                    </div>
+                    <div class="outcome">
+                        <p class="result-text"></p>
+                        <button class="play-again-btn">PLAY AGAIN</button>
+                    </div>
+                    <div class="picked">
+                        <p class="picked-text">THE HOUSE PICKED</p>
+                        <div class="choice house-choice"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="game-controls">
+                <button class="btn rules-btn">RULES</button>
+                    <div class="modal-overlay rules-modal">
+                        <div class="modal-wrapper">
+                            <div class="modal-header">
+                                <h1>RULES</h1>
+                                <img class="close-icon" src="./images/icon-close.svg" alt="close-icon">
+                            </div>
+                            <div class="rules-wrapper">
+                                <img class="rules-illustration" src="./images/image-rules.svg" alt="game-rules">
+                            </div>
+                        </div>
+                    </div>
+                <button class="btn menu-btn">MENU</button>
+                <div class="modal-overlay menu-modal">
+                    <div class="modal-wrapper">
+                        <div class="modal-header">
+                            <h1>MENU</h1>
+                            <img class="close-icon" src="./images/icon-close.svg" alt="close-icon">
+                        </div>
+                        <img class="modal-game-logo" src="./images/game-mode-three.png" alt="game-mode-three">
+                        <div class="modal-btns-wrapper">
+                            <button class="restart-game-btn">RESTART</button>
+                            <button class="switch-mode-btn">SWITCH MODE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script type="module" src="./js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,92 @@
+.game-screen {
+    width: 100%;
+    height: 100%;
+    max-width: 45rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo-score-wrapper {
+    width: 100%;
+    height: 10rem;
+    padding: 1rem;
+    border: 2px solid var(--grey);
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-score-wrapper:hover {
+    border-color: var(--slate-100);
+}
+
+.page-logo {
+    width: 10rem;
+}
+
+.score-wrapper {
+    width: 36%;
+    max-width: 10rem;
+    height: 100%;
+    background-color: whitesmoke;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-text {
+    color: var(--blue-600);
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 0.125rem;
+}
+
+.user-score {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--navy-800);
+}
+
+
+.result-board {
+    display: none;
+}
+
+.result-board.active {
+    display: flex;
+}
+
+
+.game-controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.game-controls .btn {
+    padding: 0.5rem 1.75rem;
+    background: transparent;
+    font-family: inherit;
+    font-weight: 600;
+    letter-spacing: 0.125rem;
+    color: whitesmoke;
+    border: none;
+    border: 2px solid var(--grey);
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.game-controls .btn:hover,
+.game-controls .btn.is-active {
+    background-color: whitesmoke;
+    color: var(--blue-600);
+    border-color: var(--navy-700);
+}
