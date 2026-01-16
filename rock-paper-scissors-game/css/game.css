@@ -26,6 +26,7 @@
 }
 
 .page-logo {
+    padding: 0.75rem;
     width: 10rem;
 }
 
@@ -54,13 +55,66 @@
     color: var(--navy-800);
 }
 
-
-.result-board {
+.pick-board, .result-board {
     display: none;
 }
 
-.result-board.active {
+.pick-board.active, .result-board.active {
     display: flex;
+}
+
+
+.choice {
+    width: 8rem;
+    height: 8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.choice-ring {
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: white;
+    box-shadow: inset 0 10px rgba(0,0,0,0.15);
+}
+
+.choice-ring::before {
+    content: '';
+    position: absolute;
+    inset: -1.5rem;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.choice-ring.rock::before {
+    background: hsl(349, 71%, 52%);
+     box-shadow: 0 10px 0 hsl(349, 70%, 30%);
+}
+
+.choice-ring.paper::before {
+    background: hsl(230, 89%, 62%);
+    box-shadow: 0 10px 0 hsl(230, 89%, 40%);
+}
+
+.choice-ring.scissors::before {
+    background: hsl(39, 89%, 49%);
+    box-shadow: 0 10px 0 hsl(40, 84%, 35%);
+}
+
+
+.choice-ring.lizard::before {
+    background: hsl(261, 73%, 60%);
+    box-shadow: 0 10px 0 hsl(261, 72%, 40%);
+}
+
+.choice-ring.spock::before {
+    background: hsl(189, 59%, 53%);
+    box-shadow: 0 10px 0 hsl(189, 58%, 35%);
 }
 
 
