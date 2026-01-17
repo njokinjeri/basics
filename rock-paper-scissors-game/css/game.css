@@ -410,6 +410,10 @@
         width: 3.5rem;
     }
 
+    .result-board .picked-text {
+        font-size: 1rem;
+    }
+
     .result-board .result-text {
         font-size: 3rem;
     }
