@@ -63,60 +63,145 @@
     display: flex;
 }
 
+.pick-board {
+    position: relative;
+    width: min(400px, 90vw);
+    height: min(400px, 90vw);
+    margin: 0 auto;
+    --choice-size: clamp(80px, 20vw, 130px);
+}
 
-.choice {
-    width: 8rem;
-    height: 8rem;
+.pick-board .anchor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    width: 100%;
+    height: auto;
+}
+
+.pick-board .choice {
     background: none;
     border: none;
+    position: absolute;
+    z-index: 1;
     cursor: pointer;
+    transition: scale 0.2s;
+}
+
+.pick-board .choice:hover {
+    scale: 1.1;
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.151));
 }
 
 .choice-ring {
     position: relative;
-    width: 10rem;
-    height: 10rem;
+    width: var(--choice-size);
+    height: var(--choice-size);
     border-radius: 50%;
     display: grid;
     place-items: center;
     background: white;
-    box-shadow: inset 0 10px rgba(0,0,0,0.15);
+    box-shadow: inset 0 0.5rem rgba(0,0,0,0.15);
 }
+
+.choice-ring img {
+    width: 40%;
+    height: auto;
+}
+
+
+.choice-ring img:hover {
+    animation: shake 0.8s ease-in-out infinite;
+}
+
+@keyframes shake {
+    0%   { transform: translateX(0) rotate(0deg); }
+    20%  { transform: translateX(-2px) rotate(-0.5deg); }
+    40%  { transform: translateX(2px)  rotate(0.5deg); }
+    60%  { transform: translateX(-2px) rotate(-0.5deg); }
+    80%  { transform: translateX(2px)  rotate(0.5deg); }
+    100% { transform: translateX(0) rotate(0deg); }
+}
+
 
 .choice-ring::before {
     content: '';
     position: absolute;
-    inset: -1.5rem;
+    inset: -1rem;
     border-radius: 50%;
     z-index: -1;
 }
 
+
 .choice-ring.rock::before {
     background: hsl(349, 71%, 52%);
-     box-shadow: 0 10px 0 hsl(349, 70%, 30%);
+     box-shadow: 0 8px 0 hsl(349, 70%, 30%);
 }
 
 .choice-ring.paper::before {
     background: hsl(230, 89%, 62%);
-    box-shadow: 0 10px 0 hsl(230, 89%, 40%);
+    box-shadow: 0 8px 0 hsl(230, 89%, 40%);
 }
 
 .choice-ring.scissors::before {
     background: hsl(39, 89%, 49%);
-    box-shadow: 0 10px 0 hsl(40, 84%, 35%);
+    box-shadow: 0 8px 0 hsl(40, 84%, 35%);
 }
 
 
 .choice-ring.lizard::before {
     background: hsl(261, 73%, 60%);
-    box-shadow: 0 10px 0 hsl(261, 72%, 40%);
+    box-shadow: 0 8px 0 hsl(261, 72%, 40%);
 }
 
 .choice-ring.spock::before {
     background: hsl(189, 59%, 53%);
-    box-shadow: 0 10px 0 hsl(189, 58%, 35%);
+    box-shadow: 0 8px 0 hsl(189, 58%, 35%);
 }
 
+.pick-board .choice[data-choice="rock"] {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.pick-board .choice[data-choice="paper"] {
+    top: 0;
+    left: 0;
+}
+
+.pick-board .choice[data-choice="scissors"] {
+    top: 0;
+    right: 0;
+}
+
+.pick-board.pentagon .choice[data-choice="rock"] {
+    bottom: -10%;
+    left: 80%;
+    transform: translateX(-50%);
+}
+
+.pick-board.pentagon .choice[data-choice="paper"] {
+    top: 25%;
+    left: 82%;
+}
+
+.pick-board.pentagon .choice[data-choice="scissors"] {
+    top: -12%;
+    right: 35%;
+}
+
+.pick-board.pentagon .choice[data-choice="lizard"] {
+    bottom: -10%;
+    right: 65%;
+}
+
+.pick-board.pentagon .choice[data-choice="spock"] {
+    top: 25%;
+    right: 82%;
+}
 
 .game-controls {
     width: 100%;
@@ -143,4 +228,20 @@
     background-color: whitesmoke;
     color: var(--blue-600);
     border-color: var(--navy-700);
+}
+
+
+
+@media (max-width: 480px) {
+    .pick-board {
+        width: min(300px, 90vw);
+        height: min(300px, 90vw);
+        --choice-size: clamp(60px, 18vw, 120px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .choice-ring img:hover {
+        animation: none;
+    }
 }

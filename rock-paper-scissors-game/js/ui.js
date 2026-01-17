@@ -41,6 +41,12 @@ export function applyModeUI(modeKey) {
     const anchor = ui.pickBoard.querySelector('.anchor');
     anchor.src = `./images/bg-${mode.anchor}.svg`;
 
+    if (modeKey === 'five') {
+        ui.pickBoard.classList.add('pentagon');
+    } else {
+        ui.pickBoard.classList.remove('pentagon');
+    }
+
     createChoiceButtons(mode.choices);
 }
 
