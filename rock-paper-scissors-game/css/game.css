@@ -258,10 +258,13 @@
 }
 
 .result-board .picked-text {
+    height: 4rem;
     font-size: 1.125rem;
     font-weight: 500;
     letter-spacing: 0.125rem;
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .result-board .play-again-btn {
