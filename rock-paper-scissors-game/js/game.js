@@ -9,12 +9,40 @@ let gameState = {
     houseChoice: null
 };
 
-export function initGame(mode) {
+
+export function loadGameState() {
+    const saved = localStorage.getItem('rpsGameState');
+
+    if (saved) {
+        try {
+            return JSON.parse(saved);
+        } catch (e) {
+            console.error('Failed to load game state:', e);
+            return { mode: 'three', score: 0 };
+        }
+    }
+    return { mode: 'three', score: 0};
+}
+
+
+function saveGameState() {
+    const stateToSave = {
+        mode: gameState.mode,
+        score: gameState.score
+    };
+    localStorage.setItem('rpsGameState', JSON.stringify(stateToSave));
+}
+
+
+export function initGame(mode, savedScore = 0) {
     gameState.mode = mode;
+    gameState.score = savedScore
     gameState.currentChoices = GAME_MODES[mode].choices;
 
+    updateScore(gameState.score);
     setChoiceHandler(makeChoice);
     setUpPlayAgainListener();
+    saveGameState();
 }
 
 
@@ -66,9 +94,11 @@ function updateGameScore(result) {
     if (result === 'win') {
         gameState.score++;
         updateScore(gameState.score);
+        saveGameState();
     } else if (result === 'lose') {
         gameState.score = Math.max(0, gameState.score - 1);
         updateScore(gameState.score);
+        saveGameState();
     }
 }
 
@@ -85,6 +115,7 @@ export function switchGameMode() {
     applyModeUI(gameState.mode)
     initGame(gameState.mode);
     showPickState();
+    saveGameState()
 }
 
 
@@ -92,4 +123,5 @@ export function restartGame() {
     gameState.score = 0;
     updateScore(0);
     resetRound();
+    saveGameState();
 }

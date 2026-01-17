@@ -1,7 +1,7 @@
 .game-screen {
     width: 100%;
     height: 100%;
-    max-width: 45rem;
+    max-width: 50rem;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -55,20 +55,29 @@
     color: var(--navy-800);
 }
 
+.game-board {
+    width: 100%;
+}
+
 .pick-board, .result-board {
     display: none;
 }
 
-.pick-board.active, .result-board.active {
+.pick-board.active {
     display: flex;
+}
+
+.result-board.active {
+    display: grid;
 }
 
 .pick-board {
     position: relative;
-    width: min(400px, 90vw);
+    width: min(360px, 90vw);
     height: min(400px, 90vw);
     margin: 0 auto;
-    --choice-size: clamp(80px, 20vw, 130px);
+    --choice-size: clamp(60px, 18vw, 120px);
+
 }
 
 .pick-board .anchor {
@@ -95,7 +104,7 @@
     filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.151));
 }
 
-.choice-ring {
+.pick-board .choice-ring {
     position: relative;
     width: var(--choice-size);
     height: var(--choice-size);
@@ -106,13 +115,12 @@
     box-shadow: inset 0 0.5rem rgba(0,0,0,0.15);
 }
 
-.choice-ring img {
+.pick-board .choice-ring img {
     width: 40%;
     height: auto;
 }
 
-
-.choice-ring img:hover {
+.pick-board .choice-ring img:hover {
     animation: shake 0.8s ease-in-out infinite;
 }
 
@@ -125,15 +133,13 @@
     100% { transform: translateX(0) rotate(0deg); }
 }
 
-
 .choice-ring::before {
     content: '';
     position: absolute;
-    inset: -1rem;
+    inset: -1.5rem;
     border-radius: 50%;
     z-index: -1;
 }
-
 
 .choice-ring.rock::before {
     background: hsl(349, 71%, 52%);
@@ -149,7 +155,6 @@
     background: hsl(39, 89%, 49%);
     box-shadow: 0 8px 0 hsl(40, 84%, 35%);
 }
-
 
 .choice-ring.lizard::before {
     background: hsl(261, 73%, 60%);
@@ -203,6 +208,130 @@
     right: 82%;
 }
 
+.result-board {
+    width: 100%;
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 
+        'you house'
+        'outcome outcome';
+    gap: 3rem;
+    color: whitesmoke;
+}
+
+.result-board .picked {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.result-board .choice {
+    height: 100%;
+    background: none;
+    position: relative;
+    border: none;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.result-board .choice-ring {
+    width: 10rem;
+    height: 10rem;
+    position: relative;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: white;
+    box-shadow: inset 0 0.5rem rgba(0,0,0,0.15);
+}
+
+.result-board .choice-ring img {
+    width: 4rem;
+    height: auto;
+}
+
+.result-board .picked-text {
+    font-size: 1.125rem;
+    font-weight: 500;
+    letter-spacing: 0.125rem;
+    text-align: center;
+}
+
+.result-board .play-again-btn {
+    width: 80%;
+    max-width: 15rem;
+    padding: 1rem 0;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 700;
+    letter-spacing: 0.125rem;
+    background-color: white;
+    color: var(--navy-900);
+    border: none;
+    cursor: pointer;
+    transition: scale 0.2s;
+}
+
+.result-board .play-again-btn:hover {
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.151));
+    color: hsl(349, 71%, 52%);
+    scale: 1.1;
+}
+
+.result-board .picked .you {
+    grid-area: you;
+}
+
+.result-board .outcome {
+    grid-area: outcome;
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.result-board .result-text {
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.result-board .picked .house {
+    grid-area: house;
+}
+
+
+.result-board .choice.winner {
+    position: relative;
+    z-index: -1;
+    border-radius: 50%;
+    animation: ripple-faded 3s ease-in-out infinite;
+}
+
+@keyframes ripple-faded {
+    0%, 100% {
+        box-shadow: 
+            inset 0px -12px 0px rgba(0, 0, 0, 0.15),
+            0px 0px 0px 130px rgba(45, 49, 101, 0.15), 
+            0px 0px 0px 85px rgba(58, 63, 130, 0.2),  
+            0px 0px 0px 45px rgba(71, 77, 158, 0.25); 
+    }
+    
+    50% {
+        box-shadow: 
+            inset 0px -12px 0px rgba(0, 0, 0, 0.15),
+            0px 0px 0px 180px rgba(45, 49, 101, 0.05),
+            0px 0px 0px 120px rgba(58, 63, 130, 0.1),
+            0px 0px 0px 70px rgba(71, 77, 158, 0.15);
+    }
+}
+
+
 .game-controls {
     width: 100%;
     display: flex;
@@ -230,18 +359,69 @@
     border-color: var(--navy-700);
 }
 
-
-
 @media (max-width: 480px) {
     .pick-board {
         width: min(300px, 90vw);
         height: min(300px, 90vw);
-        --choice-size: clamp(60px, 18vw, 120px);
     }
+    .result-board .choice-ring {
+        width: 8rem;
+        height: 8rem;
+    }
+    
+    .result-board .choice-ring img {
+        width: 3.5rem;
+    }
+
+    .result-board .result-text {
+        font-size: 3rem;
+    }
+    
 }
 
 @media (prefers-reduced-motion: reduce) {
     .choice-ring img:hover {
         animation: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .pick-board {
+        width: min(420px, 90vw);
+        height: min(420px, 90vw);
+    }
+
+    .result-board {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas: 'you outcome house';
+        place-items: center;
+    }
+    .result-board .choice-ring {
+        width: 13rem;
+        height: 13rem;
+    }
+
+    .result-board .outcome {
+        padding-top: 0;
+    }
+
+    .result-board .picked {
+        flex-direction: column;
+        position: relative;
+    }
+
+    .result-board .picked-text {
+        font-size: 1.325rem;
+        font-weight: 600;
+        position: absolute;
+        top: -65%;
+    }
+
+    .result-board .result-text {
+        font-size: 3.25rem;
+    }
+    
+    .result-board .play-again-btn {
+        width: 12rem;
     }
 }

@@ -1,14 +1,16 @@
-import { initGame } from "./game.js";
+import { initGame, loadGameState } from "./game.js";
 import { applyModeUI, showPickState } from "./ui.js";
 import { setupModalListeners } from "./modal.js";
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const currentMode = 'three'
+
+    const savedState = loadGameState();
+    const currentMode =  savedState.mode || 'three';
 
     setupModalListeners();
     applyModeUI(currentMode);
-    initGame(currentMode);
+    initGame(currentMode, savedState.score);
     showPickState();
 });
 
