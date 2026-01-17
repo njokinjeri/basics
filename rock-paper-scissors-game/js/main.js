@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupModalListeners();
     applyModeUI(currentMode);
-    initGame(currentMode, savedState.score);
+    initGame(currentMode, savedState.scores);
     showPickState();
 });
 

@@ -14,48 +14,64 @@ import {
 
 let gameState = {
     mode: 'three',
-    score: 0,
+    scores: {
+        three: 0,
+        five: 0
+    },
     currentChoices: [],
     userChoice: null,
     houseChoice: null
 };
 
+
 export function loadGameState() {
     const saved = localStorage.getItem('rpsGameState');
     if (saved) {
         try {
-            return JSON.parse(saved);
+            const parsed = JSON.parse(saved);
+            if (!parsed.scores) {
+                parsed.scores = { three: 0, five: 0 };
+            }
+            return parsed;
         } catch (e) {
             console.error('Failed to load game state:', e);
-            return { mode: 'three', score: 0 };
+            return { mode: 'three', scores: { three: 0, five: 0 } };
         }
     }
-    return { mode: 'three', score: 0 };
+    return { mode: 'three', scores: { three: 0, five: 0 } };
 }
+
 
 function saveGameState() {
     const stateToSave = {
         mode: gameState.mode,
-        score: gameState.score
+        scores: gameState.scores
     };
     localStorage.setItem('rpsGameState', JSON.stringify(stateToSave));
 }
 
-export function initGame(mode, savedScore = 0) {
+
+export function initGame(mode, savedScores = null) {
     gameState.mode = mode;
-    gameState.score = savedScore;
+
+    if (savedScores) {
+        gameState.scores = savedScores;
+    }
+    
     gameState.currentChoices = GAME_MODES[mode].choices;
     
-    updateScore(gameState.score);
+    updateScore(gameState.scores[mode]);
     setChoiceHandler(makeChoice);
     setUpPlayAgainListener();
     saveGameState();
 }
 
+
 function setUpPlayAgainListener() {
     const playAgainBtn = document.querySelector('.play-again-btn');
     playAgainBtn.addEventListener('click', resetRound);
 }
+
 
 function makeChoice(choice) {
     gameState.userChoice = choice;
@@ -76,10 +92,12 @@ function makeChoice(choice) {
     }, 1500);
 }
 
+
 function getHouseChoice() {
     const choices = gameState.currentChoices;
     return choices[Math.floor(Math.random() * choices.length)];
 }
+
 
 function determineWinner() {
     const { userChoice, houseChoice } = gameState;
@@ -97,14 +115,17 @@ function determineWinner() {
     return winConditions[userChoice]?.includes(houseChoice) ? 'win' : 'lose';
 }
 
+
 function updateGameScore(result) {
+    const currentMode = gameState.mode;
+    
     if (result === 'win') {
-        gameState.score++;
-        updateScore(gameState.score);
+        gameState.scores[currentMode]++;
+        updateScore(gameState.scores[currentMode]);
         saveGameState();
     } else if (result === 'lose') {
-        gameState.score = Math.max(0, gameState.score - 1);
-        updateScore(gameState.score);
+        gameState.scores[currentMode] = Math.max(0, gameState.scores[currentMode] - 1);
+        updateScore(gameState.scores[currentMode]);
         saveGameState();
     }
 }
@@ -118,13 +139,13 @@ function resetRound() {
 export function switchGameMode() {
     gameState.mode = gameState.mode === 'three' ? 'five' : 'three';
     applyModeUI(gameState.mode);
-    initGame(gameState.mode, gameState.score); 
+    initGame(gameState.mode, gameState.scores); 
     showPickState();
     saveGameState();
 }
 
 export function restartGame() {
-    gameState.score = 0;
+    gameState.scores[gameState.mode] = 0;
     updateScore(0);
     resetRound();
     saveGameState();

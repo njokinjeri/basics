@@ -231,6 +231,9 @@
 
 .result-board .choice {
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: none;
     position: relative;
     border: none;
@@ -320,6 +323,8 @@
 
 .result-board .choice.winner {
     position: relative;
+    display: flex;
+    align-items: center;
     z-index: -1;
     border-radius: 50%;
     animation: ripple-faded 3s ease-in-out infinite;
@@ -329,7 +334,7 @@
     0%, 100% {
         box-shadow: 
             inset 0px -12px 0px rgba(0, 0, 0, 0.15),
-            0px 0px 0px 130px rgba(45, 49, 101, 0.15), 
+            0px 0px 0px 120px rgba(45, 49, 101, 0.15), 
             0px 0px 0px 85px rgba(58, 63, 130, 0.2),  
             0px 0px 0px 45px rgba(71, 77, 158, 0.25); 
     }
