@@ -1,5 +1,16 @@
 import { GAME_MODES } from "./ui.config.js";
-import { showResultState, showPickState, updateScore, displayResult, setChoiceHandler, applyModeUI } from "./ui.js";
+import { 
+    showResultState, 
+    showPickState, 
+    updateScore, 
+    displayResult, 
+    setChoiceHandler, 
+    applyModeUI, 
+    displayUserChoice, 
+    displayHouseChoice,
+    showHousePicking,  
+    showResult         
+} from "./ui.js";
 
 let gameState = {
     mode: 'three',
@@ -9,10 +20,8 @@ let gameState = {
     houseChoice: null
 };
 
-
 export function loadGameState() {
     const saved = localStorage.getItem('rpsGameState');
-
     if (saved) {
         try {
             return JSON.parse(saved);
@@ -21,9 +30,8 @@ export function loadGameState() {
             return { mode: 'three', score: 0 };
         }
     }
-    return { mode: 'three', score: 0};
+    return { mode: 'three', score: 0 };
 }
-
 
 function saveGameState() {
     const stateToSave = {
@@ -33,51 +41,51 @@ function saveGameState() {
     localStorage.setItem('rpsGameState', JSON.stringify(stateToSave));
 }
 
-
 export function initGame(mode, savedScore = 0) {
     gameState.mode = mode;
-    gameState.score = savedScore
+    gameState.score = savedScore;
     gameState.currentChoices = GAME_MODES[mode].choices;
-
+    
     updateScore(gameState.score);
     setChoiceHandler(makeChoice);
     setUpPlayAgainListener();
     saveGameState();
 }
 
-
 function setUpPlayAgainListener() {
     const playAgainBtn = document.querySelector('.play-again-btn');
     playAgainBtn.addEventListener('click', resetRound);
 }
 
-
 function makeChoice(choice) {
     gameState.userChoice = choice;
-    gameState.houseChoice = getHouseChoice();
-
+    
     showResultState();
-
+    displayUserChoice(gameState.userChoice);
+    showHousePicking();
+    
     setTimeout(() => {
-        const result = determineWinner();
-        updateGameScore(result);
-        displayResult(result, gameState.userChoice, gameState.houseChoice);
-    }, 500);
+        gameState.houseChoice = getHouseChoice();
+        displayHouseChoice(gameState.houseChoice);
+        
+        setTimeout(() => {
+            const result = determineWinner();
+            updateGameScore(result);
+            showResult(result); 
+        }, 500);
+    }, 1500);
 }
-
 
 function getHouseChoice() {
     const choices = gameState.currentChoices;
     return choices[Math.floor(Math.random() * choices.length)];
-
 }
-
 
 function determineWinner() {
     const { userChoice, houseChoice } = gameState;
-
+    
     if (userChoice === houseChoice) return 'draw';
-
+    
     const winConditions = {
         rock: ['scissors', 'lizard'],
         paper: ['rock', 'spock'],
@@ -85,10 +93,9 @@ function determineWinner() {
         lizard: ['spock', 'paper'],
         spock: ['scissors', 'rock']
     };
-
+    
     return winConditions[userChoice]?.includes(houseChoice) ? 'win' : 'lose';
 }
-
 
 function updateGameScore(result) {
     if (result === 'win') {
@@ -102,22 +109,19 @@ function updateGameScore(result) {
     }
 }
 
-
 function resetRound() {
     gameState.userChoice = null;
     gameState.houseChoice = null;
     showPickState();
 }
 
-
 export function switchGameMode() {
     gameState.mode = gameState.mode === 'three' ? 'five' : 'three';
-    applyModeUI(gameState.mode)
-    initGame(gameState.mode);
+    applyModeUI(gameState.mode);
+    initGame(gameState.mode, gameState.score); 
     showPickState();
-    saveGameState()
+    saveGameState();
 }
-
 
 export function restartGame() {
     gameState.score = 0;

@@ -183,7 +183,7 @@
 }
 
 .pick-board.pentagon .choice[data-choice="rock"] {
-    bottom: -10%;
+    bottom: -6%;
     left: 80%;
     transform: translateX(-50%);
 }
@@ -194,12 +194,12 @@
 }
 
 .pick-board.pentagon .choice[data-choice="scissors"] {
-    top: -12%;
+    top: -8%;
     right: 35%;
 }
 
 .pick-board.pentagon .choice[data-choice="lizard"] {
-    bottom: -10%;
+    bottom: -6%;
     right: 65%;
 }
 
@@ -212,6 +212,7 @@
     width: 100%;
     display: none;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;
     grid-template-areas: 
         'you house'
         'outcome outcome';
@@ -293,7 +294,18 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
+
+.result-board .outcome.show {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
 
 .result-board .result-text {
     font-size: 4rem;
@@ -331,6 +343,26 @@
     }
 }
 
+
+.result-board .choice-placeholder {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    background: hsl(237, 49%, 15%); 
+    animation: pulse 2s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
 
 .game-controls {
     width: 100%;
@@ -379,6 +411,20 @@
     
 }
 
+@media (max-width: 768px) {
+    .result-board {
+        min-height: 31.25rem;
+    }
+
+    .result-board .picked {
+        justify-content: flex-start; 
+    }
+
+    .result-board .outcome {
+        height: 9.375rem; 
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .choice-ring img:hover {
         animation: none;
@@ -396,7 +442,8 @@
         grid-template-areas: 'you outcome house';
         place-items: center;
     }
-    .result-board .choice-ring {
+    .result-board .choice-ring,
+    .result-board .choice-placeholder {
         width: 13rem;
         height: 13rem;
     }

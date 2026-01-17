@@ -10,7 +10,8 @@ const ui = {
     resultText: document.querySelector('.result-text'),
     userChoiceDiv: document.querySelector('.user-choice'),
     houseChoiceDiv: document.querySelector('.house-choice'),
-    playAgainBtn: document.querySelector('.play-again-btn')
+    playAgainBtn: document.querySelector('.play-again-btn'),
+    outcome: document.querySelector('.outcome')
 };
 
 let makeChoiceHandler = null;
@@ -22,12 +23,14 @@ export function setChoiceHandler(handler) {
 export function showPickState() {
     ui.pickBoard.classList.add('active');
     ui.resultBoard.classList.remove('active');
+    ui.outcome.classList.remove('show');
 }
 
 
 export function showResultState() {
     ui.resultBoard.classList.add('active');
     ui.pickBoard.classList.remove('active');
+    ui.outcome.classList.remove('show');
 }
 
 
@@ -87,41 +90,64 @@ function createChoiceButtons(choices) {
 }
 
 
-export function updateScore(score) {
-    ui.userScore.textContent = score;
-}
-
-
-export function displayResult(result, userChoice, houseChoice) {
-    const resultTests = {
-        win: 'YOU WIN',
-        lose: 'YOU LOSE',
-        draw: 'DRAW'
-    };
-
-    ui.resultText.textContent = resultTests[result];
-
-    displayChoice(ui.userChoiceDiv, userChoice);
-    displayChoice(ui.houseChoiceDiv, houseChoice);
-
-    ui.userChoiceDiv.classList.remove('winner');
-    ui.houseChoiceDiv.classList.remove('winner');
-
-    if (result === 'win') {
-        ui.userChoiceDiv.classList.add('winner');
-    } else if (result === 'lose') {
-        ui.houseChoiceDiv.classList.add('winner');
-    }
-}
-
-
 function displayChoice(container, choice) {
     container.innerHTML = '';
     container.className = 'choice';
     container.appendChild(createChoiceStructure(choice));
 }
 
+export function updateScore(score) {
+    ui.userScore.textContent = score;
+}
 
+export function displayUserChoice(choice) {  
+    displayChoice(ui.userChoiceDiv, choice);
+    ui.userChoiceDiv.classList.remove('winner');
+}
+
+
+export function showHousePicking() {
+    ui.houseChoiceDiv.innerHTML = '';
+    ui.houseChoiceDiv.className = 'choice picking';
+
+    const placeholder = document.createElement('div');
+    placeholder.className = 'choice-placeholder';
+    ui.houseChoiceDiv.appendChild(placeholder);
+    
+    ui.resultText.textContent = '';
+    ui.outcome.classList.remove('show');
+}
+
+
+export function displayHouseChoice(choice) {
+    displayChoice(ui.houseChoiceDiv, choice);
+    ui.houseChoiceDiv.classList.remove('picking');
+    ui.houseChoiceDiv.classList.remove('winner');
+}
+
+
+export function showResult(result) {
+    const resultTexts = {
+        win: 'YOU WIN',
+        lose: 'YOU LOSE',
+        draw: 'DRAW'
+    };
+    ui.resultText.textContent = resultTexts[result];
+    
+    if (result === 'win') {
+        ui.userChoiceDiv.classList.add('winner');
+    } else if (result === 'lose') {
+        ui.houseChoiceDiv.classList.add('winner');
+    }
+
+    ui.outcome.classList.add('show');
+}
+
+export function displayResult(result, userChoice, houseChoice) {
+    displayUserChoice(userChoice);
+    displayHouseChoice(houseChoice);
+    showResult(result);
+}
 
 
 
