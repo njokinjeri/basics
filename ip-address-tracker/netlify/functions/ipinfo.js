@@ -7,7 +7,7 @@ exports.handler = async (event) => {
 
     const targetIp = searchedIp || clientIp;
 
-    const url = `https://ipinfo.io/${clientIp}?token=${apiKey}`;
+    const url = `https://ipinfo.io/${targetIp}?token=${apiKey}`;
 
     try {
         const response = await fetch(url);
